@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://rjgpnc8t6evf"]
+[gd_scene load_steps=22 format=3 uid="uid://rjgpnc8t6evf"]
 
 [ext_resource type="Texture2D" uid="uid://33idf0yco4wj" path="res://assets/images/palceholder/particle_test.png" id="1_hagbv"]
 [ext_resource type="Script" path="res://scripts/ui/ui_controller.gd" id="1_sby32"]
@@ -9,13 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://d1bqf1qad8xf1" path="res://entities/ui/heart.tscn" id="6_ntlee"]
 [ext_resource type="Texture2D" uid="uid://c68nne7ct518k" path="res://assets/images/ui/in-game/ui-timer.png" id="7_7n3ap"]
 [ext_resource type="Texture2D" uid="uid://bqklit5gdr1s3" path="res://assets/images/ui/in-game/ui-player-mask.png" id="7_twgn4"]
-[ext_resource type="Texture2D" uid="uid://v3ymh1p7im8q" path="res://assets/images/characters/muscle/personagem_laranja.png" id="8_7jfp2"]
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="8_8f4jj"]
+[ext_resource type="Texture2D" uid="uid://butvsebh3v6lr" path="res://assets/images/characters/muscle/react_laranja_idle.png" id="8_objxb"]
+[ext_resource type="Texture2D" uid="uid://b35rbedhgvse7" path="res://assets/images/ui/in-game/uit-timer-bg.png" id="10_8xx3i"]
+[ext_resource type="Script" path="res://entities/ui/ui_star_container.gd" id="12_rv17w"]
+[ext_resource type="Texture2D" uid="uid://c8btrcp00ojy5" path="res://assets/images/ui/in-game/star-highlight-circle.png" id="13_l6tp8"]
+[ext_resource type="Texture2D" uid="uid://bbuimbrqvfbha" path="res://assets/images/ui/in-game/star.png" id="14_v23rv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrelj"]
 shader = ExtResource("1_t1o01")
-shader_parameter/blur_amount = 4.371
-shader_parameter/mix_amount = 0.28
+shader_parameter/blur_amount = 4.5
+shader_parameter/mix_amount = 0.3
 shader_parameter/color_over = null
 
 [sub_resource type="Curve" id="Curve_1vmv0"]
@@ -30,6 +34,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.91, 1, 1, 1, 0)
 offsets = PackedFloat32Array(0, 0.543333, 1)
 colors = PackedColorArray(1, 0.368627, 0.388235, 1, 0.300189, 1, 0.366608, 1, 0.254902, 0.282353, 1, 1)
 
+[sub_resource type="Gradient" id="Gradient_5wdec"]
+offsets = PackedFloat32Array(0, 0.32, 0.63, 1)
+colors = PackedColorArray(1, 0.937255, 0.8, 0.317647, 0.921569, 0.811765, 0.572549, 0.129412, 0.909804, 0.780392, 0.501961, 0.0196078, 0.909804, 0.780392, 0.501961, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_edyix"]
+gradient = SubResource("Gradient_5wdec")
+
 [node name="UI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -40,7 +51,6 @@ grow_vertical = 2
 script = ExtResource("1_sby32")
 
 [node name="Filter" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_mrelj")
 layout_mode = 1
 anchors_preset = 15
@@ -77,6 +87,7 @@ position = Vector2(960, 540)
 texture = ExtResource("4_6htds")
 
 [node name="P1UI" type="Node2D" parent="." node_paths=PackedStringArray("hearts")]
+process_mode = 3
 position = Vector2(0, 1080)
 script = ExtResource("5_lt857")
 hearts = [NodePath("HeartsContainer/Heart"), NodePath("HeartsContainer/Heart2"), NodePath("HeartsContainer/Heart3")]
@@ -92,6 +103,24 @@ patch_margin_top = 31
 patch_margin_right = 55
 patch_margin_bottom = 39
 
+[node name="PortraitMask" type="NinePatchRect" parent="P1UI"]
+clip_children = 1
+offset_left = 45.0
+offset_top = -136.0
+offset_right = 285.0
+offset_bottom = -44.0
+texture = ExtResource("7_twgn4")
+patch_margin_left = 19
+patch_margin_right = 44
+
+[node name="Portrait" type="TextureRect" parent="P1UI/PortraitMask"]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 106.0
+texture = ExtResource("8_objxb")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="HeartsContainer" type="Node2D" parent="P1UI"]
 position = Vector2(338, -83)
 scale = Vector2(1.44215, 1.44215)
@@ -105,25 +134,8 @@ position = Vector2(52, 1)
 [node name="Heart3" parent="P1UI/HeartsContainer" instance=ExtResource("6_ntlee")]
 position = Vector2(104, 1)
 
-[node name="PortraitMask" type="NinePatchRect" parent="P1UI"]
-clip_children = 1
-offset_left = 45.0
-offset_top = -136.0
-offset_right = 285.0
-offset_bottom = -44.0
-texture = ExtResource("7_twgn4")
-patch_margin_left = 19
-patch_margin_right = 44
-
-[node name="TextureRect" type="TextureRect" parent="P1UI/PortraitMask"]
-layout_mode = 0
-offset_left = -49.0
-offset_top = -12.0
-offset_right = 281.0
-offset_bottom = 251.0
-texture = ExtResource("8_7jfp2")
-
 [node name="P2UI" type="Node2D" parent="." node_paths=PackedStringArray("hearts")]
+process_mode = 3
 position = Vector2(1919, 1080)
 scale = Vector2(-1, 1)
 script = ExtResource("5_lt857")
@@ -163,13 +175,59 @@ texture = ExtResource("7_twgn4")
 patch_margin_left = 19
 patch_margin_right = 44
 
-[node name="TextureRect" type="TextureRect" parent="P2UI/PortraitMask"]
-layout_mode = 0
-offset_left = -49.0
-offset_top = -12.0
-offset_right = 281.0
-offset_bottom = 251.0
-texture = ExtResource("8_7jfp2")
+[node name="Portrait" type="TextureRect" parent="P2UI/PortraitMask"]
+offset_right = 319.0
+offset_bottom = 106.0
+texture = ExtResource("8_objxb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="StarContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -204.0
+offset_top = -505.0
+offset_right = 204.0
+offset_bottom = -437.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_8xx3i")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="P1_star_1" type="Node2D" parent="StarContainer"]
+position = Vector2(110, 34)
+
+[node name="Star" type="Sprite2D" parent="StarContainer/P1_star_1"]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("14_v23rv")
+
+[node name="P1_star_2" type="Node2D" parent="StarContainer"]
+position = Vector2(40, 34)
+
+[node name="Star" type="Sprite2D" parent="StarContainer/P1_star_2"]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("14_v23rv")
+
+[node name="P2_star_1" type="Node2D" parent="StarContainer"]
+position = Vector2(300, 34)
+
+[node name="Star" type="Sprite2D" parent="StarContainer/P2_star_1"]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("14_v23rv")
+
+[node name="P2_star_2" type="Node2D" parent="StarContainer"]
+position = Vector2(370, 34)
+
+[node name="Star" type="Sprite2D" parent="StarContainer/P2_star_2"]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("14_v23rv")
 
 [node name="TimerContainer" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -197,3 +255,115 @@ theme_override_fonts/normal_font = ExtResource("8_8f4jj")
 theme_override_font_sizes/normal_font_size = 46
 bbcode_enabled = true
 text = "[center][wave amp=30 freq=-6]99[/wave][/center]"
+
+[node name="StartContainer" type="Node2D" parent="." node_paths=PackedStringArray("p1_star_1_container", "p1_star_2_container", "p2_star_1_container", "p2_star_2_container")]
+position = Vector2(960, 540)
+script = ExtResource("12_rv17w")
+p1_star_1_container = NodePath("../StarContainer/P1_star_1")
+p1_star_2_container = NodePath("../StarContainer/P1_star_2")
+p2_star_1_container = NodePath("../StarContainer/P2_star_1")
+p2_star_2_container = NodePath("../StarContainer/P2_star_2")
+
+[node name="Rays" type="Node2D" parent="StartContainer"]
+
+[node name="TextureRect" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect2" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 0.523598
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect3" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 1.0472
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect4" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 1.57079
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect5" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 2.09439
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect6" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 2.61799
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect7" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 3.14159
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect8" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 3.66519
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect9" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 4.18878
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect10" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 4.71238
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect11" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 5.23598
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="TextureRect12" type="TextureRect" parent="StartContainer/Rays"]
+offset_top = -45.0
+offset_right = 500.0
+offset_bottom = 45.0
+rotation = 5.75958
+pivot_offset = Vector2(-1, 44)
+texture = SubResource("GradientTexture1D_edyix")
+
+[node name="Star-highlight-circle" type="Sprite2D" parent="StartContainer"]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("13_l6tp8")
+
+[node name="Star" type="Sprite2D" parent="StartContainer"]
+texture = ExtResource("14_v23rv")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_vu68a"]
 [ext_resource type="PackedScene" uid="uid://b7l066o3p4ljc" path="res://entities/scenario/museu_olho_background.tscn" id="2_hxegb"]
 [ext_resource type="Script" path="res://scripts/controllers/camera_controller.gd" id="3_07aat"]
-[ext_resource type="PackedScene" uid="uid://bue34jra8oa40" path="res://entities/test_player.tscn" id="4_tjwqj"]
+[ext_resource type="PackedScene" uid="uid://bue34jra8oa40" path="res://entities/player/test_player.tscn" id="4_tjwqj"]
 [ext_resource type="TileSet" uid="uid://1qpduo02qitl" path="res://data/tilesets/dark_blue_tileset.tres" id="5_3nxoe"]
 [ext_resource type="Script" path="res://scripts/controllers/arena_bound_controller.gd" id="7_6xas5"]
 [ext_resource type="PackedScene" uid="uid://rjgpnc8t6evf" path="res://entities/ui/ui.tscn" id="8_l8xs8"]
@@ -93,13 +93,3 @@ shape = SubResource("RectangleShape2D_j8jnm")
 custom_minimum_size = Vector2(1920, 1080)
 offset_right = 1920.0
 offset_bottom = 1080.0
-
-[node name="Panel" type="Panel" parent="UI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2

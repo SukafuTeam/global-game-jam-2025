@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/controllers/camera_controller.gd" id="1_0u2h3"]
 [ext_resource type="TileSet" uid="uid://1qpduo02qitl" path="res://data/tilesets/dark_blue_tileset.tres" id="1_esg1m"]
-[ext_resource type="PackedScene" uid="uid://bue34jra8oa40" path="res://entities/test_player.tscn" id="2_vyoy6"]
+[ext_resource type="PackedScene" uid="uid://bue34jra8oa40" path="res://entities/player/test_player.tscn" id="2_vyoy6"]
 [ext_resource type="Script" path="res://scripts/controllers/tuto_bounce_controller.gd" id="3_ov045"]
 [ext_resource type="Script" path="res://scripts/controllers/tuto_dash_controller.gd" id="8_g0lgn"]
 

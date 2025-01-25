@@ -3,20 +3,48 @@ extends Node2D
 @export var ui: UIController
 @export var player1: PlayerController
 @export var player2: PlayerController
+@export var level_time: float = 60.0
 
 var dead: bool
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player1.died.connect(finished_game)
 	player2.died.connect(finished_game)
 	
 	player1.took_damage.connect(func(health):
 		ui.take_damage(InputController.PLAYER.P1,health)
+		if health == 0:
+			# TODO: add player's victory
+			ui.end_game(InputController.PLAYER.P2)
 	)
 	player2.took_damage.connect(func(health):
 		ui.take_damage(InputController.PLAYER.P2, health)
+		if health == 0:
+			ui.end_game(InputController.PLAYER.P1)
 	)
+	
+	ui.p1.player = player1
+	ui.p2.player = player2
+
+func _process(delta: float):
+	level_time -= delta
+	
+	if level_time <= 0.0:
+		level_time = 0.0
+	
+	var res = "[center]"
+	if level_time < 10:
+		res += "[shake rate=30.0 level=10 connected=1]"
+		res += str(int(level_time))
+		res += "[/shake]"
+	else:
+		res += "[wave amp=30 freq=-6]"
+		res += str(int(level_time))
+		res += "[/wave]"
+		
+		
+	res += "[/center]"
+	ui.timer_label.text = res
 
 func finished_game():
 	if dead:
@@ -25,7 +53,7 @@ func finished_game():
 	dead = true
 	player1.interactive = false
 	player2.interactive = false
+	player1.frozen = true
+	player2.frozen = true
 	player1.velocity = Vector2.ZERO
 	player2.velocity = Vector2.ZERO
-	await GameController.hit_stop(1.0)
-	get_tree().reload_current_scene()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cbcivpacm125t"]
 
-[ext_resource type="PackedScene" uid="uid://be753s4hmehoj" path="res://entities/dash_particle.tscn" id="1_ig3l6"]
+[ext_resource type="PackedScene" uid="uid://be753s4hmehoj" path="res://entities/player/dash_particle.tscn" id="1_ig3l6"]
 
 [node name="DamageParticle" instance=ExtResource("1_ig3l6")]
 process_mode = 3

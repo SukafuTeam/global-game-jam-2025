@@ -46,6 +46,7 @@ enum State {
 @export var interactive: bool
 @export var player: InputController.PLAYER
 @export var data: CharacterData
+@export var frozen: bool
 
 @export_subgroup("Game")
 @export var health: int
@@ -124,6 +125,10 @@ func _process(delta: float):
 		character.rotation = lerp_angle(character.rotation, 0.0, 5 * delta)
 
 func _physics_process(delta):
+	if frozen:
+		velocity = Vector2.ZERO
+		return
+	
 	collided_this_frame = false
 	if not is_on_floor():
 		var gravity = get_gravity()
@@ -382,23 +387,24 @@ func collide_with_deadly(_other_area: Node2D):
 	if current_iframe_time > 0.0:
 		return
 	
-	health -= 1
-	took_damage.emit(health)
-	velocity = Vector2.ZERO
-	SoundController.play_sfx(damage_sfx, 1.0, data.damage_pitch_scale)
-	
-	if health == 0:
-		died.emit()
-		visible = false
-		return
-	
 	var particle = damage_particle.instantiate() as Node2D
 	add_sibling(particle)
 	particle.global_position = global_position
 	
-	
-	current_iframe_time = IFRAME_TIME
 	GameController.add_camera_stress(Vector2.ONE)
+	
+	health -= 1
+	took_damage.emit(health)
+	velocity = Vector2.ZERO
+	SoundController.play_sfx(damage_sfx, 1.0, data.damage_pitch_scale)
+	current_iframe_time = IFRAME_TIME
+	
+	if health == 0:
+		died.emit()
+		body.visible = false
+		character.visible = false
+		return
+	
 	GameController.hit_stop(0.3)
 	
 
