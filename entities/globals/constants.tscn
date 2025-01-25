@@ -1,0 +1,47 @@
+[gd_scene load_steps=15 format=3 uid="uid://dl2non3mxwslq"]
+
+[ext_resource type="Script" path="res://scripts/globals/constants.gd" id="1_rm4ri"]
+[ext_resource type="Texture2D" uid="uid://n4x0lnvvvlbb" path="res://assets/images/characters/muscle/bolha_laranja.png" id="2_cxrfy"]
+[ext_resource type="Script" path="res://scripts/data/character_data.gd" id="2_mwqmu"]
+[ext_resource type="Texture2D" uid="uid://v3ymh1p7im8q" path="res://assets/images/characters/muscle/personagem_laranja.png" id="3_kqjip"]
+[ext_resource type="Texture2D" uid="uid://dd0tce4o574nw" path="res://assets/images/characters/pop/bolha_rosa.png" id="5_uptp4"]
+[ext_resource type="Texture2D" uid="uid://b7bvu4j7ox4q" path="res://assets/images/characters/pop/personagem_rosa.png" id="6_2gnhw"]
+[ext_resource type="Texture2D" uid="uid://dgnu1wyogwbnw" path="res://assets/images/characters/office/bolha_azul.png" id="6_753np"]
+[ext_resource type="Texture2D" uid="uid://c8yfd48jfk5c6" path="res://assets/images/characters/farm/bolha_verde.png" id="7_4g318"]
+[ext_resource type="Texture2D" uid="uid://xpn8acu2ioq8" path="res://assets/images/characters/office/personagem_azul.png" id="8_1retv"]
+[ext_resource type="Texture2D" uid="uid://b55ym83lifaht" path="res://assets/images/characters/farm/personagem_verde.png" id="10_s587r"]
+
+[sub_resource type="Resource" id="Resource_rdvjs"]
+script = ExtResource("2_mwqmu")
+char_name = "CapiWhey"
+bubble_sprite = ExtResource("2_cxrfy")
+char_sprite = ExtResource("3_kqjip")
+damage_pitch_scale = 0.4
+
+[sub_resource type="Resource" id="Resource_183ux"]
+script = ExtResource("2_mwqmu")
+char_name = "Ca-Pop"
+bubble_sprite = ExtResource("5_uptp4")
+char_sprite = ExtResource("6_2gnhw")
+damage_pitch_scale = 1.0
+
+[sub_resource type="Resource" id="Resource_o84xp"]
+script = ExtResource("2_mwqmu")
+char_name = "Office"
+bubble_sprite = ExtResource("6_753np")
+char_sprite = ExtResource("8_1retv")
+damage_pitch_scale = 0.6
+
+[sub_resource type="Resource" id="Resource_he7to"]
+script = ExtResource("2_mwqmu")
+char_name = "Cowboy"
+bubble_sprite = ExtResource("7_4g318")
+char_sprite = ExtResource("10_s587r")
+damage_pitch_scale = 0.8
+
+[node name="Constants" type="Node2D"]
+script = ExtResource("1_rm4ri")
+muscle_char = SubResource("Resource_rdvjs")
+pop_char = SubResource("Resource_183ux")
+office_char = SubResource("Resource_o84xp")
+farm_char = SubResource("Resource_he7to")

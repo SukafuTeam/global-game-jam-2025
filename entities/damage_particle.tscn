@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbcivpacm125t"]
+
+[ext_resource type="PackedScene" uid="uid://be753s4hmehoj" path="res://entities/dash_particle.tscn" id="1_ig3l6"]
+
+[node name="DamageParticle" instance=ExtResource("1_ig3l6")]
+process_mode = 3
+top_level = true
+
+[node name="Particle" parent="." index="0"]
+z_index = 1000
+position = Vector2(0, 0)
+amount = 100
+lifetime_randomness = 0.98
+emission_shape = 0
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 400.0
+orbit_velocity_max = 1.0
+tangential_accel_max = 43.43
+damping_max = 30.0
+scale_amount_min = 0.1
+scale_amount_max = 0.15
+color = Color(1, 0.223529, 0.176471, 1)

@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://drf62lxi6dp5e"]
+
+[ext_resource type="Script" path="res://scripts/controllers/player_player_particle.gd" id="1_83uvr"]
+[ext_resource type="Texture2D" uid="uid://c3mg4wuekbqja" path="res://assets/images/palceholder/circle_particle.png" id="2_dd3ie"]
+
+[sub_resource type="Curve" id="Curve_kgg8h"]
+max_value = 100.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.656425, 52.7553), 0.0, 0.0, 0, 0, Vector2(1, 1.18764), -92.8589, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_5ybgy"]
+_data = [Vector2(0, 0), 0.0, 0.992487, 0, 0, Vector2(0.821229, 0.95677), 0.0, 0.0, 0, 0, Vector2(0.977654, 0), -3.72984, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_c7upl"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="PlayerPlayerParticle" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_83uvr")
+
+[node name="UpParticle" type="CPUParticles2D" parent="."]
+z_index = 100
+position = Vector2(56, 0)
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+lifetime_randomness = 1.0
+texture = ExtResource("2_dd3ie")
+direction = Vector2(0, -1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+damping_min = 50.0
+damping_max = 150.0
+damping_curve = SubResource("Curve_kgg8h")
+angle_max = 360.0
+scale_amount_min = 0.1
+scale_amount_max = 0.12
+scale_amount_curve = SubResource("Curve_5ybgy")
+color_ramp = SubResource("Gradient_c7upl")
+
+[node name="DownParticle" type="CPUParticles2D" parent="."]
+z_index = 100
+position = Vector2(56, 0)
+rotation = 3.14159
+emitting = false
+amount = 40
+one_shot = true
+explosiveness = 1.0
+randomness = 0.2
+lifetime_randomness = 1.0
+texture = ExtResource("2_dd3ie")
+direction = Vector2(0, -1)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+damping_min = 50.0
+damping_max = 150.0
+damping_curve = SubResource("Curve_kgg8h")
+angle_max = 360.0
+scale_amount_min = 0.1
+scale_amount_max = 0.12
+scale_amount_curve = SubResource("Curve_5ybgy")
+color_ramp = SubResource("Gradient_c7upl")

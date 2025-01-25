@@ -1,0 +1,199 @@
+[gd_scene load_steps=16 format=3 uid="uid://rjgpnc8t6evf"]
+
+[ext_resource type="Texture2D" uid="uid://33idf0yco4wj" path="res://assets/images/palceholder/particle_test.png" id="1_hagbv"]
+[ext_resource type="Script" path="res://scripts/ui/ui_controller.gd" id="1_sby32"]
+[ext_resource type="Shader" path="res://assets/materials/blur/blur_shader.gdshader" id="1_t1o01"]
+[ext_resource type="Texture2D" uid="uid://d1mv1t7jrl70v" path="res://assets/images/ui/in-game/game-play-mockup.png" id="4_6htds"]
+[ext_resource type="Texture2D" uid="uid://b3qfo5nccb5o2" path="res://assets/images/ui/in-game/ui-player.png" id="5_f3vn6"]
+[ext_resource type="Script" path="res://scripts/ui/player_ui_controller.gd" id="5_lt857"]
+[ext_resource type="PackedScene" uid="uid://d1bqf1qad8xf1" path="res://entities/ui/heart.tscn" id="6_ntlee"]
+[ext_resource type="Texture2D" uid="uid://c68nne7ct518k" path="res://assets/images/ui/in-game/ui-timer.png" id="7_7n3ap"]
+[ext_resource type="Texture2D" uid="uid://bqklit5gdr1s3" path="res://assets/images/ui/in-game/ui-player-mask.png" id="7_twgn4"]
+[ext_resource type="Texture2D" uid="uid://v3ymh1p7im8q" path="res://assets/images/characters/muscle/personagem_laranja.png" id="8_7jfp2"]
+[ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="8_8f4jj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mrelj"]
+shader = ExtResource("1_t1o01")
+shader_parameter/blur_amount = 4.371
+shader_parameter/mix_amount = 0.28
+shader_parameter/color_over = null
+
+[sub_resource type="Curve" id="Curve_1vmv0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.98324, 0.0149643), -2.1188, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ntfhu"]
+offsets = PackedFloat32Array(0, 0.366667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.91, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_e4f4p"]
+offsets = PackedFloat32Array(0, 0.543333, 1)
+colors = PackedColorArray(1, 0.368627, 0.388235, 1, 0.300189, 1, 0.366608, 1, 0.254902, 0.282353, 1, 1)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sby32")
+
+[node name="Filter" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_mrelj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="Confetti" type="CPUParticles2D" parent="."]
+position = Vector2(960, -29)
+emitting = false
+amount = 100
+lifetime = 4.0
+texture = ExtResource("1_hagbv")
+emission_shape = 3
+emission_rect_extents = Vector2(960, 10)
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 100)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_max = 180.0
+angle_max = 360.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_1vmv0")
+color_ramp = SubResource("Gradient_ntfhu")
+color_initial_ramp = SubResource("Gradient_e4f4p")
+
+[node name="Game-play-mockup" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("4_6htds")
+
+[node name="P1UI" type="Node2D" parent="." node_paths=PackedStringArray("hearts")]
+position = Vector2(0, 1080)
+script = ExtResource("5_lt857")
+hearts = [NodePath("HeartsContainer/Heart"), NodePath("HeartsContainer/Heart2"), NodePath("HeartsContainer/Heart3")]
+
+[node name="PortraitContainer" type="NinePatchRect" parent="P1UI"]
+offset_left = 24.0
+offset_top = -144.0
+offset_right = 299.0
+offset_bottom = -24.0
+texture = ExtResource("5_f3vn6")
+patch_margin_left = 35
+patch_margin_top = 31
+patch_margin_right = 55
+patch_margin_bottom = 39
+
+[node name="HeartsContainer" type="Node2D" parent="P1UI"]
+position = Vector2(338, -83)
+scale = Vector2(1.44215, 1.44215)
+
+[node name="Heart" parent="P1UI/HeartsContainer" instance=ExtResource("6_ntlee")]
+position = Vector2(0, 1)
+
+[node name="Heart2" parent="P1UI/HeartsContainer" instance=ExtResource("6_ntlee")]
+position = Vector2(52, 1)
+
+[node name="Heart3" parent="P1UI/HeartsContainer" instance=ExtResource("6_ntlee")]
+position = Vector2(104, 1)
+
+[node name="PortraitMask" type="NinePatchRect" parent="P1UI"]
+clip_children = 1
+offset_left = 45.0
+offset_top = -136.0
+offset_right = 285.0
+offset_bottom = -44.0
+texture = ExtResource("7_twgn4")
+patch_margin_left = 19
+patch_margin_right = 44
+
+[node name="TextureRect" type="TextureRect" parent="P1UI/PortraitMask"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = -12.0
+offset_right = 281.0
+offset_bottom = 251.0
+texture = ExtResource("8_7jfp2")
+
+[node name="P2UI" type="Node2D" parent="." node_paths=PackedStringArray("hearts")]
+position = Vector2(1919, 1080)
+scale = Vector2(-1, 1)
+script = ExtResource("5_lt857")
+hearts = [NodePath("HeartsContainer/Heart"), NodePath("HeartsContainer/Heart2"), NodePath("HeartsContainer/Heart3")]
+
+[node name="PortraitContainer" type="NinePatchRect" parent="P2UI"]
+offset_left = 24.0
+offset_top = -144.0
+offset_right = 299.0
+offset_bottom = -24.0
+texture = ExtResource("5_f3vn6")
+patch_margin_left = 35
+patch_margin_top = 31
+patch_margin_right = 55
+patch_margin_bottom = 39
+
+[node name="HeartsContainer" type="Node2D" parent="P2UI"]
+position = Vector2(338, -83)
+scale = Vector2(1.44215, 1.44215)
+
+[node name="Heart" parent="P2UI/HeartsContainer" instance=ExtResource("6_ntlee")]
+position = Vector2(0, 1)
+
+[node name="Heart2" parent="P2UI/HeartsContainer" instance=ExtResource("6_ntlee")]
+position = Vector2(52, 1)
+
+[node name="Heart3" parent="P2UI/HeartsContainer" instance=ExtResource("6_ntlee")]
+position = Vector2(104, 1)
+
+[node name="PortraitMask" type="NinePatchRect" parent="P2UI"]
+clip_children = 1
+offset_left = 45.0
+offset_top = -136.0
+offset_right = 285.0
+offset_bottom = -44.0
+texture = ExtResource("7_twgn4")
+patch_margin_left = 19
+patch_margin_right = 44
+
+[node name="TextureRect" type="TextureRect" parent="P2UI/PortraitMask"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = -12.0
+offset_right = 281.0
+offset_bottom = 251.0
+texture = ExtResource("8_7jfp2")
+
+[node name="TimerContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.0
+offset_top = 36.0
+offset_right = 56.0
+offset_bottom = 112.0
+grow_horizontal = 2
+texture = ExtResource("7_7n3ap")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="TimerLabel" type="RichTextLabel" parent="TimerContainer"]
+layout_mode = 0
+offset_top = 7.0
+offset_right = 112.0
+offset_bottom = 75.0
+theme_override_colors/default_color = Color(0.0196078, 0.0392157, 0.0627451, 1)
+theme_override_fonts/normal_font = ExtResource("8_8f4jj")
+theme_override_font_sizes/normal_font_size = 46
+bbcode_enabled = true
+text = "[center][wave amp=30 freq=-6]99[/wave][/center]"

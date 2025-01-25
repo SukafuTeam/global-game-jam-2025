@@ -1,0 +1,148 @@
+[gd_scene load_steps=16 format=3 uid="uid://b7l066o3p4ljc"]
+
+[ext_resource type="Texture2D" uid="uid://hnf1woc2pf7h" path="res://assets/images/scenario/Arena Museu do Olho/nuvem01.png" id="1_11so3"]
+[ext_resource type="Script" path="res://scripts/scenario/museu_olho_background.gd" id="1_lwye6"]
+[ext_resource type="Texture2D" uid="uid://cibdg7cw8frds" path="res://assets/images/scenario/Arena Museu do Olho/nuvem02.png" id="2_06j43"]
+[ext_resource type="Texture2D" uid="uid://csgl15t8dajar" path="res://assets/images/scenario/Arena Museu do Olho/nuvem03.png" id="3_ap54h"]
+[ext_resource type="Texture2D" uid="uid://d4g3rc7fx1lew" path="res://assets/images/scenario/Arena Museu do Olho/camada05.png" id="4_fxb8t"]
+[ext_resource type="Texture2D" uid="uid://ckrksqje774eo" path="res://assets/images/scenario/Arena Museu do Olho/camada04.png" id="5_4eyr2"]
+[ext_resource type="Texture2D" uid="uid://cdbr2wvvut1io" path="res://assets/images/scenario/Arena Museu do Olho/camada03.png" id="6_cmqqg"]
+[ext_resource type="Texture2D" uid="uid://r3t0u1tbt6m4" path="res://assets/images/scenario/Arena Museu do Olho/camada02.png" id="7_4e0ut"]
+[ext_resource type="Texture2D" uid="uid://djg3cctu73tc6" path="res://assets/images/scenario/Arena Museu do Olho/camada01_B.png" id="8_6clvj"]
+[ext_resource type="Texture2D" uid="uid://dgaks6xyvypus" path="res://assets/images/scenario/Arena Museu do Olho/camada01_A.png" id="9_ls3is"]
+[ext_resource type="Texture2D" uid="uid://c3mg4wuekbqja" path="res://assets/images/palceholder/circle_particle.png" id="10_y88x0"]
+
+[sub_resource type="Curve" id="Curve_whmti"]
+_data = [Vector2(0, 0.0365795), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Animation" id="Animation_od6xv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrontRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hep4d"]
+resource_name = "lightning"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FrontRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m77dy"]
+_data = {
+"RESET": SubResource("Animation_od6xv"),
+"lightning": SubResource("Animation_hep4d")
+}
+
+[node name="MuseuOlhoBackground" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_lwye6")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+offset_left = -106.0
+offset_top = -76.0
+offset_right = 2012.0
+offset_bottom = 1162.0
+color = Color(0.266667, 0.360784, 0.588235, 1)
+
+[node name="Nuvem01" type="Sprite2D" parent="."]
+position = Vector2(255, 134)
+texture = ExtResource("1_11so3")
+
+[node name="Nuvem02" type="Sprite2D" parent="."]
+position = Vector2(981, 142)
+texture = ExtResource("2_06j43")
+
+[node name="Nuvem03" type="Sprite2D" parent="."]
+position = Vector2(1555, 112)
+texture = ExtResource("3_ap54h")
+
+[node name="Camada05" type="Sprite2D" parent="."]
+position = Vector2(434, 504)
+texture = ExtResource("4_fxb8t")
+
+[node name="Camada06" type="Sprite2D" parent="."]
+position = Vector2(1512, 503)
+texture = ExtResource("4_fxb8t")
+
+[node name="Camada04" type="Sprite2D" parent="."]
+position = Vector2(434, 613)
+texture = ExtResource("5_4eyr2")
+
+[node name="Camada07" type="Sprite2D" parent="."]
+position = Vector2(1479, 636)
+texture = ExtResource("5_4eyr2")
+
+[node name="Camada03" type="Sprite2D" parent="."]
+position = Vector2(1312, 695)
+scale = Vector2(1.35233, 1.35233)
+texture = ExtResource("6_cmqqg")
+
+[node name="Camada02" type="Sprite2D" parent="."]
+position = Vector2(690, 838)
+scale = Vector2(1.55199, 1.55199)
+texture = ExtResource("7_4e0ut")
+
+[node name="Camada01B" type="Sprite2D" parent="."]
+position = Vector2(1461, 861)
+scale = Vector2(1.59074, 1.59074)
+texture = ExtResource("8_6clvj")
+
+[node name="Camada01A" type="Sprite2D" parent="."]
+position = Vector2(449, 916)
+scale = Vector2(1.86819, 1.86819)
+texture = ExtResource("9_ls3is")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(823, -76)
+amount = 500
+preprocess = 281.82
+texture = ExtResource("10_y88x0")
+emission_shape = 3
+emission_rect_extents = Vector2(1400, 10)
+direction = Vector2(1, 1)
+spread = 10.0
+gravity = Vector2(800, 1600)
+initial_velocity_min = 500.0
+initial_velocity_max = 600.0
+angle_min = 20.0
+angle_max = 50.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+split_scale = true
+scale_curve_x = SubResource("Curve_whmti")
+scale_curve_y = null
+color = Color(1, 1, 1, 0.588235)
+
+[node name="FrontRect" type="ColorRect" parent="."]
+offset_left = -18.0
+offset_top = -16.0
+offset_right = 1959.0
+offset_bottom = 1122.0
+color = Color(0, 0, 0, 0.262745)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m77dy")
+}

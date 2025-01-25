@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://bjacooi3maqbb"]
+
+[ext_resource type="Script" path="res://scripts/controllers/player_player_particle.gd" id="1_vr52o"]
+[ext_resource type="Texture2D" uid="uid://33idf0yco4wj" path="res://assets/images/palceholder/particle_test.png" id="2_by1wa"]
+
+[sub_resource type="Curve" id="Curve_8kd57"]
+max_value = 100.0
+_data = [Vector2(0, 13.848), 0.0, 0.0, 0, 0, Vector2(0.673184, 45.3444), 0.0, 0.0, 0, 0, Vector2(1, 1.80522), -92.8589, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_65y0y"]
+_data = [Vector2(0, 0), 0.0, 0.992487, 0, 0, Vector2(0.821229, 0.95677), 0.0, 0.0, 0, 0, Vector2(0.977654, 0), -3.72984, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_0eofj"]
+offsets = PackedFloat32Array(0.01, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="ShakeParticle" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_vr52o")
+
+[node name="UpParticle" type="CPUParticles2D" parent="."]
+z_index = 100
+position = Vector2(56, 0)
+rotation = 1.5708
+emitting = false
+amount = 80
+one_shot = true
+explosiveness = 1.0
+randomness = 0.71
+lifetime_randomness = 1.0
+local_coords = true
+texture = ExtResource("2_by1wa")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 10)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+angular_velocity_max = 180.0
+linear_accel_max = 200.0
+damping_min = 40.0
+damping_max = 70.0
+damping_curve = SubResource("Curve_8kd57")
+angle_max = 360.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_65y0y")
+color_ramp = SubResource("Gradient_0eofj")
+
+[node name="DownParticle" type="CPUParticles2D" parent="."]
+z_index = 100
+position = Vector2(56, 0)
+rotation = 4.71239
+emitting = false
+amount = 80
+one_shot = true
+explosiveness = 1.0
+randomness = 0.71
+lifetime_randomness = 1.0
+local_coords = true
+texture = ExtResource("2_by1wa")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 10)
+direction = Vector2(0, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 400.0
+initial_velocity_max = 600.0
+angular_velocity_max = 180.0
+linear_accel_max = 200.0
+damping_min = 40.0
+damping_max = 70.0
+damping_curve = SubResource("Curve_8kd57")
+angle_max = 360.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_65y0y")
+color_ramp = SubResource("Gradient_0eofj")

@@ -1,10 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://bue34jra8oa40"]
+[gd_scene load_steps=20 format=3 uid="uid://bue34jra8oa40"]
 
-[ext_resource type="Texture2D" uid="uid://bm18yckyb7uga" path="res://icon.svg" id="1_gu3dv"]
-[ext_resource type="Script" path="res://scripts/test_player.gd" id="1_mdjpf"]
+[ext_resource type="Script" path="res://scripts/controllers/player_controller.gd" id="1_mdjpf"]
+[ext_resource type="PackedScene" uid="uid://drf62lxi6dp5e" path="res://entities/player_player_particle.tscn" id="3_aqr6t"]
+[ext_resource type="PackedScene" uid="uid://kmmwiq2lkktv" path="res://entities/player_hit_particle.tscn" id="3_olmfx"]
+[ext_resource type="PackedScene" uid="uid://be753s4hmehoj" path="res://entities/dash_particle.tscn" id="4_beohf"]
+[ext_resource type="PackedScene" uid="uid://bjacooi3maqbb" path="res://entities/shake_particle.tscn" id="4_rymlt"]
+[ext_resource type="PackedScene" uid="uid://cbcivpacm125t" path="res://entities/damage_particle.tscn" id="5_h1o05"]
+[ext_resource type="AudioStream" uid="uid://p88crb3dvsna" path="res://assets/sound/sfx/jump.ogg" id="6_eaglk"]
+[ext_resource type="AudioStream" uid="uid://cwtxydy5jtpnj" path="res://assets/sound/sfx/bounce.ogg" id="6_oe87s"]
+[ext_resource type="AudioStream" uid="uid://do0xwepu5baen" path="res://assets/sound/sfx/bash.ogg" id="7_2db03"]
+[ext_resource type="AudioStream" uid="uid://050b1wpr4ske" path="res://assets/sound/sfx/punch.ogg" id="8_0l5rd"]
+[ext_resource type="AudioStream" uid="uid://d0ejdvym04tdi" path="res://assets/sound/sfx/ricochet.ogg" id="9_miyt3"]
+[ext_resource type="Texture2D" uid="uid://bagf530h3afr4" path="res://assets/images/palceholder/capiwhey_bolha.png" id="9_y5c0b"]
+[ext_resource type="AudioStream" uid="uid://d4h3jehdpdlr4" path="res://assets/sound/sfx/damage.ogg" id="10_2omkj"]
+[ext_resource type="Texture2D" uid="uid://mqo2d1f5ayy6" path="res://assets/images/palceholder/capiwhey_personagem.png" id="10_lgcbm"]
+[ext_resource type="AudioStream" uid="uid://c5vk0k86jwc2g" path="res://assets/sound/sfx/dash.ogg" id="11_rwywr"]
+[ext_resource type="AudioStream" uid="uid://buljrpqr7krrr" path="res://assets/sound/sfx/shake.ogg" id="12_m3eb2"]
 
-[node name="TestPlayer" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ei5t0"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sai4y"]
+radius = 56.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7b4xr"]
+radius = 20.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+platform_floor_layers = 4294901761
+platform_wall_layers = 1
 script = ExtResource("1_mdjpf")
+hit_particle = ExtResource("3_olmfx")
+player_particle = ExtResource("3_aqr6t")
+ricochet_particle = ExtResource("4_rymlt")
+dash_particle = ExtResource("4_beohf")
+damage_particle = ExtResource("5_h1o05")
+jump_sfx = ExtResource("6_eaglk")
+bounce_sfx = ExtResource("6_oe87s")
+punch_sfx = ExtResource("8_0l5rd")
+ricochet_sfx = ExtResource("9_miyt3")
+damage_sfx = ExtResource("10_2omkj")
+dash_sfx = ExtResource("11_rwywr")
+shake_sfx = ExtResource("12_m3eb2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_gu3dv")
+[node name="BodyContainer" type="Node2D" parent="."]
+position = Vector2(0, 42)
+
+[node name="Body" type="Sprite2D" parent="BodyContainer"]
+position = Vector2(0, -42)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("9_y5c0b")
+
+[node name="Character" type="Sprite2D" parent="BodyContainer"]
+position = Vector2(0, -42)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("10_lgcbm")
+
+[node name="BodyShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ei5t0")
+
+[node name="BallArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="BallShape" type="CollisionShape2D" parent="BallArea"]
+shape = SubResource("CircleShape2D_sai4y")
+
+[node name="BashRay" type="RayCast2D" parent="."]
+target_position = Vector2(0, 120)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="HitShape" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_7b4xr")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="BashPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_2db03")

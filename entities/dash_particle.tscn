@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://be753s4hmehoj"]
+
+[ext_resource type="PackedScene" uid="uid://kmmwiq2lkktv" path="res://entities/player_hit_particle.tscn" id="1_muytr"]
+
+[node name="DashParticle" instance=ExtResource("1_muytr")]
+
+[node name="Particle" parent="." index="0"]
+position = Vector2(32, 0)
+amount = 40
+emission_shape = 3
+emission_rect_extents = Vector2(2, 32)
+spread = 20.0
+angular_velocity_min = 100.0
+angular_velocity_max = 180.0
+damping_min = 20.0
+scale_amount_min = 0.15
+scale_amount_max = 0.2
