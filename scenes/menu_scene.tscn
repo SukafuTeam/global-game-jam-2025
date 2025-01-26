@@ -228,7 +228,7 @@ pivot_offset = Vector2(248, 270)
 texture = ExtResource("8_g6ry4")
 
 [node name="Logo-serra" type="Sprite2D" parent="LogoContainer/Offset"]
-position = Vector2(184, -150)
+position = Vector2(207, -197)
 texture = ExtResource("11_xg6ff")
 
 [node name="SplashLaranja" type="Sprite2D" parent="."]
