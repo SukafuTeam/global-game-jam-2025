@@ -1,9 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://rjgpnc8t6evf"]
+[gd_scene load_steps=28 format=3 uid="uid://rjgpnc8t6evf"]
 
 [ext_resource type="Texture2D" uid="uid://33idf0yco4wj" path="res://assets/images/palceholder/particle_test.png" id="1_hagbv"]
 [ext_resource type="Script" path="res://scripts/ui/ui_controller.gd" id="1_sby32"]
 [ext_resource type="Shader" path="res://assets/materials/blur/blur_shader.gdshader" id="1_t1o01"]
-[ext_resource type="Texture2D" uid="uid://d1mv1t7jrl70v" path="res://assets/images/ui/in-game/game-play-mockup.png" id="4_6htds"]
 [ext_resource type="Texture2D" uid="uid://b3qfo5nccb5o2" path="res://assets/images/ui/in-game/ui-player.png" id="5_f3vn6"]
 [ext_resource type="Script" path="res://scripts/ui/player_ui_controller.gd" id="5_lt857"]
 [ext_resource type="PackedScene" uid="uid://d1bqf1qad8xf1" path="res://entities/ui/heart.tscn" id="6_ntlee"]
@@ -11,17 +10,29 @@
 [ext_resource type="Texture2D" uid="uid://bqklit5gdr1s3" path="res://assets/images/ui/in-game/ui-player-mask.png" id="7_twgn4"]
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="8_8f4jj"]
 [ext_resource type="Texture2D" uid="uid://butvsebh3v6lr" path="res://assets/images/characters/muscle/react_laranja_idle.png" id="8_objxb"]
+[ext_resource type="AudioStream" uid="uid://dj1uafgxhc7v2" path="res://assets/sound/sfx/star.ogg" id="12_edmbq"]
 [ext_resource type="Script" path="res://entities/ui/ui_star_container.gd" id="12_rv17w"]
 [ext_resource type="Texture2D" uid="uid://c8btrcp00ojy5" path="res://assets/images/ui/in-game/star-highlight-circle.png" id="13_l6tp8"]
-[ext_resource type="AudioStream" uid="uid://bd3epd4xyxhm1" path="res://assets/sound/sfx/go.ogg" id="14_td5oq"]
 [ext_resource type="Texture2D" uid="uid://bbuimbrqvfbha" path="res://assets/images/ui/in-game/star.png" id="14_v23rv"]
 [ext_resource type="AudioStream" uid="uid://c5vk0k86jwc2g" path="res://assets/sound/sfx/dash.ogg" id="15_5hmjn"]
+[ext_resource type="Script" path="res://scripts/ui/winner_splash_controller.gd" id="16_gau7n"]
+[ext_resource type="Texture2D" uid="uid://dlw4013xxcdjl" path="res://assets/images/characters/pop/splash_rosa.png" id="17_6sblp"]
+[ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="18_4xtam"]
+[ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation_button_circle.png" id="20_mnlkb"]
+[ext_resource type="AudioStream" uid="uid://b8gjuch1f8ucx" path="res://assets/sound/sfx/cheer.ogg" id="20_y5w8v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrelj"]
 shader = ExtResource("1_t1o01")
 shader_parameter/blur_amount = 9.5e-08
 shader_parameter/mix_amount = 0.0
 shader_parameter/color_over = null
+
+[sub_resource type="Gradient" id="Gradient_5wdec"]
+offsets = PackedFloat32Array(0, 0.32, 0.63, 1)
+colors = PackedColorArray(1, 0.937255, 0.8, 0.317647, 0.921569, 0.811765, 0.572549, 0.129412, 0.909804, 0.780392, 0.501961, 0.0196078, 0.909804, 0.780392, 0.501961, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_edyix"]
+gradient = SubResource("Gradient_5wdec")
 
 [sub_resource type="Curve" id="Curve_1vmv0"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.98324, 0.0149643), -2.1188, 0.0, 0, 0]
@@ -31,16 +42,13 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.366667, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.91, 1, 1, 1, 0)
 
-[sub_resource type="Gradient" id="Gradient_e4f4p"]
-offsets = PackedFloat32Array(0, 0.543333, 1)
-colors = PackedColorArray(1, 0.368627, 0.388235, 1, 0.300189, 1, 0.366608, 1, 0.254902, 0.282353, 1, 1)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rlc7o"]
+load_path = "res://.godot/imported/atlas-select-chars.png-0bad17fc1940aa902b80225ea06394a9.ctex"
 
-[sub_resource type="Gradient" id="Gradient_5wdec"]
-offsets = PackedFloat32Array(0, 0.32, 0.63, 1)
-colors = PackedColorArray(1, 0.937255, 0.8, 0.317647, 0.921569, 0.811765, 0.572549, 0.129412, 0.909804, 0.780392, 0.501961, 0.0196078, 0.909804, 0.780392, 0.501961, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_edyix"]
-gradient = SubResource("Gradient_5wdec")
+[sub_resource type="LabelSettings" id="LabelSettings_vyat5"]
+font = ExtResource("8_8f4jj")
+font_size = 36
+font_color = Color(0.0196078, 0.0392157, 0.0627451, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -60,32 +68,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
-
-[node name="Confetti" type="CPUParticles2D" parent="."]
-position = Vector2(960, -29)
-emitting = false
-amount = 100
-lifetime = 4.0
-texture = ExtResource("1_hagbv")
-emission_shape = 3
-emission_rect_extents = Vector2(960, 10)
-direction = Vector2(0, 1)
-spread = 50.0
-gravity = Vector2(0, 100)
-initial_velocity_min = 100.0
-initial_velocity_max = 200.0
-angular_velocity_max = 180.0
-angle_max = 360.0
-scale_amount_min = 0.2
-scale_amount_max = 0.3
-scale_amount_curve = SubResource("Curve_1vmv0")
-color_ramp = SubResource("Gradient_ntfhu")
-color_initial_ramp = SubResource("Gradient_e4f4p")
-
-[node name="Game-play-mockup" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(960, 540)
-texture = ExtResource("4_6htds")
 
 [node name="P1UI" type="Node2D" parent="." node_paths=PackedStringArray("hearts")]
 process_mode = 3
@@ -264,7 +246,7 @@ p1_star_1_container = NodePath("../StarContainer/P1_star_1")
 p1_star_2_container = NodePath("../StarContainer/P1_star_2")
 p2_star_1_container = NodePath("../StarContainer/P2_star_1")
 p2_star_2_container = NodePath("../StarContainer/P2_star_2")
-star_sfx = ExtResource("14_td5oq")
+star_sfx = ExtResource("12_edmbq")
 move_sfx = ExtResource("15_5hmjn")
 
 [node name="Rays" type="Node2D" parent="StartContainer"]
@@ -412,3 +394,166 @@ theme_override_fonts/font = ExtResource("8_8f4jj")
 theme_override_font_sizes/font_size = 200
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WinnerSplash" type="Node2D" parent="." node_paths=PackedStringArray("nodes_to_hide")]
+script = ExtResource("16_gau7n")
+nodes_to_hide = [NodePath("../P1UI"), NodePath("../P2UI"), NodePath("../StarContainer"), NodePath("../TimerContainer"), NodePath("../StartContainer")]
+
+[node name="Confetti" type="CPUParticles2D" parent="WinnerSplash"]
+position = Vector2(960, -29)
+emitting = false
+amount = 300
+lifetime = 8.0
+texture = ExtResource("1_hagbv")
+emission_shape = 3
+emission_rect_extents = Vector2(960, 10)
+direction = Vector2(0, 1)
+spread = 50.0
+gravity = Vector2(0, 100)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+angular_velocity_max = 180.0
+angle_max = 360.0
+scale_amount_min = 0.2
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_1vmv0")
+color = Color(0.878431, 0.192157, 0.317647, 1)
+color_ramp = SubResource("Gradient_ntfhu")
+
+[node name="SplashArt" type="TextureRect" parent="WinnerSplash"]
+offset_left = -1200.0
+offset_top = 9.0
+offset_right = 50.0
+offset_bottom = 1194.0
+texture = ExtResource("17_6sblp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="P1CharNameContainer" type="NinePatchRect" parent="WinnerSplash/SplashArt"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -297.0
+offset_right = 1093.0
+offset_bottom = -157.0
+grow_vertical = 0
+texture = ExtResource("18_4xtam")
+region_rect = Rect2(93.8609, 606.733, 541.489, 138.458)
+
+[node name="P1CharNameLabel" type="RichTextLabel" parent="WinnerSplash/SplashArt/P1CharNameContainer"]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 44.0
+offset_right = 823.0
+offset_bottom = 140.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("8_8f4jj")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "capywhey"
+
+[node name="StarContainer" type="Node2D" parent="WinnerSplash"]
+position = Vector2(1369, 418)
+
+[node name="Star1" type="Node2D" parent="WinnerSplash/StarContainer"]
+position = Vector2(200, 0)
+
+[node name="Star2" type="Node2D" parent="WinnerSplash/StarContainer"]
+position = Vector2(-200, 0)
+
+[node name="WinnerLabelShadow" type="RichTextLabel" parent="WinnerSplash"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 879.0
+offset_top = 332.0
+offset_right = 1841.0
+offset_bottom = 596.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(493, 137)
+theme_override_colors/default_color = Color(0.0196078, 0.0392157, 0.0627451, 0.588235)
+theme_override_fonts/normal_font = ExtResource("8_8f4jj")
+theme_override_font_sizes/normal_font_size = 160
+bbcode_enabled = true
+text = "[center]Winner[/center]"
+
+[node name="WinnerLabel" type="RichTextLabel" parent="WinnerSplash/WinnerLabelShadow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -481.0
+offset_top = -163.0
+offset_right = 481.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(493, 137)
+theme_override_fonts/normal_font = ExtResource("8_8f4jj")
+theme_override_font_sizes/normal_font_size = 160
+bbcode_enabled = true
+text = "[center][wave amp=50.0 freq=5.0 connected=1]Winner[/wave][/center]"
+
+[node name="Menu Button" type="NinePatchRect" parent="WinnerSplash"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1250.0
+offset_top = 655.0
+offset_right = 1499.0
+offset_bottom = 757.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("CompressedTexture2D_rlc7o")
+region_rect = Rect2(249.746, 395.748, 102.504, 102.504)
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 35
+metadata/_edit_use_anchors_ = true
+
+[node name="Icon" type="TextureRect" parent="WinnerSplash/Menu Button"]
+modulate = Color(0.0196078, 0.0392157, 0.0627451, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 82.0
+offset_bottom = 23.0
+grow_vertical = 2
+texture = ExtResource("20_mnlkb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="WinnerSplash/Menu Button"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -48.0
+offset_right = -3.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "menu"
+label_settings = SubResource("LabelSettings_vyat5")
+vertical_alignment = 1
+
+[node name="Cheer" type="AudioStreamPlayer" parent="WinnerSplash"]
+stream = ExtResource("20_y5w8v")

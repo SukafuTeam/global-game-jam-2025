@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dahcsoytbl2mg"]
+
+[ext_resource type="Texture2D" uid="uid://bytp7sg4jman2" path="res://assets/images/scenario/espinhos.png" id="1_24v7b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1uda"]
+size = Vector2(45, 45)
+
+[node name="Spike" type="Area2D"]
+collision_layer = 4
+
+[node name="Espinhos" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.74344, 0.74344)
+texture = ExtResource("1_24v7b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w1uda")
+debug_color = Color(1, 0, 0, 0.419608)

@@ -435,7 +435,6 @@ func collide_with_deadly(_other_area: Node2D):
 		return
 	
 	GameController.hit_stop(0.3)
-	
 
 
 func push_players_apart(other: PlayerController):

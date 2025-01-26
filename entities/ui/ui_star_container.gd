@@ -122,3 +122,15 @@ func final_sequence(winner: InputController.PLAYER):
 	await tween.finished
 	
 	update_stars()
+
+func get_stars(p: InputController.PLAYER) -> Array[Node2D]:
+	if p == InputController.PLAYER.P1:
+		return [
+			p1_star_1_container.get_child(0),
+			p1_star_2_container.get_child(0),
+		]
+	
+	return [
+			p2_star_1_container.get_child(0),
+			p2_star_2_container.get_child(0),
+		]

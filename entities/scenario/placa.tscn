@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6lfc046a2erg"]
+
+[ext_resource type="Texture2D" uid="uid://c5474j6wdxtmq" path="res://assets/images/scenario/placa.png" id="1_a2ddr"]
+
+[node name="Placa" type="Node2D"]
+z_index = -30
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -60)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_a2ddr")

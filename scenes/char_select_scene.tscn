@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ce4m6tjsvnuye"]
+[gd_scene load_steps=23 format=3 uid="uid://ce4m6tjsvnuye"]
 
 [ext_resource type="Shader" path="res://assets/materials/background/background_shader.gdshader" id="1_ab4p5"]
 [ext_resource type="Script" path="res://scripts/scenes/char_select_scene.gd" id="1_kvegn"]
@@ -10,7 +10,8 @@
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="5_anukr"]
 [ext_resource type="PackedScene" uid="uid://857s0jiy2s0a" path="res://entities/ui/char_option.tscn" id="6_vhprm"]
 [ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation_button_cross.png" id="7_0hsvx"]
-[ext_resource type="Texture2D" uid="uid://7dlrae1wk340" path="res://assets/images/palceholder/splash_01.png" id="8_spheg"]
+[ext_resource type="Texture2D" uid="uid://l56v8s1ey58k" path="res://assets/images/characters/office/splash.azul.png" id="7_ne8pt"]
+[ext_resource type="Texture2D" uid="uid://dlw4013xxcdjl" path="res://assets/images/characters/pop/splash_rosa.png" id="8_gsb4r"]
 [ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation_button_circle.png" id="8_tkh2e"]
 
 [sub_resource type="Gradient" id="Gradient_rbi7p"]
@@ -91,7 +92,7 @@ layout_mode = 0
 offset_top = 73.0
 offset_right = 768.0
 offset_bottom = 851.0
-texture = ExtResource("8_spheg")
+texture = ExtResource("7_ne8pt")
 expand_mode = 1
 stretch_mode = 5
 
@@ -101,7 +102,7 @@ offset_left = 1150.0
 offset_top = 73.0
 offset_right = 1918.0
 offset_bottom = 851.0
-texture = ExtResource("8_spheg")
+texture = ExtResource("8_gsb4r")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true

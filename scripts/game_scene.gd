@@ -1,5 +1,7 @@
 extends Node2D
 
+const CRUSHER_SPEED: float = 100.0
+
 @export var ui: UIController
 @export var player1: PlayerController
 @export var player2: PlayerController
@@ -9,9 +11,17 @@ extends Node2D
 @export var number_sfx: AudioStream
 @export var go_sfx: AudioStream
 
+@export var arena_song: AudioStream
+
+@export var left_crusher: CrusherController
+@export var right_crusher: CrusherController
+
 var dead: bool
 
 func _ready() -> void:
+	SoundController.stop_bgm()
+	SoundController.current_bgm_name = ""
+	
 	player1.died.connect(finished_game)
 	player2.died.connect(finished_game)
 	
@@ -35,18 +45,33 @@ func _ready() -> void:
 func _process(delta: float):
 	if active:
 		level_time -= delta
+		if level_time <= 0.0:
+			left_crusher.set_active()
+			right_crusher.set_active()
+			if left_crusher.position.x < -40:
+				left_crusher.position.x += CRUSHER_SPEED * delta
+			if right_crusher.position.x > 1960:
+				right_crusher.position.x -= CRUSHER_SPEED * delta
+			GameController.camera.stress = Vector2.ONE * 0.4
+	
+	var current_sec = int(level_time)
+	if active:
+		current_sec += 1
 	
 	if level_time <= 0.0:
 		level_time = 0.0
+		current_sec = 0
+	
+	
 	
 	var res = "[center]"
-	if level_time < 10:
+	if level_time <= 10:
 		res += "[shake rate=30.0 level=10 connected=1]"
-		res += str(int(level_time))
+		res += str(current_sec)
 		res += "[/shake]"
 	else:
 		res += "[wave amp=30 freq=-6]"
-		res += str(int(level_time))
+		res += str(current_sec)
 		res += "[/wave]"
 		
 		
@@ -81,6 +106,7 @@ func startup_sequence():
 		player1.interactive = true
 		player2.interactive = true
 		active = true
+		SoundController.change_bgm("arena", arena_song)
 	)
 	tween.tween_interval(1.0)
 	tween.tween_callback(func():

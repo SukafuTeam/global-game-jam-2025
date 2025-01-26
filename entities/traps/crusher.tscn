@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmy03ku600p85"]
+
+[ext_resource type="Texture2D" uid="uid://kbjthjnd5dkv" path="res://assets/images/scenario/Arena Museu do Olho/tileset_01.png" id="1_ju8fq"]
+[ext_resource type="Script" path="res://scripts/traps/crusher_controller.gd" id="1_rdyjb"]
+[ext_resource type="Texture2D" uid="uid://bytp7sg4jman2" path="res://assets/images/scenario/espinhos.png" id="2_dso5u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oklnm"]
+size = Vector2(1920, 1080)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yyxm2"]
+size = Vector2(36.5, 1080)
+
+[node name="Crusher" type="AnimatableBody2D"]
+collision_mask = 7
+script = ExtResource("1_rdyjb")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+offset_left = -960.0
+offset_top = -541.0
+offset_right = 960.0
+offset_bottom = 539.0
+texture = ExtResource("1_ju8fq")
+region_rect = Rect2(0, 0, 135, 135)
+patch_margin_left = 45
+patch_margin_top = 45
+patch_margin_right = 45
+patch_margin_bottom = 45
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(6.10352e-05, -1)
+shape = SubResource("RectangleShape2D_oklnm")
+
+[node name="RightSpike" type="NinePatchRect" parent="."]
+offset_left = 1001.0
+offset_top = -541.0
+offset_right = 2081.0
+offset_bottom = -501.0
+rotation = 1.5708
+texture = ExtResource("2_dso5u")
+region_rect = Rect2(0.207901, -0.332018, 60.2212, 60.8585)
+patch_margin_left = 20
+patch_margin_right = 20
+patch_margin_bottom = 10
+axis_stretch_horizontal = 2
+
+[node name="Hurtbox" type="Area2D" parent="RightSpike"]
+position = Vector2(540, 18)
+rotation = -1.5708
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightSpike/Hurtbox"]
+position = Vector2(-4.25, 0)
+shape = SubResource("RectangleShape2D_yyxm2")
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="LeftSpike" type="NinePatchRect" parent="."]
+offset_left = -1000.0
+offset_top = 539.0
+offset_right = 80.0001
+offset_bottom = 579.0
+rotation = -1.5708
+texture = ExtResource("2_dso5u")
+region_rect = Rect2(0.207901, -0.332018, 60.2212, 60.8585)
+patch_margin_left = 20
+patch_margin_right = 20
+patch_margin_bottom = 10
+axis_stretch_horizontal = 2
+
+[node name="Hurtbox" type="Area2D" parent="LeftSpike"]
+position = Vector2(540, 18)
+rotation = -1.5708
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftSpike/Hurtbox"]
+position = Vector2(-4.25, 0)
+shape = SubResource("RectangleShape2D_yyxm2")
+debug_color = Color(1, 0, 0, 0.419608)

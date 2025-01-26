@@ -11,7 +11,7 @@ var queue: Array[SoundEffect] = []
 @export_subgroup("BGM")
 @export var bgm_bus: String = "Master"
 @onready var bgm_player: AudioStreamPlayer = $bgm
-@export var initial_bgm_volume: float = 0.6
+@export var initial_bgm_volume: float = 0.8
 var current_bgm_name: String = ""
 
 func _ready():

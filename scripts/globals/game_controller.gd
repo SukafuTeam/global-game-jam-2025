@@ -20,6 +20,11 @@ func reset():
 	p1_victories = 0
 	p2_victories = 0
 
+
+func _process(_delta: float):
+	if Input.is_action_just_pressed("reset"):
+		SceneTransition.change_scene(Constants.MENU_SCENE)
+
 func add_camera_stress(stress: Vector2):
 	if camera == null:
 		return

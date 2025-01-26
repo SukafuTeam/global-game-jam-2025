@@ -20,7 +20,6 @@ func change_scene(new_scene: String):
 		0.0,
 		1.0
 	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_interval(0.5)
 	tween.tween_callback(func():
 		get_tree().change_scene_to_file(new_scene)
 	)
@@ -28,7 +27,7 @@ func change_scene(new_scene: String):
 		background,
 		"position:x",
 		2000,
-		1.5
+		1.0
 	).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
 	tween.tween_callback(func():
 		transitioning = false

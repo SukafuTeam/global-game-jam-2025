@@ -3,7 +3,6 @@ class_name UIController
 
 @onready var filter: ColorRect = $Filter
 @onready var filter_material: ShaderMaterial
-@onready var confetti: CPUParticles2D = $Confetti
 
 @export var filter_blur_amount: float = 0.0
 @export var filter_mix_amount: float = 0.0
@@ -17,12 +16,13 @@ class_name UIController
 @onready var round_label: Label = $RoundLabel
 @onready var startup_label: Label = $StartupLabel
 
+@onready var winner_splash: WinnerSplashController = $WinnerSplash
+
 var ending: bool
 
 func _ready() -> void:
 	ending = false
 	filter.visible = true
-	confetti.emitting = false
 	filter_material = filter.material as ShaderMaterial
 	filter_blur_amount = 0.0
 	filter_mix_amount = 0.0
@@ -74,8 +74,8 @@ func end_game(winner: InputController.PLAYER):
 	GameController.current_round += 1
 	
 	if GameController.p1_victories == 2 or GameController.p2_victories == 2:
-		#TODO: show victory splash
-		SceneTransition.change_scene(Constants.MENU_SCENE)
+		var data = p1.player.data if winner == InputController.PLAYER.P1 else p2.player.data
+		winner_splash.show_splash(data)
 		return
 	
 	SceneTransition.change_scene(get_tree().current_scene.scene_file_path)

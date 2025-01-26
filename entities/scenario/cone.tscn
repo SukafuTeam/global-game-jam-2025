@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5gphl3um141d"]
+
+[ext_resource type="Script" path="res://scripts/scenario/scenario_item_controller.gd" id="1_u2rtt"]
+[ext_resource type="Texture2D" uid="uid://wduenj1knnlr" path="res://assets/images/scenario/cone.png" id="5_ji27d"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_afodt"]
+friction = 0.36
+bounce = 0.46
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qpueb"]
+radius = 30.0
+
+[node name="Cone" type="RigidBody2D"]
+z_index = -2
+collision_layer = 8
+physics_material_override = SubResource("PhysicsMaterial_afodt")
+script = ExtResource("1_u2rtt")
+impulse_modifier = 0.8
+textures = Array[Texture]([ExtResource("5_ji27d")])
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_ji27d")
+
+[node name="BreakArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreakArea"]
+shape = SubResource("CircleShape2D_qpueb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -25, 23, 28, -20, 27)

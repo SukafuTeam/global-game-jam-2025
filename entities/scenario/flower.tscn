@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://b61wwisxpffg4"]
+
+[ext_resource type="Script" path="res://scripts/scenario/scenario_item_controller.gd" id="1_bo3mr"]
+[ext_resource type="Texture2D" uid="uid://d1og75dipdlnr" path="res://assets/images/scenario/flor_01.png" id="2_svii5"]
+[ext_resource type="Texture2D" uid="uid://dodaytg7u5st3" path="res://assets/images/scenario/flor_02.png" id="3_2cwbq"]
+[ext_resource type="Texture2D" uid="uid://jli71vsq0yuu" path="res://assets/images/scenario/flor_03.png" id="4_pcnki"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xqxij"]
+friction = 0.67
+rough = true
+bounce = 0.46
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w1q8o"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qpueb"]
+radius = 33.93
+
+[node name="Flower" type="RigidBody2D"]
+z_index = -2
+collision_layer = 8
+physics_material_override = SubResource("PhysicsMaterial_xqxij")
+script = ExtResource("1_bo3mr")
+textures = Array[Texture]([ExtResource("2_svii5"), ExtResource("3_2cwbq"), ExtResource("4_pcnki")])
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_pcnki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_w1q8o")
+
+[node name="BreakArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreakArea"]
+shape = SubResource("CircleShape2D_qpueb")

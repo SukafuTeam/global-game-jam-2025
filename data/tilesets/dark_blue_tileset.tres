@@ -1,10 +1,26 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://1qpduo02qitl"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://1qpduo02qitl"]
 
 [ext_resource type="PackedScene" uid="uid://nw5n5aovpep2" path="res://entities/spike.tscn" id="1_wkls4"]
 [ext_resource type="Texture2D" uid="uid://kbjthjnd5dkv" path="res://assets/images/scenario/Arena Museu do Olho/tileset_01.png" id="2_mdg7c"]
+[ext_resource type="PackedScene" uid="uid://dahcsoytbl2mg" path="res://entities/traps/spike.tscn" id="2_xaqit"]
+[ext_resource type="PackedScene" uid="uid://bwmlmohpllo28" path="res://entities/traps/spike_down.tscn" id="3_tpxfs"]
+[ext_resource type="PackedScene" uid="uid://buh5nrjynbxp3" path="res://entities/traps/spike_left.tscn" id="4_we604"]
+[ext_resource type="PackedScene" uid="uid://sl1a37338gpw" path="res://entities/traps/spike_right.tscn" id="5_qkn7l"]
+[ext_resource type="PackedScene" uid="uid://b6lfc046a2erg" path="res://entities/scenario/placa.tscn" id="6_s138d"]
+[ext_resource type="PackedScene" uid="uid://cicu3dw10562u" path="res://entities/traps/spring.tscn" id="7_36eqk"]
+[ext_resource type="PackedScene" uid="uid://bsx6n22abr6p" path="res://entities/traps/saw.tscn" id="8_ua3nw"]
+[ext_resource type="PackedScene" uid="uid://dy364ixuidev5" path="res://entities/scenario/grass.tscn" id="9_ra10n"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_genph"]
 scenes/1/scene = ExtResource("1_wkls4")
+scenes/2/scene = ExtResource("2_xaqit")
+scenes/3/scene = ExtResource("3_tpxfs")
+scenes/4/scene = ExtResource("4_we604")
+scenes/5/scene = ExtResource("5_qkn7l")
+scenes/6/scene = ExtResource("6_s138d")
+scenes/7/scene = ExtResource("7_36eqk")
+scenes/8/scene = ExtResource("8_ua3nw")
+scenes/9/scene = ExtResource("9_ra10n")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixh87"]
 texture = ExtResource("2_mdg7c")
