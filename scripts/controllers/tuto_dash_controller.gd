@@ -18,8 +18,10 @@ func _ready():
 	looking_right = true
 	tuto_animation()
 	interactive = false
+	player_label.visible = false
 	
 func tuto_animation():
+	await get_tree().create_timer(1.5).timeout
 	while true:
 		await get_tree().create_timer(1.2).timeout
 		looking_right = true
@@ -61,7 +63,7 @@ func _process(_delta: float) -> void:
 
 func process_air(delta: float) -> State:
 	
-	hor_move_player(delta, AIR_HOR_ACCEL, AIR_FRICTION * 6)
+	hor_move_player(delta, AIR_HOR_ACCEL, AIR_FRICTION * 0.3)
 	
 	bounce_on_wall()
 	

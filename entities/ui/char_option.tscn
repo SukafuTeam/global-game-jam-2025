@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://857s0jiy2s0a"]
+
+[ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="1_tjgih"]
+[ext_resource type="Script" path="res://scripts/ui/char_option_controller.gd" id="2_ucx8q"]
+[ext_resource type="Texture2D" uid="uid://bote6fokwhasj" path="res://assets/images/characters/pop/react_rosa_idle.png" id="3_ps0ds"]
+
+[node name="CharOption" type="NinePatchRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -548.0
+offset_top = -112.0
+offset_right = -274.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(148, 119)
+texture = ExtResource("1_tjgih")
+region_rect = Rect2(89.2185, 55.5822, 148.971, 129.6)
+script = ExtResource("2_ucx8q")
+
+[node name="PortraitMask" type="NinePatchRect" parent="."]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 17.0
+offset_right = -20.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tjgih")
+region_rect = Rect2(271.668, 62.2446, 115.193, 103.012)
+
+[node name="Portrait" type="TextureRect" parent="PortraitMask"]
+layout_mode = 0
+offset_left = -48.6666
+offset_top = 4.22225
+offset_right = 686.333
+offset_bottom = 182.222
+texture = ExtResource("3_ps0ds")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="FocusedFrame" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 43.0
+offset_top = 9.0
+offset_right = -9.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tjgih")
+region_rect = Rect2(427.939, 60.8078, 119.381, 106.583)

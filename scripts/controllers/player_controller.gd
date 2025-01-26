@@ -4,28 +4,31 @@ class_name PlayerController
 signal took_damage(new_health: int)
 signal died
 
-#const BALL_SIZE: float = 32.0
 const BALL_SIZE: float = 56.0
 
 const MAX_HEALTH: int = 3
 const IFRAME_TIME: float = 2.0
 
-const MAX_MOVE_SPEED: float = 1125.0
 const MAX_VELOCITY: float = 4000.0
-const GROUND_HOR_ACCEL: float = 1350.0
-const AIR_HOR_ACCEL: float = 1125.0
-const GROUND_FRICTION: float = 399.0
-const AIR_FRICTION: float = 150.0
+const MAX_MOVE_SPEED: float = 1125.0
+#const GROUND_HOR_ACCEL: float = 1350.0
+const GROUND_HOR_ACCEL: float = 2000.0
+#const AIR_HOR_ACCEL: float = 1125.0
+const AIR_HOR_ACCEL: float = 2500.0
+#const GROUND_FRICTION: float = 399.0
+const GROUND_FRICTION: float = 1000.0
+#const AIR_FRICTION: float = 150.0
+const AIR_FRICTION: float = 800.0
 
 const JUMP_VELOCITY: float = 650.0
 const GRAVITY_DOWN_MODIFIER: float = 1.3
 const BASH_DOWN_MODIFIER: float = 5.0
 
-const AIR_SPIN_DASH_GAIN: float = 900.0
+const AIR_SPIN_DASH_GAIN: float = 500.0
 const AIR_SPIN_JUMP: float = 225.0
 
 const COYOTE_TIME: float = 0.2
-const JUMP_BUFFER_TIME: float = 0.1
+const JUMP_BUFFER_TIME: float = 0.2
 
 const CHAR_MAX_ANGLE: float = 45
 const CHAR_MAX_SPEED: float = 200.0
@@ -103,7 +106,11 @@ func _ready():
 	ball_area.body_entered.connect(collide_with_ball)
 	hitbox_area.area_entered.connect(collide_with_deadly)
 	
-	data = Constants.get_character(randi_range(0, 4))
+	var data_index = GameController.p1_index
+	if player == InputController.PLAYER.P2:
+		data_index = GameController.p2_index
+	
+	data = Constants.get_character(data_index)
 	
 	body.texture = data.bubble_sprite
 	character.texture = data.char_sprite
@@ -299,8 +306,12 @@ func hor_move_player(delta: float, accel: float, friction: float):
 		looking_right = false
 	
 	# We only want to ADD to the velocity if we are under the max move speed
-	if abs(velocity.x) < MAX_MOVE_SPEED:
-		velocity.x += hor_accel
+	if hor_input < 0.0:
+		if velocity.x >= -MAX_MOVE_SPEED:
+			velocity.x += hor_accel
+	if hor_input > 0.0:
+		if velocity.x <= MAX_MOVE_SPEED:
+			velocity.x += hor_accel
 	
 	# We only want to decelerate the player if not input is being pressed
 	if abs(hor_input) < 0.1:
@@ -311,19 +322,23 @@ func bounce_on_wall():
 		var normalized_wall = get_wall_normal().normalized()
 		var dot_product = last_velocity.dot(normalized_wall)
 		var reflected_velocity = last_velocity - 2.0 * dot_product * normalized_wall
-		velocity = reflected_velocity * 0.7
+		reflected_velocity += normalized_wall * 400.0
+		velocity = reflected_velocity * 0.5
+		
 		if abs(velocity.x) > 200.0:
 			SoundController.play_sfx(bounce_sfx, 0.8, randf_range(0.8, 1.2))
 			body_container.scale = Vector2(0.7, 1.2)
+			
+			var hit = hit_particle.instantiate() as Node2D
+			add_child(hit)
+			hit.global_rotation = normalized_wall.angle()
 			
 			var velocity_percent = inverse_lerp(0.0, 1500.0, abs(velocity.x))
 			var stress_amount = lerp(0.0, 1.0, velocity_percent)
 			stress_amount = clamp(stress_amount, 0.0, 1.0)
 			GameController.add_camera_stress(Vector2(stress_amount, 0.0))
 			
-			var hit = hit_particle.instantiate() as Node2D
-			add_child(hit)
-			hit.global_rotation = normalized_wall.angle()
+			
 
 func collide_with_ball(other_body: Node2D):
 	if !(other_body is PlayerController):
@@ -340,6 +355,9 @@ func collide_with_ball(other_body: Node2D):
 		bashing = false
 	if other.bashing:
 		other.bashing = false
+	
+	
+	can_dash = true
 	
 	 # Collision normal (direction from one ball to the other
 	var normal = (other.global_position - global_position).normalized()
@@ -383,8 +401,8 @@ func collide_with_ball(other_body: Node2D):
 	var vel_other_tangent = other.last_velocity - vel_other_normal * other_normal
 	
 	# Add some self-returning force for a bounce feeling
-	var self_bounce = 0.4 * vel_self_normal * normal
-	var other_bounce = 0.4 * vel_other_normal * other_normal
+	var self_bounce = 0.2 * vel_self_normal * normal
+	var other_bounce = 0.2 * vel_other_normal * other_normal
 	
 	# Update velocity for self and mark it as collided this frame
 	velocity = vel_self_tangent + new_self_normal - self_bounce

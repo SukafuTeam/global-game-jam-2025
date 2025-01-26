@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://rjgpnc8t6evf"]
+[gd_scene load_steps=23 format=3 uid="uid://rjgpnc8t6evf"]
 
 [ext_resource type="Texture2D" uid="uid://33idf0yco4wj" path="res://assets/images/palceholder/particle_test.png" id="1_hagbv"]
 [ext_resource type="Script" path="res://scripts/ui/ui_controller.gd" id="1_sby32"]
@@ -13,12 +13,14 @@
 [ext_resource type="Texture2D" uid="uid://butvsebh3v6lr" path="res://assets/images/characters/muscle/react_laranja_idle.png" id="8_objxb"]
 [ext_resource type="Script" path="res://entities/ui/ui_star_container.gd" id="12_rv17w"]
 [ext_resource type="Texture2D" uid="uid://c8btrcp00ojy5" path="res://assets/images/ui/in-game/star-highlight-circle.png" id="13_l6tp8"]
+[ext_resource type="AudioStream" uid="uid://bd3epd4xyxhm1" path="res://assets/sound/sfx/go.ogg" id="14_td5oq"]
 [ext_resource type="Texture2D" uid="uid://bbuimbrqvfbha" path="res://assets/images/ui/in-game/star.png" id="14_v23rv"]
+[ext_resource type="AudioStream" uid="uid://c5vk0k86jwc2g" path="res://assets/sound/sfx/dash.ogg" id="15_5hmjn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrelj"]
 shader = ExtResource("1_t1o01")
-shader_parameter/blur_amount = 4.5
-shader_parameter/mix_amount = 0.3
+shader_parameter/blur_amount = 9.5e-08
+shader_parameter/mix_amount = 0.0
 shader_parameter/color_over = null
 
 [sub_resource type="Curve" id="Curve_1vmv0"]
@@ -190,9 +192,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -204.0
-offset_top = -505.0
+offset_top = -518.0
 offset_right = 204.0
-offset_bottom = -437.0
+offset_bottom = -450.0
 grow_horizontal = 2
 grow_vertical = 2
 patch_margin_left = 16
@@ -234,9 +236,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -56.0
-offset_top = 36.0
+offset_top = 23.0
 offset_right = 56.0
-offset_bottom = 112.0
+offset_bottom = 99.0
 grow_horizontal = 2
 texture = ExtResource("7_7n3ap")
 patch_margin_left = 16
@@ -262,8 +264,11 @@ p1_star_1_container = NodePath("../StarContainer/P1_star_1")
 p1_star_2_container = NodePath("../StarContainer/P1_star_2")
 p2_star_1_container = NodePath("../StarContainer/P2_star_1")
 p2_star_2_container = NodePath("../StarContainer/P2_star_2")
+star_sfx = ExtResource("14_td5oq")
+move_sfx = ExtResource("15_5hmjn")
 
 [node name="Rays" type="Node2D" parent="StartContainer"]
+modulate = Color(1, 1, 1, 0)
 
 [node name="TextureRect" type="TextureRect" parent="StartContainer/Rays"]
 offset_top = -45.0
@@ -361,11 +366,33 @@ pivot_offset = Vector2(-1, 44)
 texture = SubResource("GradientTexture1D_edyix")
 
 [node name="Star-highlight-circle" type="Sprite2D" parent="StartContainer"]
+modulate = Color(1, 1, 1, 0)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("13_l6tp8")
 
 [node name="Star" type="Sprite2D" parent="StartContainer"]
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("14_v23rv")
+
+[node name="RoundLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -481.0
+offset_top = -359.0
+offset_right = 481.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(493, 137)
+theme_override_fonts/font = ExtResource("8_8f4jj")
+theme_override_font_sizes/font_size = 200
+text = " Round 2"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartupLabel" type="Label" parent="."]
 layout_mode = 1
@@ -380,9 +407,8 @@ offset_right = 306.0
 offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(306, 130)
+pivot_offset = Vector2(318, 129)
 theme_override_fonts/font = ExtResource("8_8f4jj")
 theme_override_font_sizes/font_size = 200
-text = " "
 horizontal_alignment = 1
 vertical_alignment = 1

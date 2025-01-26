@@ -10,3 +10,6 @@ class_name CharacterData
 @export var blink_portrait: Texture2D
 @export var damage_portrait: Texture2D
 @export var speed_portrait: Texture2D
+
+@export var splash_idle: Texture2D
+@export var splash_selected: Texture2D

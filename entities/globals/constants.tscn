@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dl2non3mxwslq"]
+[gd_scene load_steps=35 format=3 uid="uid://dl2non3mxwslq"]
 
 [ext_resource type="Script" path="res://scripts/globals/constants.gd" id="1_rm4ri"]
 [ext_resource type="Texture2D" uid="uid://n4x0lnvvvlbb" path="res://assets/images/characters/muscle/bolha_laranja.png" id="2_cxrfy"]
@@ -14,18 +14,22 @@
 [ext_resource type="Texture2D" uid="uid://xpn8acu2ioq8" path="res://assets/images/characters/office/personagem_azul.png" id="8_1retv"]
 [ext_resource type="Texture2D" uid="uid://dnhqj5y0xg88b" path="res://assets/images/characters/muscle/react_laranja_rapido.png" id="8_oblge"]
 [ext_resource type="Texture2D" uid="uid://cn7twlusa65wl" path="res://assets/images/characters/pop/react_rosa_piscando.png" id="9_gilbn"]
+[ext_resource type="Texture2D" uid="uid://d4ds266v132eq" path="res://assets/images/palceholder/splash_02.png" id="9_igmxq"]
 [ext_resource type="Texture2D" uid="uid://b55ym83lifaht" path="res://assets/images/characters/farm/personagem_verde.png" id="10_s587r"]
 [ext_resource type="Texture2D" uid="uid://ip4drry4uuug" path="res://assets/images/characters/pop/react_rosa_dano.png" id="12_ewu6e"]
 [ext_resource type="Texture2D" uid="uid://bote6fokwhasj" path="res://assets/images/characters/pop/react_rosa_idle.png" id="13_x4ejc"]
 [ext_resource type="Texture2D" uid="uid://wynejuqju5p3" path="res://assets/images/characters/pop/react_rosa_rapido.png" id="14_r8wmx"]
 [ext_resource type="Texture2D" uid="uid://cof3upxvkrruk" path="res://assets/images/characters/office/react_azul_piscando.png" id="15_lxrf1"]
+[ext_resource type="Texture2D" uid="uid://7dlrae1wk340" path="res://assets/images/palceholder/splash_01.png" id="16_ung3p"]
 [ext_resource type="Texture2D" uid="uid://b3bmn4kwy7avx" path="res://assets/images/characters/office/react_azul_dano.png" id="18_1bnv7"]
 [ext_resource type="Texture2D" uid="uid://c3kiqsms0qdj5" path="res://assets/images/characters/office/react_azul_idle.png" id="19_efnlx"]
 [ext_resource type="Texture2D" uid="uid://e1ajvvrqd80o" path="res://assets/images/characters/office/react_azul_rapido.png" id="20_fkldf"]
 [ext_resource type="Texture2D" uid="uid://b4ea3aucltaiu" path="res://assets/images/characters/farm/react_verde_piscando.png" id="21_xk1w7"]
+[ext_resource type="Texture2D" uid="uid://sm0ileva3roa" path="res://assets/images/palceholder/splash_04.png" id="23_tmwiq"]
 [ext_resource type="Texture2D" uid="uid://cq3jxyy2ghj1c" path="res://assets/images/characters/farm/react_verde_dano.png" id="24_hlakw"]
 [ext_resource type="Texture2D" uid="uid://cxnbic3xux8j1" path="res://assets/images/characters/farm/react_verde_idle.png" id="25_itloj"]
 [ext_resource type="Texture2D" uid="uid://b30s6fhsvfxmi" path="res://assets/images/characters/farm/react_verde_rapido.png" id="26_3mdqo"]
+[ext_resource type="Texture2D" uid="uid://dfbglhw85masr" path="res://assets/images/palceholder/splash_03.png" id="30_8y28k"]
 
 [sub_resource type="Resource" id="Resource_rdvjs"]
 script = ExtResource("2_mwqmu")
@@ -37,6 +41,8 @@ idle_portrait = ExtResource("6_ea1ni")
 blink_portrait = ExtResource("2_o1usq")
 damage_portrait = ExtResource("5_wxyo4")
 speed_portrait = ExtResource("8_oblge")
+splash_idle = ExtResource("9_igmxq")
+splash_selected = ExtResource("9_igmxq")
 
 [sub_resource type="Resource" id="Resource_183ux"]
 script = ExtResource("2_mwqmu")
@@ -48,6 +54,8 @@ idle_portrait = ExtResource("13_x4ejc")
 blink_portrait = ExtResource("9_gilbn")
 damage_portrait = ExtResource("12_ewu6e")
 speed_portrait = ExtResource("14_r8wmx")
+splash_idle = ExtResource("16_ung3p")
+splash_selected = ExtResource("16_ung3p")
 
 [sub_resource type="Resource" id="Resource_o84xp"]
 script = ExtResource("2_mwqmu")
@@ -59,22 +67,26 @@ idle_portrait = ExtResource("19_efnlx")
 blink_portrait = ExtResource("15_lxrf1")
 damage_portrait = ExtResource("18_1bnv7")
 speed_portrait = ExtResource("20_fkldf")
+splash_idle = ExtResource("23_tmwiq")
+splash_selected = ExtResource("23_tmwiq")
 
 [sub_resource type="Resource" id="Resource_he7to"]
 script = ExtResource("2_mwqmu")
 char_name = "Cowboy"
 bubble_sprite = ExtResource("7_4g318")
 char_sprite = ExtResource("10_s587r")
-damage_pitch_scale = 0.8
+damage_pitch_scale = 0.5
 idle_portrait = ExtResource("25_itloj")
 blink_portrait = ExtResource("21_xk1w7")
 damage_portrait = ExtResource("24_hlakw")
 speed_portrait = ExtResource("26_3mdqo")
+splash_idle = ExtResource("30_8y28k")
+splash_selected = ExtResource("30_8y28k")
 
 [node name="Constants" type="Node2D"]
 script = ExtResource("1_rm4ri")
-p1_color = Color(0, 0, 1, 1)
-p2_color = Color(1, 0, 0, 1)
+p1_color = Color(0.133333, 0.121569, 0.65098, 1)
+p2_color = Color(1, 0.156863, 0.156863, 1)
 muscle_char = SubResource("Resource_rdvjs")
 pop_char = SubResource("Resource_183ux")
 office_char = SubResource("Resource_o84xp")

@@ -10,6 +10,9 @@ class_name UIStarContainer
 @export var p2_star_1_container: Node2D
 @export var p2_star_2_container: Node2D
 
+@export var star_sfx: AudioStream
+@export var move_sfx: AudioStream
+
 func _ready():
 	rays.modulate.a = 0.0
 	star_circle.modulate.a = 0.0
@@ -48,6 +51,9 @@ func final_sequence(winner: InputController.PLAYER):
 	var tween = create_tween()
 	
 	tween.tween_interval(0.5)
+	tween.tween_callback(func():
+		SoundController.play_sfx(star_sfx)
+	)
 	tween.tween_property(
 		rays,
 		"modulate:a",
@@ -97,7 +103,10 @@ func final_sequence(winner: InputController.PLAYER):
 		0.4
 	)
 	
-	tween.tween_property(
+	tween.tween_callback(func():
+		SoundController.play_sfx(move_sfx)
+	).set_delay(0.3)
+	tween.parallel().tween_property(
 		star,
 		"global_position",
 		target_pos,

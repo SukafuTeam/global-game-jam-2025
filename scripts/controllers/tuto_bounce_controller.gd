@@ -15,8 +15,11 @@ func _ready():
 	looking_right = true
 	tuto_animation()
 	interactive = false
+	
+	player_label.visible = false
 
 func tuto_animation():
+	await get_tree().create_timer(1.5).timeout
 	while true:
 		await get_tree().create_timer(1.0).timeout
 		showing = true

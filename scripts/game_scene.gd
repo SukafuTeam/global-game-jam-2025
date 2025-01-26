@@ -57,8 +57,10 @@ func startup_sequence():
 	player1.interactive = false
 	player2.interactive = false
 	
+	ui.round_label.text = "Round "+ str(GameController.current_round)
+	
 	var tween = create_tween()
-	tween.tween_interval(1.0)
+	tween.tween_interval(2.0)
 	tween.tween_callback(func():
 		SoundController.play_sfx(number_sfx)
 		ui.set_startup_label("3")
@@ -78,16 +80,24 @@ func startup_sequence():
 		SoundController.play_sfx(go_sfx)
 		player1.interactive = true
 		player2.interactive = true
+		active = true
 	)
 	tween.tween_interval(1.0)
 	tween.tween_callback(func():
 		ui.set_startup_label("")
+	)
+	tween.parallel().tween_property(
+		ui.round_label,
+		"scale",
+		Vector2.ZERO,
+		0.2
 	)
 
 func finished_game():
 	if dead:
 		return
 	
+	active = false
 	dead = true
 	player1.interactive = false
 	player2.interactive = false

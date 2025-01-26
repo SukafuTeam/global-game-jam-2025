@@ -1,9 +1,317 @@
-[gd_scene format=3 uid="uid://ce4m6tjsvnuye"]
+[gd_scene load_steps=22 format=3 uid="uid://ce4m6tjsvnuye"]
 
-[node name="CharSelectScene" type="Control"]
+[ext_resource type="Shader" path="res://assets/materials/background/background_shader.gdshader" id="1_ab4p5"]
+[ext_resource type="Script" path="res://scripts/scenes/char_select_scene.gd" id="1_kvegn"]
+[ext_resource type="AudioStream" uid="uid://bg2i7con6bfpm" path="res://assets/sound/sfx/select.ogg" id="2_bbtod"]
+[ext_resource type="Texture2D" uid="uid://xvdigcai3lqu" path="res://assets/images/ui/character-select/tile-pattern.png" id="2_fjs62"]
+[ext_resource type="AudioStream" uid="uid://bd3epd4xyxhm1" path="res://assets/sound/sfx/go.ogg" id="3_msjgc"]
+[ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="4_2oadk"]
+[ext_resource type="AudioStream" uid="uid://cwtxydy5jtpnj" path="res://assets/sound/sfx/bounce.ogg" id="4_37exa"]
+[ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="5_anukr"]
+[ext_resource type="PackedScene" uid="uid://857s0jiy2s0a" path="res://entities/ui/char_option.tscn" id="6_vhprm"]
+[ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation_button_cross.png" id="7_0hsvx"]
+[ext_resource type="Texture2D" uid="uid://7dlrae1wk340" path="res://assets/images/palceholder/splash_01.png" id="8_spheg"]
+[ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation_button_circle.png" id="8_tkh2e"]
+
+[sub_resource type="Gradient" id="Gradient_rbi7p"]
+offsets = PackedFloat32Array(0.012987, 1)
+colors = PackedColorArray(0.25098, 0.227451, 0.384314, 1, 0.0196078, 0.0392157, 0.0627451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_87bja"]
+gradient = SubResource("Gradient_rbi7p")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xaq46"]
+shader = ExtResource("1_ab4p5")
+shader_parameter/overlay_color = Color(1, 1, 1, 0.196078)
+shader_parameter/overlay_scale = 4.0
+shader_parameter/overlay_velocity = Vector2(0.1, -0.05)
+shader_parameter/overlay_texture = ExtResource("2_fjs62")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0r0t"]
+atlas = ExtResource("4_2oadk")
+region = Rect2(88.9197, 234.217, 112.179, 93.351)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnu6q"]
+atlas = ExtResource("4_2oadk")
+region = Rect2(254.842, 233.061, 112.376, 93.1891)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arrhq"]
+atlas = ExtResource("4_2oadk")
+region = Rect2(441.727, 247.722, 217.273, 279.735)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u3jiw"]
+font = ExtResource("5_anukr")
+font_size = 36
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hxug7"]
+load_path = "res://.godot/imported/atlas-select-chars.png-0bad17fc1940aa902b80225ea06394a9.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfthi"]
+font = ExtResource("5_anukr")
+font_size = 36
+font_color = Color(0.0196078, 0.0392157, 0.0627451, 1)
+
+[node name="CharSelectScene" type="Control" node_paths=PackedStringArray("options", "p1_cursor", "p2_cursor")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kvegn")
+options = [NodePath("MuscleOption"), NodePath("PopOption"), NodePath("OfficeOption"), NodePath("FarmOption")]
+p1_cursor = NodePath("P1Cursor")
+p2_cursor = NodePath("P2Cursor")
+move_sfx = ExtResource("2_bbtod")
+select_sfx = ExtResource("3_msjgc")
+cancel_sfx = ExtResource("4_37exa")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_87bja")
+
+[node name="Background" type="ColorRect" parent="Background"]
+material = SubResource("ShaderMaterial_xaq46")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="P1Splash" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = 73.0
+offset_right = 768.0
+offset_bottom = 851.0
+texture = ExtResource("8_spheg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="P2Splash" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1150.0
+offset_top = 73.0
+offset_right = 1918.0
+offset_bottom = 851.0
+texture = ExtResource("8_spheg")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="P1CharNameContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -246.0
+offset_right = 626.0
+offset_bottom = -106.0
+grow_vertical = 0
+texture = ExtResource("4_2oadk")
+region_rect = Rect2(93.8609, 606.733, 541.489, 138.458)
+
+[node name="P1CharNameLabel" type="RichTextLabel" parent="P1CharNameContainer"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 44.0
+offset_right = 633.0
+offset_bottom = 140.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("5_anukr")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "capywhey"
+
+[node name="P2CharNameContainer" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1922.0
+offset_top = -101.0
+offset_right = 2549.0
+offset_bottom = 39.0
+grow_vertical = 0
+rotation = 3.14159
+texture = ExtResource("4_2oadk")
+region_rect = Rect2(93.8609, 606.733, 541.489, 138.458)
+
+[node name="P2CharNameLabel" type="RichTextLabel" parent="P2CharNameContainer"]
+layout_mode = 0
+offset_left = 617.0
+offset_top = 100.0
+offset_right = 1196.0
+offset_bottom = 182.0
+rotation = -3.14159
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("5_anukr")
+theme_override_font_sizes/normal_font_size = 44
+bbcode_enabled = true
+text = "[right]capinerd[/right]"
+
+[node name="FarmOption" parent="." instance=ExtResource("6_vhprm")]
+layout_mode = 1
+offset_left = 272.0
+offset_top = -52.0
+offset_right = 546.0
+offset_bottom = 188.0
+char_index = 3
+
+[node name="OfficeOption" parent="." instance=ExtResource("6_vhprm")]
+layout_mode = 1
+offset_left = 1.0
+offset_top = -52.0
+offset_right = 275.0
+offset_bottom = 188.0
+char_index = 2
+
+[node name="PopOption" parent="." instance=ExtResource("6_vhprm")]
+layout_mode = 1
+offset_left = -275.0
+offset_top = -47.0
+offset_right = -1.0
+offset_bottom = 193.0
+char_index = 1
+
+[node name="MuscleOption" parent="." instance=ExtResource("6_vhprm")]
+layout_mode = 1
+offset_left = -544.0
+offset_top = -52.0
+offset_right = -270.0
+offset_bottom = 188.0
+
+[node name="P1Cursor" type="Node2D" parent="."]
+position = Vector2(582, 453)
+
+[node name="Texture" type="TextureRect" parent="P1Cursor"]
+offset_left = -56.0
+offset_top = -94.0
+offset_right = 56.0
+offset_bottom = -1.0
+texture = SubResource("AtlasTexture_r0r0t")
+
+[node name="P2Cursor" type="Node2D" parent="."]
+position = Vector2(1393, 453)
+
+[node name="Texture" type="TextureRect" parent="P2Cursor"]
+offset_left = -56.0
+offset_top = -94.0
+offset_right = 56.0
+offset_bottom = -1.0
+texture = SubResource("AtlasTexture_fnu6q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(965, 202)
+texture = SubResource("AtlasTexture_arrhq")
+
+[node name="Select Button" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 23.0
+offset_top = 297.0
+offset_right = 272.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_2oadk")
+region_rect = Rect2(93.6562, 395.975, 102.294, 102.593)
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 35
+
+[node name="Icon" type="TextureRect" parent="Select Button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 82.0
+offset_bottom = 23.0
+grow_vertical = 2
+texture = ExtResource("7_0hsvx")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Select Button"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -48.0
+offset_right = -3.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "SELECT"
+label_settings = SubResource("LabelSettings_u3jiw")
+vertical_alignment = 1
+
+[node name="Cancel Button" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = 297.0
+offset_right = -23.0
+offset_bottom = 399.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_hxug7")
+region_rect = Rect2(249.746, 395.748, 102.504, 102.504)
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 35
+
+[node name="Icon" type="TextureRect" parent="Cancel Button"]
+modulate = Color(0.0196078, 0.0392157, 0.0627451, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 82.0
+offset_bottom = 23.0
+grow_vertical = 2
+texture = ExtResource("8_tkh2e")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Cancel Button"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -169.0
+offset_top = -48.0
+offset_right = -3.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "CANCEL"
+label_settings = SubResource("LabelSettings_nfthi")
+vertical_alignment = 1

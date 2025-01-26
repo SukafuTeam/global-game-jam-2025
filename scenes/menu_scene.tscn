@@ -1,0 +1,163 @@
+[gd_scene load_steps=12 format=3 uid="uid://der6oudgjuv4u"]
+
+[ext_resource type="Script" path="res://scripts/scenes/menu_scene.gd" id="1_7l5rb"]
+[ext_resource type="Material" uid="uid://b5wn8x8fwyqnf" path="res://assets/materials/background/background_material.tres" id="1_cdm8k"]
+[ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="2_th1x0"]
+[ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation_button_cross.png" id="3_oy4wb"]
+[ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="4_1uixs"]
+[ext_resource type="Texture2D" uid="uid://ctadc610lxltk" path="res://assets/images/ui/input/playstation_button_circle_outline.png" id="6_g6y2a"]
+
+[sub_resource type="Gradient" id="Gradient_2uin8"]
+offsets = PackedFloat32Array(0.012987, 1)
+colors = PackedColorArray(0.25098, 0.227451, 0.384314, 1, 0.0196078, 0.0392157, 0.0627451, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_87bja"]
+gradient = SubResource("Gradient_2uin8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ectw"]
+font = ExtResource("4_1uixs")
+font_size = 36
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_88tci"]
+load_path = "res://.godot/imported/atlas-select-chars.png-0bad17fc1940aa902b80225ea06394a9.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_dap7p"]
+font = ExtResource("4_1uixs")
+font_size = 28
+font_color = Color(0.0196078, 0.0392157, 0.0627451, 1)
+
+[node name="MenuScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7l5rb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_87bja")
+
+[node name="Background" type="ColorRect" parent="TextureRect"]
+material = ExtResource("1_cdm8k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -3.0
+offset_right = -10.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Select Button" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = 131.0
+offset_right = 125.0
+offset_bottom = 233.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_th1x0")
+region_rect = Rect2(93.6562, 395.975, 102.294, 102.593)
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 35
+
+[node name="Icon" type="TextureRect" parent="Select Button"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 18.0
+offset_top = -38.0
+offset_right = 82.0
+offset_bottom = 23.0
+grow_vertical = 2
+texture = ExtResource("3_oy4wb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Select Button"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -155.0
+offset_top = -48.0
+offset_right = -3.0
+offset_bottom = 33.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "play"
+label_settings = SubResource("LabelSettings_7ectw")
+vertical_alignment = 1
+
+[node name="Cancel Button" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = 289.0
+offset_right = 85.0
+offset_bottom = 369.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_88tci")
+region_rect = Rect2(249.746, 395.748, 102.504, 102.504)
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 35
+
+[node name="Icon" type="TextureRect" parent="Cancel Button"]
+modulate = Color(0.0196078, 0.0392157, 0.0627451, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -33.0
+offset_right = 66.0
+offset_bottom = 18.0
+grow_vertical = 2
+texture = ExtResource("6_g6y2a")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Cancel Button"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -36.0
+offset_right = -11.0
+offset_bottom = 24.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "exit"
+label_settings = SubResource("LabelSettings_dap7p")
+vertical_alignment = 1

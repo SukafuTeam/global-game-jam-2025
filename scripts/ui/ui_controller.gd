@@ -14,6 +14,7 @@ class_name UIController
 @onready var timer_label: RichTextLabel = $TimerContainer/TimerLabel
 @onready var star_controller: UIStarContainer = $StartContainer
 
+@onready var round_label: Label = $RoundLabel
 @onready var startup_label: Label = $StartupLabel
 
 var ending: bool
@@ -72,9 +73,9 @@ func end_game(winner: InputController.PLAYER):
 	
 	GameController.current_round += 1
 	
-	# TODO: if has two wins, show splash
+	if GameController.p1_victories == 2 or GameController.p2_victories == 2:
+		#TODO: show victory splash
+		SceneTransition.change_scene(Constants.MENU_SCENE)
+		return
 	
-	# TODO: otherwise, goes to next arena
-	
-	# TODO: simulate next stage
-	get_tree().reload_current_scene()
+	SceneTransition.change_scene(get_tree().current_scene.scene_file_path)
