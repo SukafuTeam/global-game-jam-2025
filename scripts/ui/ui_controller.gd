@@ -14,6 +14,8 @@ class_name UIController
 @onready var timer_label: RichTextLabel = $TimerContainer/TimerLabel
 @onready var star_controller: UIStarContainer = $StartContainer
 
+@onready var startup_label: Label = $StartupLabel
+
 var ending: bool
 
 func _ready() -> void:
@@ -26,7 +28,7 @@ func _ready() -> void:
 	filter_material.set_shader_parameter("mix_amount", filter_mix_amount);
 	filter_material.set_shader_parameter("blur_amount", filter_blur_amount);
 
-func _process(delta: float):
+func _process(_delta: float):
 	filter_material.set_shader_parameter("mix_amount", filter_mix_amount);
 	filter_material.set_shader_parameter("blur_amount", filter_blur_amount);
 
@@ -36,6 +38,22 @@ func take_damage(player: InputController.PLAYER, new_health: int):
 			p1.take_damage(new_health)
 		InputController.PLAYER.P2:
 			p2.take_damage(new_health)
+
+func set_startup_label(value: String):
+	var tween = create_tween()
+	tween.tween_property(
+		startup_label,
+		"scale",
+		Vector2.ONE * 1.8,
+		0.2
+	).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
+	tween.tween_callback(func(): startup_label.text = value)
+	tween.tween_property(
+		startup_label,
+		"scale",
+		Vector2.ONE,
+		0.2
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 
 func end_game(winner: InputController.PLAYER):
 	if ending:
@@ -52,7 +70,7 @@ func end_game(winner: InputController.PLAYER):
 	
 	await get_tree().create_timer(2.0).timeout
 	
-	GameController.round += 1
+	GameController.current_round += 1
 	
 	# TODO: if has two wins, show splash
 	

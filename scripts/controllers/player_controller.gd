@@ -41,6 +41,7 @@ enum State {
 @onready var bash_ray = $BashRay
 @onready var ball_area: Area2D = $BallArea
 @onready var hitbox_area: Area2D = $HitBox
+@onready var player_label: Label = $PlayerLabel
 
 @export_subgroup("Configuration")
 @export var interactive: bool
@@ -109,6 +110,16 @@ func _ready():
 	can_dash = true
 	if player == InputController.PLAYER.P1:
 		looking_right = true
+	
+	player_label.text = "P1" if player == InputController.PLAYER.P1 else "P2"
+	player_label.add_theme_color_override(
+		"font_color",
+		Constants.p1_color if player == InputController.PLAYER.P1 else Constants.p2_color
+	)
+	
+	var tween = player_label.create_tween()
+	tween.tween_interval(3.0)
+	tween.tween_property(player_label, "modulate:a", 0.0, 2.0)
 
 func _process(delta: float):
 	if current_iframe_time > 0.0:

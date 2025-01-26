@@ -15,7 +15,25 @@ func _ready():
 	star_circle.modulate.a = 0.0
 	star.scale = Vector2.ZERO
 	
-	update_stars()	
+	update_stars()
+	star_animation()
+
+func star_animation():
+	var tween = create_tween()
+	tween.set_loops(-1)
+	for ui_star in [p1_star_2_container, p1_star_1_container, p2_star_1_container, p2_star_2_container]:
+		tween.tween_property(
+			ui_star,
+			"scale",
+			Vector2.ONE * 1.2,
+			0.2
+		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+		tween.tween_property(
+			ui_star,
+			"scale",
+			Vector2.ONE,
+			0.2
+		).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 
 func _process(delta: float):
 	rays.rotation_degrees += 10 * delta
@@ -34,22 +52,22 @@ func final_sequence(winner: InputController.PLAYER):
 		rays,
 		"modulate:a",
 		1.0,
-		1.0
+		0.5
 	)
 	tween.parallel().tween_property(
 		star_circle,
 		"modulate:a",
 		1.0,
-		1.0
+		0.5
 	)
 	tween.parallel().tween_property(
 		star,
 		"scale",
 		Vector2.ONE,
-		1.0
+		0.5
 	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
-	tween.tween_interval(1.0)
+	tween.tween_interval(0.5)
 	
 	var target_pos: Vector2
 	match winner:

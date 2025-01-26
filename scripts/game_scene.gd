@@ -3,7 +3,11 @@ extends Node2D
 @export var ui: UIController
 @export var player1: PlayerController
 @export var player2: PlayerController
+@export var active: bool
 @export var level_time: float = 60.0
+
+@export var number_sfx: AudioStream
+@export var go_sfx: AudioStream
 
 var dead: bool
 
@@ -25,9 +29,12 @@ func _ready() -> void:
 	
 	ui.p1.player = player1
 	ui.p2.player = player2
+	
+	startup_sequence()
 
 func _process(delta: float):
-	level_time -= delta
+	if active:
+		level_time -= delta
 	
 	if level_time <= 0.0:
 		level_time = 0.0
@@ -45,6 +52,37 @@ func _process(delta: float):
 		
 	res += "[/center]"
 	ui.timer_label.text = res
+
+func startup_sequence():
+	player1.interactive = false
+	player2.interactive = false
+	
+	var tween = create_tween()
+	tween.tween_interval(1.0)
+	tween.tween_callback(func():
+		SoundController.play_sfx(number_sfx)
+		ui.set_startup_label("3")
+	)
+	tween.tween_interval(1.0)
+	tween.tween_callback(func():
+		SoundController.play_sfx(number_sfx)
+		ui.set_startup_label("2"))
+	tween.tween_interval(1.0)
+	tween.tween_callback(func():
+		SoundController.play_sfx(number_sfx)
+		ui.set_startup_label("1")
+	)
+	tween.tween_interval(1.0)
+	tween.tween_callback(func():
+		ui.set_startup_label("Go!")
+		SoundController.play_sfx(go_sfx)
+		player1.interactive = true
+		player2.interactive = true
+	)
+	tween.tween_interval(1.0)
+	tween.tween_callback(func():
+		ui.set_startup_label("")
+	)
 
 func finished_game():
 	if dead:

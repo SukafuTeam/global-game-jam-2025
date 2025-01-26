@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://cjjl4rshj8p8r"]
+[gd_scene load_steps=13 format=4 uid="uid://cjjl4rshj8p8r"]
 
 [ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_vu68a"]
+[ext_resource type="AudioStream" uid="uid://dg0uwkegaeihc" path="res://assets/sound/sfx/321.ogg" id="2_4xqpc"]
 [ext_resource type="PackedScene" uid="uid://b7l066o3p4ljc" path="res://entities/scenario/museu_olho_background.tscn" id="2_hxegb"]
+[ext_resource type="AudioStream" uid="uid://bd3epd4xyxhm1" path="res://assets/sound/sfx/go.ogg" id="3_3hxw1"]
 [ext_resource type="Script" path="res://scripts/controllers/camera_controller.gd" id="3_07aat"]
 [ext_resource type="PackedScene" uid="uid://bue34jra8oa40" path="res://entities/player/test_player.tscn" id="4_tjwqj"]
 [ext_resource type="TileSet" uid="uid://1qpduo02qitl" path="res://data/tilesets/dark_blue_tileset.tres" id="5_3nxoe"]
@@ -23,6 +25,8 @@ script = ExtResource("1_vu68a")
 ui = NodePath("UI")
 player1 = NodePath("TestPlayer")
 player2 = NodePath("TestPlayer2")
+number_sfx = ExtResource("2_4xqpc")
+go_sfx = ExtResource("3_3hxw1")
 
 [node name="MuseuOlhoBackground" parent="." instance=ExtResource("2_hxegb")]
 

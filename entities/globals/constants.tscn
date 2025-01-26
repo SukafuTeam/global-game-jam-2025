@@ -73,6 +73,8 @@ speed_portrait = ExtResource("26_3mdqo")
 
 [node name="Constants" type="Node2D"]
 script = ExtResource("1_rm4ri")
+p1_color = Color(0, 0, 1, 1)
+p2_color = Color(1, 0, 0, 1)
 muscle_char = SubResource("Resource_rdvjs")
 pop_char = SubResource("Resource_183ux")
 office_char = SubResource("Resource_o84xp")

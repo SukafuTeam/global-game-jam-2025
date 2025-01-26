@@ -2,6 +2,13 @@ extends PlayerController
 class_name TutorialDashController
 
 @export var showing: bool
+@export var input_button: Node2D
+var input_tween: Tween
+
+@export var dpad_button: Sprite2D
+@export var neutral_dpad: Texture2D
+@export var right_dpad: Texture2D
+@export var left_dpap: Texture2D
 
 func _ready():
 	health = MAX_HEALTH
@@ -23,6 +30,7 @@ func tuto_animation():
 		current_coyote_time = 0.0
 		current_jump_buffer = 0.0
 		showing = true
+		change_dpad(right_dpad)
 		await get_tree().create_timer(3.0).timeout
 		looking_right = false
 		SoundController.play_sfx(jump_sfx, 1.0, randf_range(0.8, 1.2))
@@ -32,10 +40,13 @@ func tuto_animation():
 		current_coyote_time = 0.0
 		current_jump_buffer = 0.0
 		showing = true
+		change_dpad(left_dpap)
 		await get_tree().create_timer(3.0).timeout
 
 func _process(_delta: float) -> void:
 	if velocity.y > 0.0 and showing:
+		animate_button()
+		reset_dpda()
 		velocity.x += AIR_SPIN_DASH_GAIN if looking_right else -AIR_SPIN_DASH_GAIN
 		velocity.y = -AIR_SPIN_JUMP
 		angular_velocity = calculate_rotation(10)
@@ -76,3 +87,31 @@ func process_air(delta: float) -> State:
 		return State.GROUND
 	
 	return State.AIR
+	
+
+func animate_button():
+	if input_tween:
+		input_tween.kill()
+	
+	input_tween = create_tween()
+	input_tween.tween_property(
+		input_button,
+		"scale",
+		Vector2.ONE * 0.8,
+		0.1
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	input_tween.tween_property(
+		input_button,
+		"scale",
+		Vector2.ONE,
+		0.1
+	).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+
+func change_dpad(new_texture: Texture2D):
+	await get_tree().create_timer(0.4).timeout
+	dpad_button.texture = new_texture
+
+func reset_dpda():
+	await get_tree().create_timer(0.2).timeout
+	
+	dpad_button.texture = neutral_dpad

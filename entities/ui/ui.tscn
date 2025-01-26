@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://rjgpnc8t6evf"]
+[gd_scene load_steps=21 format=3 uid="uid://rjgpnc8t6evf"]
 
 [ext_resource type="Texture2D" uid="uid://33idf0yco4wj" path="res://assets/images/palceholder/particle_test.png" id="1_hagbv"]
 [ext_resource type="Script" path="res://scripts/ui/ui_controller.gd" id="1_sby32"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bqklit5gdr1s3" path="res://assets/images/ui/in-game/ui-player-mask.png" id="7_twgn4"]
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="8_8f4jj"]
 [ext_resource type="Texture2D" uid="uid://butvsebh3v6lr" path="res://assets/images/characters/muscle/react_laranja_idle.png" id="8_objxb"]
-[ext_resource type="Texture2D" uid="uid://b35rbedhgvse7" path="res://assets/images/ui/in-game/uit-timer-bg.png" id="10_8xx3i"]
 [ext_resource type="Script" path="res://entities/ui/ui_star_container.gd" id="12_rv17w"]
 [ext_resource type="Texture2D" uid="uid://c8btrcp00ojy5" path="res://assets/images/ui/in-game/star-highlight-circle.png" id="13_l6tp8"]
 [ext_resource type="Texture2D" uid="uid://bbuimbrqvfbha" path="res://assets/images/ui/in-game/star.png" id="14_v23rv"]
@@ -176,6 +175,7 @@ patch_margin_left = 19
 patch_margin_right = 44
 
 [node name="Portrait" type="TextureRect" parent="P2UI/PortraitMask"]
+layout_mode = 0
 offset_right = 319.0
 offset_bottom = 106.0
 texture = ExtResource("8_objxb")
@@ -195,7 +195,6 @@ offset_right = 204.0
 offset_bottom = -437.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("10_8xx3i")
 patch_margin_left = 16
 patch_margin_top = 16
 patch_margin_right = 16
@@ -367,3 +366,23 @@ texture = ExtResource("13_l6tp8")
 
 [node name="Star" type="Sprite2D" parent="StartContainer"]
 texture = ExtResource("14_v23rv")
+
+[node name="StartupLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.0
+offset_top = -132.0
+offset_right = 306.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(306, 130)
+theme_override_fonts/font = ExtResource("8_8f4jj")
+theme_override_font_sizes/font_size = 200
+text = " "
+horizontal_alignment = 1
+vertical_alignment = 1

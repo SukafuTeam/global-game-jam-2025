@@ -2,7 +2,7 @@ extends Node
 
 var camera: CameraController
 
-var round: int = 0
+var current_round: int = 1
 var p1_index: int = -1
 var p2_index: int = -1
 
@@ -14,7 +14,7 @@ func _ready():
 	reset()
 
 func reset():
-	round = 0
+	current_round = 1
 	p1_index = -1
 	p2_index = -1
 	p1_victories = 0
