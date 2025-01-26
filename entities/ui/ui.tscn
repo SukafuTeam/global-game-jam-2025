@@ -357,6 +357,7 @@ scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("14_v23rv")
 
 [node name="RoundLabel" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -370,6 +371,9 @@ offset_bottom = -95.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(493, 137)
+theme_override_colors/font_shadow_color = Color(0.0196078, 0.0392157, 0.0627451, 0.784314)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/font = ExtResource("8_8f4jj")
 theme_override_font_sizes/font_size = 200
 text = " Round 2"
@@ -390,6 +394,9 @@ offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(318, 129)
+theme_override_colors/font_shadow_color = Color(0.0196078, 0.0392157, 0.0627451, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/font = ExtResource("8_8f4jj")
 theme_override_font_sizes/font_size = 200
 horizontal_alignment = 1

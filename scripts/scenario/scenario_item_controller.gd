@@ -15,6 +15,10 @@ func _ready():
 	break_area.body_entered.connect(on_player_entered)
 	sprite.texture = textures.pick_random()
 
+func _physics_process(_delta: float):
+	if linear_velocity.y > 1500.0:
+		apply_impulse(Vector2.RIGHT * randf_range(-1, 1) * 100.0)
+
 func on_player_entered(other: Node2D):
 	if !(other is PlayerController):
 		return

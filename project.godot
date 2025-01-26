@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="global-game-jam-2025"
+config/name="CapyBubble"
+config/version="1.0.0"
+run/main_scene="res://scenes/logo_scene.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
@@ -151,3 +153,4 @@ reset={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

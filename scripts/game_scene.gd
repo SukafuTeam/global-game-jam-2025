@@ -16,9 +16,28 @@ const CRUSHER_SPEED: float = 100.0
 @export var left_crusher: CrusherController
 @export var right_crusher: CrusherController
 
+@export var arenas: Array[Node2D] = []
+@export var backgrounds: Array[Node2D] = []
+
 var dead: bool
 
 func _ready() -> void:
+	
+	for i in range(arenas.size()):
+		if i == GameController.current_round - 1:
+			var a = arenas[i] as TileMapLayer
+			a.enabled = true
+			a.visible = true
+			continue
+		
+		arenas[i].queue_free()
+
+	for i in range(backgrounds.size()):
+		if i == GameController.current_round - 1:
+			backgrounds[i].visible = true
+			continue
+		backgrounds[i].queue_free()
+	
 	SoundController.stop_bgm()
 	SoundController.current_bgm_name = ""
 	
@@ -41,6 +60,7 @@ func _ready() -> void:
 	ui.p2.player = player2
 	
 	startup_sequence()
+
 
 func _process(delta: float):
 	if active:

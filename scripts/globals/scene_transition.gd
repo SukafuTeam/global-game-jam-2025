@@ -1,6 +1,6 @@
 extends Control
 
-@onready var background: TextureRect = $TextureRect
+@onready var background: ColorRect = $TextureRect
 var transitioning: bool
 
 func _ready():

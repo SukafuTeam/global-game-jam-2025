@@ -1,16 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy364ixuidev5"]
+[gd_scene load_steps=2 format=3 uid="uid://dy364ixuidev5"]
 
 [ext_resource type="Texture2D" uid="uid://cproo670raui8" path="res://assets/images/scenario/grama_01.png" id="1_sdtmq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2igg"]
-size = Vector2(40, 40)
-
 [node name="Grass" type="Node2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_h2igg")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = -1
+position = Vector2(0, 3)
 scale = Vector2(0.734976, 0.734976)
 texture = ExtResource("1_sdtmq")

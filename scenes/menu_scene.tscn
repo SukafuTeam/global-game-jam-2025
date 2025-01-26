@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://der6oudgjuv4u"]
+[gd_scene load_steps=22 format=4 uid="uid://der6oudgjuv4u"]
 
 [ext_resource type="Script" path="res://scripts/scenes/menu_scene.gd" id="1_7l5rb"]
 [ext_resource type="Material" uid="uid://b5wn8x8fwyqnf" path="res://assets/materials/background/background_material.tres" id="1_cdm8k"]
@@ -7,6 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation_button_cross.png" id="3_oy4wb"]
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="4_1uixs"]
 [ext_resource type="Texture2D" uid="uid://ctadc610lxltk" path="res://assets/images/ui/input/playstation_button_circle_outline.png" id="6_g6y2a"]
+[ext_resource type="Texture2D" uid="uid://upt3fjy24muw" path="res://assets/images/ui/menu/logo.png" id="8_g6ry4"]
+[ext_resource type="TileSet" uid="uid://1qpduo02qitl" path="res://data/tilesets/dark_blue_tileset.tres" id="9_exr65"]
+[ext_resource type="PackedScene" uid="uid://b61wwisxpffg4" path="res://entities/scenario/flower.tscn" id="10_5ousb"]
+[ext_resource type="Texture2D" uid="uid://bpw68ng1dd1uq" path="res://assets/images/ui/menu/logo-serra.png" id="11_xg6ff"]
+[ext_resource type="Texture2D" uid="uid://cy0se1drocnp8" path="res://assets/images/characters/muscle/splash_laranja.png" id="12_5xi78"]
+[ext_resource type="Script" path="res://scripts/controllers/waveable.gd" id="13_5mqvi"]
+[ext_resource type="Texture2D" uid="uid://l56v8s1ey58k" path="res://assets/images/characters/office/splash.azul.png" id="13_n2mt4"]
+[ext_resource type="Texture2D" uid="uid://k5bulsug5gk3" path="res://assets/images/characters/farm/splash_verde.png" id="14_4o86x"]
 
 [sub_resource type="Gradient" id="Gradient_2uin8"]
 offsets = PackedFloat32Array(0.012987, 1)
@@ -29,6 +37,9 @@ font = ExtResource("4_1uixs")
 font_size = 28
 font_color = Color(0.0196078, 0.0392157, 0.0627451, 1)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mk6cn"]
+load_path = "res://.godot/imported/splash_rosa.png-ebd9f0db2861e61b33ae75a9349622b8.ctex"
+
 [node name="MenuScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +51,7 @@ script = ExtResource("1_7l5rb")
 menu_song = ExtResource("2_t8bng")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = -100
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,6 +73,12 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false
+position = Vector2(-30, 0)
+tile_map_data = PackedByteArray("AAAEAAMAAgACAAIAAAAEAAIAAgACAAEAAAAEAAEAAgACAAEAAAAEAAAAAgACAAEAAAAEAP//AgACAAAAAAADAAMAAgABAAIAAAADAAIAAgABAAEAAAADAAEAAgABAAEAAAADAAAAAgABAAEAAAADAP//AgABAAAAAAACAAMAAgADAAMAAAACAAIAAgABAAEAAAACAAEAAgABAAEAAAACAAAAAgABAAEAAAACAP//AgABAAAAAAABAAMAAgABAAEAAAABAAIAAgABAAEAAAABAAEAAgABAAEAAAABAAAAAgABAAEAAAABAP//AgABAAAAAAAAAAMAAgAEAAMAAAAAAAIAAgABAAEAAAAAAAEAAgABAAEAAAAAAAAAAgABAAEAAAAAAP//AgABAAAAAAD//wMAAgAAAAIAAAD//wIAAgAAAAEAAAD//wEAAgAAAAEAAAD//wAAAgAAAAEAAAD/////AgAAAAAAAAAEABkAAgACAAIAAAAEABgAAgACAAEAAAAEABcAAgACAAEAAAAEABYAAgACAAEAAAADABkAAgABAAIAAAADABgAAgABAAEAAAADABcAAgABAAEAAAADABYAAgABAAEAAAACABkAAgABAAIAAAACABgAAgABAAEAAAACABcAAgABAAEAAAACABYAAgABAAEAAAABABkAAgABAAIAAAABABgAAgABAAEAAAABABcAAgABAAEAAAABABYAAgABAAEAAAAAABkAAgAAAAIAAAAAABgAAgAAAAEAAAAAABcAAgAAAAEAAAAAABYAAgAAAAEAAAACABUAAgABAAEAAAACABQAAgABAAEAAAACABMAAgADAAQAAAACABIAAgACAAEAAAACABEAAgACAAEAAAACABAAAgACAAEAAAACAA8AAgADAAMAAAACAA4AAgABAAEAAAACAA0AAgABAAEAAAACAAwAAgADAAQAAAACAAsAAgACAAEAAAACAAoAAgACAAEAAAACAAkAAgACAAEAAAACAAgAAgADAAMAAAACAAcAAgADAAQAAAACAAYAAgACAAEAAAACAAUAAgACAAEAAAACAAQAAgACAAEAAAABABUAAgABAAEAAAABABQAAgABAAEAAAABABMAAgABAAEAAAABABIAAgABAAEAAAABABEAAgABAAEAAAABABAAAgABAAEAAAABAA8AAgABAAEAAAABAA4AAgABAAEAAAABAA0AAgABAAEAAAABAAwAAgABAAEAAAABAAsAAgABAAEAAAABAAoAAgABAAEAAAABAAkAAgABAAEAAAABAAgAAgABAAEAAAABAAcAAgABAAEAAAABAAYAAgABAAEAAAABAAUAAgABAAEAAAABAAQAAgABAAEAAAAAABUAAgAAAAEAAAAAABQAAgAAAAEAAAAAABMAAgAAAAEAAAAAABIAAgAAAAEAAAAAABEAAgAAAAEAAAAAABAAAgAAAAEAAAAAAA8AAgAAAAEAAAAAAA4AAgAAAAEAAAAAAA0AAgAAAAEAAAAAAAwAAgAAAAEAAAAAAAsAAgAAAAEAAAAAAAoAAgAAAAEAAAAAAAkAAgAAAAEAAAAAAAgAAgAAAAEAAAAAAAcAAgAAAAEAAAAAAAYAAgAAAAEAAAAAAAUAAgAAAAEAAAAAAAQAAgAAAAEAAAADAAgAAgACAAIAAAADAAcAAgACAAAAAAADAA8AAgACAAIAAAADAA4AAgACAAEAAAADAA0AAgACAAEAAAADAAwAAgACAAAAAAAEABQAAgADAAQAAAAEABMAAgACAAAAAAADABQAAgABAAEAAAADABMAAgABAAAAAAAsAAIAAgACAAIAAAAsAAEAAgACAAEAAAAsAAAAAgACAAEAAAAsAP//AgACAAAAAAArAAIAAgADAAMAAAArAAEAAgABAAEAAAArAAAAAgABAAEAAAArAP//AgABAAAAAAAqAAIAAgABAAEAAAAqAAEAAgABAAEAAAAqAAAAAgABAAEAAAAqAP//AgABAAAAAAApAAIAAgABAAEAAAApAAEAAgABAAEAAAApAAAAAgABAAEAAAApAP//AgABAAAAAAAoAAIAAgAEAAMAAAAoAAEAAgABAAEAAAAoAAAAAgABAAEAAAAoAP//AgABAAAAAAAnAAIAAgABAAIAAAAnAAEAAgABAAEAAAAnAAAAAgABAAEAAAAnAP//AgABAAAAAAAmAAIAAgAAAAIAAAAmAAEAAgAAAAEAAAAmAAAAAgAAAAEAAAAmAP//AgAAAAAAAAArAAUAAgACAAEAAAArAAQAAgACAAEAAAArAAMAAgACAAEAAAAqAAUAAgABAAEAAAAqAAQAAgABAAEAAAAqAAMAAgABAAEAAAApAAUAAgABAAEAAAApAAQAAgABAAEAAAApAAMAAgABAAEAAAAoAAUAAgAEAAQAAAAoAAQAAgAAAAEAAAAoAAMAAgAAAAEAAAArAAkAAgACAAEAAAArAAgAAgACAAEAAAArAAcAAgACAAEAAAArAAYAAgACAAEAAAAqAAkAAgABAAEAAAAqAAgAAgABAAEAAAAqAAcAAgABAAEAAAAqAAYAAgABAAEAAAApAAkAAgABAAEAAAApAAgAAgABAAEAAAApAAcAAgABAAEAAAApAAYAAgABAAEAAAAoAAkAAgABAAEAAAAoAAgAAgAEAAQAAAAoAAcAAgAAAAEAAAAoAAYAAgAEAAMAAAApAAoAAgABAAEAAAAoAAoAAgAEAAMAAAAnAAoAAgABAAIAAAAnAAkAAgABAAEAAAAnAAgAAgABAAAAAAAmAAoAAgABAAIAAAAmAAkAAgABAAEAAAAmAAgAAgABAAAAAAAlAAoAAgABAAIAAAAlAAkAAgABAAEAAAAlAAgAAgABAAAAAAAkAAoAAgAAAAIAAAAkAAkAAgAAAAEAAAAkAAgAAgAAAAAAAAAnAAYAAgAAAAIAAAAnAAUAAgAAAAAAAAAsAA4AAgACAAEAAAAsAA0AAgACAAEAAAAsAAwAAgACAAEAAAAsAAsAAgACAAEAAAAsAAoAAgACAAAAAAArAA4AAgABAAEAAAArAA0AAgABAAEAAAArAAwAAgABAAEAAAArAAsAAgABAAEAAAArAAoAAgADAAQAAAAqAA4AAgABAAEAAAAqAA0AAgABAAEAAAAqAAwAAgABAAEAAAAqAAsAAgABAAEAAAAqAAoAAgABAAEAAAApAA4AAgABAAEAAAApAA0AAgABAAEAAAApAAwAAgABAAEAAAApAAsAAgABAAEAAAAoAA4AAgAEAAQAAAAoAA0AAgAAAAEAAAAoAAwAAgAAAAEAAAAoAAsAAgAAAAEAAAAsABEAAgACAAIAAAAsABAAAgACAAEAAAAsAA8AAgACAAEAAAArABEAAgADAAMAAAArABAAAgABAAEAAAArAA8AAgABAAEAAAAqABEAAgABAAEAAAAqABAAAgABAAEAAAAqAA8AAgABAAEAAAApABEAAgABAAEAAAApABAAAgABAAEAAAApAA8AAgABAAEAAAAoABEAAgAEAAMAAAAoABAAAgABAAEAAAAoAA8AAgABAAEAAAAnABEAAgABAAIAAAAnABAAAgABAAEAAAAnAA8AAgABAAEAAAAnAA4AAgABAAAAAAAmABEAAgAAAAIAAAAmABAAAgAAAAEAAAAmAA8AAgAAAAEAAAAmAA4AAgAAAAAAAAArABQAAgACAAEAAAArABMAAgACAAEAAAArABIAAgACAAEAAAAqABQAAgABAAEAAAAqABMAAgABAAEAAAAqABIAAgABAAEAAAApABQAAgABAAEAAAApABMAAgABAAEAAAApABIAAgABAAEAAAAoABQAAgAAAAEAAAAoABMAAgAAAAEAAAAoABIAAgAAAAEAAAAtABkAAgACAAIAAAAtABgAAgACAAEAAAAtABcAAgACAAEAAAAtABYAAgACAAEAAAAtABUAAgACAAAAAAAsABkAAgABAAIAAAAsABgAAgABAAEAAAAsABcAAgABAAEAAAAsABYAAgABAAEAAAAsABUAAgABAAAAAAArABkAAgABAAIAAAArABgAAgABAAEAAAArABcAAgABAAEAAAArABYAAgABAAEAAAArABUAAgADAAQAAAAqABkAAgABAAIAAAAqABgAAgABAAEAAAAqABcAAgABAAEAAAAqABYAAgABAAEAAAAqABUAAgABAAEAAAApABkAAgABAAIAAAApABgAAgABAAEAAAApABcAAgABAAEAAAApABYAAgABAAEAAAApABUAAgABAAEAAAAoABkAAgABAAIAAAAoABgAAgABAAEAAAAoABcAAgABAAEAAAAoABYAAgABAAEAAAAoABUAAgAEAAQAAAAnABkAAgABAAIAAAAnABgAAgABAAEAAAAnABcAAgABAAEAAAAnABYAAgABAAEAAAAnABUAAgABAAAAAAAmABkAAgABAAIAAAAmABgAAgABAAEAAAAmABcAAgABAAEAAAAmABYAAgABAAEAAAAmABUAAgABAAAAAAAlABkAAgAAAAIAAAAlABgAAgAAAAEAAAAlABcAAgAAAAEAAAAlABYAAgAAAAEAAAAlABUAAgAAAAAAAAADAAYAAQAAAAAACQADABIAAQAAAAAACQAmABQAAQAAAAAACQAnAA0AAQAAAAAACQAkAAcAAQAAAAAACQAnAAQAAQAAAAAACQAlABAAAQAAAAAACwAEAA4AAQAAAAAADAAFAAEAAQAAAAAADAAHABUAAgACAAIAAAAHABQAAgACAAAAAAAGABUAAgABAAIAAAAGABQAAgABAAAAAAAFABUAAgABAAIAAAAFABQAAgABAAAAAAAEABUAAgADAAMAAAADABUAAgABAAEAAAAGABMAAQAAAAAABgADAAkAAQAAAAAABQADAAoAAQAAAAAABQADAAsAAQAAAAAABQAjAAgAAQAAAAAABAAjAAkAAQAAAAAABAAjAAoAAQAAAAAABAAFABYAAQAAAAAACAAnAAsAAQAAAAAACAA=")
+tile_set = ExtResource("9_exr65")
+
 [node name="Select Button" type="NinePatchRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -69,9 +87,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -124.0
-offset_top = 131.0
+offset_top = 200.0
 offset_right = 125.0
-offset_bottom = 233.0
+offset_bottom = 302.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_th1x0")
@@ -120,9 +138,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -85.0
-offset_top = 289.0
+offset_top = 329.0
 offset_right = 85.0
-offset_bottom = 369.0
+offset_bottom = 409.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CompressedTexture2D_88tci")
@@ -163,3 +181,82 @@ grow_vertical = 2
 text = "exit"
 label_settings = SubResource("LabelSettings_dap7p")
 vertical_alignment = 1
+
+[node name="Props" type="Node2D" parent="."]
+visible = false
+
+[node name="Flower" parent="Props" instance=ExtResource("10_5ousb")]
+position = Vector2(308, 878)
+
+[node name="Flower2" parent="Props" instance=ExtResource("10_5ousb")]
+position = Vector2(262, 877)
+
+[node name="Flower3" parent="Props" instance=ExtResource("10_5ousb")]
+position = Vector2(222, 877)
+
+[node name="Flower4" parent="Props" instance=ExtResource("10_5ousb")]
+position = Vector2(245, 878)
+
+[node name="Flower5" parent="Props" instance=ExtResource("10_5ousb")]
+position = Vector2(279, 877)
+
+[node name="Flower6" parent="Props" instance=ExtResource("10_5ousb")]
+position = Vector2(1690, 334)
+
+[node name="Flower7" parent="Props" instance=ExtResource("10_5ousb")]
+position = Vector2(1646, 330)
+
+[node name="LogoContainer" type="Node2D" parent="."]
+position = Vector2(953, 431)
+
+[node name="Offset" type="Node2D" parent="LogoContainer"]
+
+[node name="Logo" type="TextureRect" parent="LogoContainer/Offset"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -249.0
+offset_top = -315.0
+offset_right = 263.0
+offset_bottom = 197.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.11989, 1.11989)
+pivot_offset = Vector2(248, 270)
+texture = ExtResource("8_g6ry4")
+
+[node name="Logo-serra" type="Sprite2D" parent="LogoContainer/Offset"]
+position = Vector2(184, -150)
+texture = ExtResource("11_xg6ff")
+
+[node name="SplashLaranja" type="Sprite2D" parent="."]
+position = Vector2(200, 828)
+rotation = 0.139105
+scale = Vector2(0.683663, 0.683663)
+texture = ExtResource("12_5xi78")
+flip_h = true
+script = ExtResource("13_5mqvi")
+
+[node name="Splash_azul" type="Sprite2D" parent="."]
+position = Vector2(642, 950)
+rotation = -0.00687146
+scale = Vector2(0.660524, 0.660524)
+texture = ExtResource("13_n2mt4")
+script = ExtResource("13_5mqvi")
+
+[node name="Splash_azul2" type="Sprite2D" parent="."]
+position = Vector2(1682, 766)
+rotation = -0.138045
+scale = Vector2(0.824861, 0.824861)
+texture = SubResource("CompressedTexture2D_mk6cn")
+script = ExtResource("13_5mqvi")
+
+[node name="Splash_azul3" type="Sprite2D" parent="."]
+position = Vector2(1394, 896)
+rotation = 0.135808
+scale = Vector2(0.720217, 0.720217)
+texture = ExtResource("14_4o86x")
+flip_h = true
+script = ExtResource("13_5mqvi")

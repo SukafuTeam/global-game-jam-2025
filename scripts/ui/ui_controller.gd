@@ -21,6 +21,7 @@ class_name UIController
 var ending: bool
 
 func _ready() -> void:
+	round_label.visible = true
 	ending = false
 	filter.visible = true
 	filter_material = filter.material as ShaderMaterial

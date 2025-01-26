@@ -64,6 +64,7 @@ func _process(_delta: float):
 	if options[p1_focus].selected and options[p2_focus].selected:
 		moving_forward = true
 		tutorial()
+		return
 	
 	if Input.is_action_just_pressed("p1_left"):
 		p1_focus = move_left(p1_focus, p2_focus)

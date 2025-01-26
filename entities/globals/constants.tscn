@@ -61,7 +61,7 @@ main_color = Color(1, 0.32549, 0.52549, 1)
 
 [sub_resource type="Resource" id="Resource_o84xp"]
 script = ExtResource("2_mwqmu")
-char_name = "Cappy D."
+char_name = "Cappy Dee"
 bubble_sprite = ExtResource("6_753np")
 char_sprite = ExtResource("8_1retv")
 damage_pitch_scale = 0.6

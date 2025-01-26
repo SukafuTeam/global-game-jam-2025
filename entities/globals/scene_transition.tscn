@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://b5wn8x8fwyqnf" path="res://assets/materials/background/background_material.tres" id="2_6wjka"]
 
 [sub_resource type="Gradient" id="Gradient_mwsoi"]
-offsets = PackedFloat32Array(0.012987, 1)
+offsets = PackedFloat32Array(0.0357143, 1)
 colors = PackedColorArray(0.054902, 0.0823529, 0.113725, 1, 0.0196078, 0.0392157, 0.0627451, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_pue1m"]
@@ -22,14 +22,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_76rcs")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_pue1m")
+color = Color(0.054902, 0.0823529, 0.113725, 1)
 
 [node name="Background" type="ColorRect" parent="TextureRect"]
 material = ExtResource("2_6wjka")
@@ -39,3 +39,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect_old" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_pue1m")
