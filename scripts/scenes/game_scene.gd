@@ -1,4 +1,5 @@
 extends Node2D
+class_name GameScene
 
 const CRUSHER_SPEED: float = 100.0
 
@@ -64,7 +65,6 @@ func _ready() -> void:
 
 func _process(delta: float):
 	if active:
-		level_time -= delta
 		if level_time <= 0.0:
 			left_crusher.set_active()
 			right_crusher.set_active()
@@ -77,24 +77,21 @@ func _process(delta: float):
 	var current_sec = int(level_time)
 	if active:
 		current_sec += 1
+	if current_sec > 60:
+		current_sec = 60
 	
 	if level_time <= 0.0:
 		level_time = 0.0
 		current_sec = 0
 	
-	
-	
 	var res = "[center]"
+	res += "[wave amp=30 freq=-6]"
 	if level_time <= 10:
 		res += "[shake rate=30.0 level=10 connected=1]"
-		res += str(current_sec)
+	res += str(current_sec)
+	if level_time <= 10:
 		res += "[/shake]"
-	else:
-		res += "[wave amp=30 freq=-6]"
-		res += str(current_sec)
-		res += "[/wave]"
-		
-		
+	res += "[/wave]"
 	res += "[/center]"
 	ui.timer_label.text = res
 

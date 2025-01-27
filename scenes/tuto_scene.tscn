@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=4 uid="uid://djwa2pec3bxjs"]
+[gd_scene load_steps=22 format=4 uid="uid://djwa2pec3bxjs"]
 
 [ext_resource type="Script" path="res://scripts/controllers/camera_controller.gd" id="1_0u2h3"]
 [ext_resource type="TileSet" uid="uid://1qpduo02qitl" path="res://data/tilesets/dark_blue_tileset.tres" id="1_esg1m"]
 [ext_resource type="Script" path="res://scripts/scenes/tuto_scene.gd" id="1_v4b4n"]
+[ext_resource type="AudioStream" uid="uid://bd3epd4xyxhm1" path="res://assets/sound/sfx/go.ogg" id="2_5vb04"]
 [ext_resource type="Shader" path="res://assets/materials/background/background_shader.gdshader" id="2_d2kef"]
 [ext_resource type="PackedScene" uid="uid://bue34jra8oa40" path="res://entities/player/test_player.tscn" id="2_vyoy6"]
 [ext_resource type="Texture2D" uid="uid://xvdigcai3lqu" path="res://assets/images/ui/character-select/tile-pattern.png" id="3_64g5y"]
@@ -15,7 +16,7 @@
 [ext_resource type="Script" path="res://scripts/controllers/tuto_dash_controller.gd" id="8_g0lgn"]
 [ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="14_qoo7l"]
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="15_ebrih"]
-[ext_resource type="Texture2D" uid="uid://cmk0kw0iyff1s" path="res://assets/images/ui/input/playstation3_button_start.png" id="16_e70il"]
+[ext_resource type="Texture2D" uid="uid://byuxcpxo855rn" path="res://assets/images/ui/input/hold_circle.png" id="16_uaxlq"]
 
 [sub_resource type="Gradient" id="Gradient_2uin8"]
 offsets = PackedFloat32Array(0.012987, 1)
@@ -33,24 +34,13 @@ shader_parameter/overlay_scale = 4.0
 shader_parameter/overlay_velocity = Vector2(0.1, -0.05)
 shader_parameter/overlay_texture = ExtResource("3_64g5y")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_brxoi"]
-frequency = 0.0727
-fractal_octaves = 4
-
 [sub_resource type="LabelSettings" id="LabelSettings_lngyd"]
 font = ExtResource("15_ebrih")
 font_size = 36
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cn6q3"]
-load_path = "res://.godot/imported/atlas-select-chars.png-0bad17fc1940aa902b80225ea06394a9.ctex"
-
-[sub_resource type="LabelSettings" id="LabelSettings_eu05y"]
-font = ExtResource("15_ebrih")
-font_size = 36
-font_color = Color(0.0196078, 0.0392157, 0.0627451, 1)
-
 [node name="TutoScene" type="Node2D"]
 script = ExtResource("1_v4b4n")
+confirm_sfx = ExtResource("2_5vb04")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -100
@@ -74,7 +64,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Background"]
+[node name="TutorialShadow" type="RichTextLabel" parent="Background"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -530.0
+offset_top = 93.0
+offset_right = 530.0
+offset_bottom = 270.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 0.784314)
+theme_override_fonts/normal_font = ExtResource("15_ebrih")
+theme_override_font_sizes/normal_font_size = 110
+bbcode_enabled = true
+text = "[center]TUTORIAL[/center]"
+shortcut_keys_enabled = false
+
+[node name="Tutorial" type="RichTextLabel" parent="Background"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -93,7 +100,6 @@ text = "[center][wave amp=20 freq=-7]TUTORIAL[/wave][/center]"
 process_mode = 3
 position = Vector2(960, 540)
 script = ExtResource("1_0u2h3")
-noise = SubResource("FastNoiseLite_brxoi")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAADAAQAAgABAAAAAAACAAQAAgAAAAAAAAACAAUAAgAAAAEAAAACAAYAAgAAAAEAAAACAAcAAgAAAAEAAAADAA4AAgACAAEAAAADAA0AAgACAAEAAAADAAwAAgACAAEAAAADAAsAAgACAAEAAAADAAoAAgACAAEAAAADAAkAAgACAAEAAAADAAgAAgACAAEAAAADAAcAAgACAAEAAAADAAYAAgACAAEAAAADAAUAAgADAAMAAAACABAAAgAAAAEAAAACAA4AAgAAAAEAAAACAA0AAgAAAAEAAAACAAwAAgAAAAEAAAACAAsAAgAAAAEAAAACAAoAAgAAAAEAAAACAAkAAgAAAAEAAAACAAgAAgAAAAEAAAAnABAAAgAAAAEAAAAnAA8AAgAAAAEAAAAnAA4AAgAAAAEAAAAnAA0AAgAAAAEAAAAnAAwAAgAAAAEAAAAnAAsAAgAAAAEAAAAnAAoAAgAAAAEAAAAnAAkAAgAAAAEAAAAnAAgAAgAAAAEAAAAnAAcAAgAAAAEAAAAnAAYAAgAAAAEAAAAnAAUAAgAEAAMAAAAnAAQAAgABAAAAAAAXABAAAgACAAEAAAAXAA8AAgACAAEAAAAXAA4AAgACAAEAAAAXAA0AAgACAAEAAAAXAAwAAgACAAEAAAAXAAsAAgACAAEAAAAXAAoAAgACAAEAAAAXAAkAAgACAAEAAAAXAAgAAgACAAEAAAAXAAcAAgACAAEAAAAXAAYAAgACAAEAAAAXAAUAAgADAAMAAAAXAAQAAgABAAAAAAAWABAAAgAAAAEAAAAWAA8AAgAAAAEAAAAWAA4AAgAAAAEAAAAWAA0AAgAAAAEAAAAWAAwAAgAAAAEAAAAWAAsAAgAAAAEAAAAWAAoAAgAAAAEAAAAWAAkAAgAAAAEAAAAWAAgAAgAAAAEAAAAWAAcAAgAAAAEAAAAWAAYAAgAAAAEAAAAWAAUAAgAAAAEAAAAWAAQAAgAAAAAAAAAUABAAAgACAAEAAAAUAA8AAgACAAEAAAAUAA4AAgACAAEAAAAUAA0AAgACAAEAAAAUAAwAAgACAAEAAAAUAAsAAgACAAEAAAAUAAoAAgACAAEAAAAUAAkAAgACAAEAAAAUAAgAAgACAAEAAAAUAAcAAgACAAEAAAAUAAYAAgACAAEAAAAUAAUAAgACAAEAAAAUAAQAAgACAAAAAAATABAAAgAAAAEAAAATAA8AAgAAAAEAAAATAA4AAgAAAAEAAAATAA0AAgAAAAEAAAATAAwAAgAAAAEAAAATAAsAAgAAAAEAAAATAAoAAgAAAAEAAAATAAkAAgAAAAEAAAATAAgAAgAAAAEAAAATAAcAAgAAAAEAAAATAAYAAgAAAAEAAAATAAUAAgAEAAMAAAATAAQAAgABAAAAAAAoABAAAgACAAEAAAAoAA8AAgACAAEAAAAoAA4AAgACAAEAAAAoAA0AAgACAAEAAAAoAAwAAgACAAEAAAAoAAsAAgACAAEAAAAoAAoAAgACAAEAAAAoAAkAAgACAAEAAAAoAAgAAgACAAEAAAAoAAcAAgACAAEAAAAoAAYAAgACAAEAAAAoAAUAAgACAAEAAAAoAAQAAgACAAAAAAAUABIAAgACAAIAAAAUABEAAgACAAEAAAATABIAAgABAAIAAAATABEAAgAEAAQAAAASABIAAgABAAIAAAASABEAAgABAAAAAAARABIAAgABAAIAAAARABEAAgABAAAAAAAQABIAAgABAAIAAAAQABEAAgABAAAAAAAPABIAAgABAAIAAAAPABEAAgABAAAAAAAOABIAAgABAAIAAAAOABEAAgABAAAAAAANABIAAgABAAIAAAANABEAAgABAAAAAAAMABIAAgABAAIAAAAMABEAAgABAAAAAAALABIAAgABAAIAAAALABEAAgABAAAAAAAKABIAAgABAAIAAAAKABEAAgABAAAAAAAJABIAAgABAAIAAAAJABEAAgABAAAAAAAIABIAAgABAAIAAAAIABEAAgABAAAAAAAHABIAAgABAAIAAAAHABEAAgABAAAAAAAGABIAAgABAAIAAAAGABEAAgABAAAAAAAFABIAAgABAAIAAAAFABEAAgABAAAAAAAEABIAAgABAAIAAAAEABEAAgABAAAAAAADABIAAgABAAIAAAADABEAAgADAAQAAAACABIAAgAAAAIAAAACABEAAgAAAAEAAAADABAAAgACAAEAAAADAA8AAgACAAEAAAACAA8AAgAAAAEAAAASAAUAAgABAAIAAAASAAQAAgABAAAAAAARAAUAAgABAAIAAAARAAQAAgABAAAAAAAQAAUAAgABAAIAAAAQAAQAAgABAAAAAAAPAAUAAgABAAIAAAAPAAQAAgABAAAAAAAOAAUAAgABAAIAAAAOAAQAAgABAAAAAAANAAUAAgABAAIAAAANAAQAAgABAAAAAAAMAAUAAgABAAIAAAAMAAQAAgABAAAAAAALAAUAAgABAAIAAAALAAQAAgABAAAAAAAKAAUAAgABAAIAAAAKAAQAAgABAAAAAAAJAAUAAgABAAIAAAAJAAQAAgABAAAAAAAIAAUAAgABAAIAAAAIAAQAAgABAAAAAAAHAAUAAgABAAIAAAAHAAQAAgABAAAAAAAGAAUAAgABAAIAAAAGAAQAAgABAAAAAAAFAAUAAgABAAIAAAAFAAQAAgABAAAAAAAEAAUAAgABAAIAAAAEAAQAAgABAAAAAAAoABIAAgACAAIAAAAoABEAAgACAAEAAAAnABIAAgABAAIAAAAnABEAAgAEAAQAAAAmABIAAgABAAIAAAAmABEAAgABAAAAAAAlABIAAgABAAIAAAAlABEAAgABAAAAAAAkABIAAgABAAIAAAAkABEAAgABAAAAAAAjABIAAgABAAIAAAAjABEAAgABAAAAAAAiABIAAgABAAIAAAAiABEAAgABAAAAAAAhABIAAgABAAIAAAAhABEAAgABAAAAAAAgABIAAgABAAIAAAAgABEAAgABAAAAAAAfABIAAgABAAIAAAAfABEAAgABAAAAAAAeABIAAgABAAIAAAAeABEAAgABAAAAAAAdABIAAgABAAIAAAAdABEAAgABAAAAAAAcABIAAgABAAIAAAAcABEAAgABAAAAAAAbABIAAgABAAIAAAAbABEAAgABAAAAAAAaABIAAgABAAIAAAAaABEAAgABAAAAAAAZABIAAgABAAIAAAAZABEAAgABAAAAAAAYABIAAgABAAIAAAAYABEAAgABAAAAAAAXABIAAgABAAIAAAAXABEAAgADAAQAAAAWABIAAgAAAAIAAAAWABEAAgAAAAEAAAAmAAUAAgABAAIAAAAmAAQAAgABAAAAAAAlAAUAAgABAAIAAAAlAAQAAgABAAAAAAAkAAUAAgABAAIAAAAkAAQAAgABAAAAAAAjAAUAAgABAAIAAAAjAAQAAgABAAAAAAAiAAUAAgABAAIAAAAiAAQAAgABAAAAAAAhAAUAAgABAAIAAAAhAAQAAgABAAAAAAAgAAUAAgABAAIAAAAgAAQAAgABAAAAAAAfAAUAAgABAAIAAAAfAAQAAgABAAAAAAAeAAUAAgABAAIAAAAeAAQAAgABAAAAAAAdAAUAAgABAAIAAAAdAAQAAgABAAAAAAAcAAUAAgABAAIAAAAcAAQAAgABAAAAAAAbAAUAAgABAAIAAAAbAAQAAgABAAAAAAAaAAUAAgABAAIAAAAaAAQAAgABAAAAAAAZAAUAAgABAAIAAAAZAAQAAgABAAAAAAAYAAUAAgABAAIAAAAYAAQAAgABAAAAAAAGABAAAQAAAAAACQAOABAAAQAAAAAACQARABAAAQAAAAAACQAZABAAAQAAAAAACQAfABAAAQAAAAAACQAlABAAAQAAAAAACQAlAAYAAQAAAAAACgAgAAYAAQAAAAAACgAMAAYAAQAAAAAACgASAAYAAQAAAAAAAwARAAYAAQAAAAAAAwAQAAYAAQAAAAAAAwAPAAYAAQAAAAAAAwAOAAYAAQAAAAAAAwAJAAYAAQAAAAAAAwAIAAYAAQAAAAAAAwAHAAYAAQAAAAAAAwAEAAYAAQAAAAAAAwAFAAYAAQAAAAAAAwAGAAYAAQAAAAAAAwABABEAAQAAAAAACAApAAUAAQAAAAAACAA=")
@@ -140,10 +146,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 975.0
-offset_top = 913.0
-offset_right = 1224.0
-offset_bottom = 1015.0
+offset_left = 843.0
+offset_top = 925.0
+offset_right = 1092.0
+offset_bottom = 1027.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("14_qoo7l")
@@ -158,14 +164,34 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = -48.0
-offset_right = 96.0
-offset_bottom = 33.0
+offset_left = 22.0
+offset_top = -36.0
+offset_right = 80.0
+offset_bottom = 20.0
 grow_vertical = 2
-texture = ExtResource("16_e70il")
+pivot_offset = Vector2(28, 28)
+texture = ExtResource("6_6tv23")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Select Button/Icon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -128.0
+offset_right = 127.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(128, 128)
+value = 93.0
+fill_mode = 4
+texture_progress = ExtResource("16_uaxlq")
 
 [node name="Label" type="Label" parent="Select Button"]
 layout_mode = 1
@@ -182,55 +208,4 @@ grow_horizontal = 0
 grow_vertical = 2
 text = "PLAY"
 label_settings = SubResource("LabelSettings_lngyd")
-vertical_alignment = 1
-
-[node name="Cancel Button" type="NinePatchRect" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 680.0
-offset_top = 913.0
-offset_right = 929.0
-offset_bottom = 1015.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_cn6q3")
-region_rect = Rect2(249.746, 395.748, 102.504, 102.504)
-patch_margin_left = 18
-patch_margin_top = 18
-patch_margin_right = 18
-patch_margin_bottom = 35
-
-[node name="Icon" type="TextureRect" parent="Cancel Button"]
-modulate = Color(0.0196078, 0.0392157, 0.0627451, 1)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 18.0
-offset_top = -38.0
-offset_right = 82.0
-offset_bottom = 23.0
-grow_vertical = 2
-texture = ExtResource("8_3qvu6")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="Cancel Button"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -154.0
-offset_top = -48.0
-offset_right = -3.0
-offset_bottom = 33.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "BACK"
-label_settings = SubResource("LabelSettings_eu05y")
 vertical_alignment = 1

@@ -23,7 +23,7 @@ func _ready():
 func tuto_animation():
 	await get_tree().create_timer(1.5).timeout
 	while true:
-		await get_tree().create_timer(1.2).timeout
+		#await get_tree().create_timer(1.2).timeout
 		looking_right = true
 		SoundController.play_sfx(jump_sfx, 1.0, randf_range(0.8, 1.2))
 		velocity.y -= JUMP_VELOCITY
@@ -33,7 +33,7 @@ func tuto_animation():
 		current_jump_buffer = 0.0
 		showing = true
 		change_dpad(right_dpad)
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(2.0).timeout
 		looking_right = false
 		SoundController.play_sfx(jump_sfx, 1.0, randf_range(0.8, 1.2))
 		velocity.y -= JUMP_VELOCITY
@@ -43,7 +43,7 @@ func tuto_animation():
 		current_jump_buffer = 0.0
 		showing = true
 		change_dpad(left_dpap)
-		await get_tree().create_timer(3.0).timeout
+		await get_tree().create_timer(2.0).timeout
 
 func _process(_delta: float) -> void:
 	if velocity.y > 0.0 and showing:

@@ -33,9 +33,9 @@ position = Vector2(6.10352e-05, -1)
 shape = SubResource("RectangleShape2D_oklnm")
 
 [node name="RightSpike" type="NinePatchRect" parent="."]
-offset_left = 1001.0
+offset_left = 999.0
 offset_top = -541.0
-offset_right = 2081.0
+offset_right = 2079.0
 offset_bottom = -501.0
 rotation = 1.5708
 texture = ExtResource("2_dso5u")
@@ -57,9 +57,9 @@ shape = SubResource("RectangleShape2D_yyxm2")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="LeftSpike" type="NinePatchRect" parent="."]
-offset_left = -1000.0
+offset_left = -998.0
 offset_top = 539.0
-offset_right = 80.0001
+offset_right = 82.0001
 offset_bottom = 579.0
 rotation = -1.5708
 texture = ExtResource("2_dso5u")

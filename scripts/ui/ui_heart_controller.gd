@@ -2,7 +2,7 @@ extends Node2D
 class_name UIHeartController
 
 const AMPLITUDE: float = 5
-const SPEED: float = 5
+@export var SPEED: float = 5
 
 
 @onready var container: Sprite2D = $container

@@ -551,18 +551,24 @@ text = "back"
 label_settings = SubResource("LabelSettings_dap7p")
 vertical_alignment = 1
 
-[node name="Sukafu" type="Sprite2D" parent="."]
-position = Vector2(140, 140)
+[node name="Sukafu" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 61.0
+offset_top = 52.0
+offset_right = 261.0
+offset_bottom = 252.0
 texture = ExtResource("16_1df63")
+script = ExtResource("13_5mqvi")
 
 [node name="Icon" type="TextureRect" parent="Sukafu"]
+layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = -43.0
-offset_top = -12.0
-offset_right = 21.0
-offset_bottom = 49.0
+offset_left = 53.0
+offset_top = 92.0
+offset_right = 117.0
+offset_bottom = 153.0
 grow_vertical = 2
 texture = ExtResource("17_eojlf")
 expand_mode = 1

@@ -6,6 +6,7 @@ class_name LogoScene
 @export var logo_sound: AudioStream
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	logo_image.modulate.a = 0.0
 	var tween = create_tween()
 	tween.tween_interval(1.0)

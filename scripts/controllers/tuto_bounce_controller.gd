@@ -30,9 +30,9 @@ func tuto_animation():
 		body_container.scale = Vector2(0.7, 1.4)
 		current_coyote_time = 0.0
 		current_jump_buffer = 0.0
-		await get_tree().create_timer(5.0).timeout
-		showing = false
 		await get_tree().create_timer(3.0).timeout
+		showing = false
+		await get_tree().create_timer(1.0).timeout
 
 func _process(_delta: float):
 	if velocity.y > 0.0 and showing and !bashing:

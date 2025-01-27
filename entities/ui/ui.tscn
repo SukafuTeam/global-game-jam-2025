@@ -141,12 +141,15 @@ scale = Vector2(1.44215, 1.44215)
 
 [node name="Heart" parent="P2UI/HeartsContainer" instance=ExtResource("6_ntlee")]
 position = Vector2(0, 1)
+SPEED = -5.0
 
 [node name="Heart2" parent="P2UI/HeartsContainer" instance=ExtResource("6_ntlee")]
 position = Vector2(52, 1)
+SPEED = -5.0
 
 [node name="Heart3" parent="P2UI/HeartsContainer" instance=ExtResource("6_ntlee")]
 position = Vector2(104, 1)
+SPEED = -5.0
 
 [node name="PortraitMask" type="NinePatchRect" parent="P2UI"]
 clip_children = 1
