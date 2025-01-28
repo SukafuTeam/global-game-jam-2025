@@ -29,11 +29,10 @@ func _process(_delta: float):
 	if interactible == false:
 		return
 	
-	if Input.is_action_just_pressed("p1_dash") or Input.is_action_just_pressed("p2_dash"):
+	if Input.is_action_just_pressed("ui_back"):
 		SceneTransition.change_scene(Constants.MENU_SCENE)
 		interactible = false
 		cheer.stop()
-			
 
 func show_splash(data: CharacterData):
 	cheer.play()

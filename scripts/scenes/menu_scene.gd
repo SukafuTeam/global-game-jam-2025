@@ -25,11 +25,11 @@ var state: State
 
 var next: bool:
 	get:
-		return Input.is_action_just_pressed("p1_jump") or Input.is_action_just_pressed("p2_jump")
+		return Input.is_action_just_pressed("ui_next")
 
 var back: bool:
 	get:
-		return Input.is_action_just_pressed("p1_dash") or Input.is_action_just_pressed("p2_dash")
+		return Input.is_action_just_pressed("ui_back")
 
 
 
@@ -60,7 +60,7 @@ func _process(delta: float):
 			elif back:
 				open_exit()
 				state = State.EXIT
-			elif Input.is_action_just_pressed("credits"):
+			elif Input.is_action_just_pressed("ui_credits"):
 				open_credits()
 				state = State.CREDITS
 		State.EXIT:

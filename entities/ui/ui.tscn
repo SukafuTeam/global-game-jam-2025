@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://rjgpnc8t6evf"]
+[gd_scene load_steps=29 format=3 uid="uid://rjgpnc8t6evf"]
 
 [ext_resource type="Texture2D" uid="uid://33idf0yco4wj" path="res://assets/images/palceholder/particle_test.png" id="1_hagbv"]
 [ext_resource type="Script" path="res://scripts/ui/ui_controller.gd" id="1_sby32"]
@@ -18,7 +18,8 @@
 [ext_resource type="Script" path="res://scripts/ui/winner_splash_controller.gd" id="16_gau7n"]
 [ext_resource type="Texture2D" uid="uid://dlw4013xxcdjl" path="res://assets/images/characters/pop/splash_rosa.png" id="17_6sblp"]
 [ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="18_4xtam"]
-[ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation_button_circle.png" id="20_mnlkb"]
+[ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation/playstation_button_circle.png" id="20_mnlkb"]
+[ext_resource type="Script" path="res://scripts/ui/input_texture_controller.gd" id="20_oeipr"]
 [ext_resource type="AudioStream" uid="uid://b8gjuch1f8ucx" path="res://assets/sound/sfx/cheer.ogg" id="20_y5w8v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mrelj"]
@@ -547,6 +548,8 @@ grow_vertical = 2
 texture = ExtResource("20_mnlkb")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("20_oeipr")
+type = 1
 
 [node name="Label" type="Label" parent="WinnerSplash/Menu Button"]
 layout_mode = 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmk0kw0iyff1s"
-path="res://.godot/imported/playstation3_button_start.png-c186ceed9eca27afcddc1617c7cffc5a.ctex"
+uid="uid://uq75x4c5bltb"
+path="res://.godot/imported/playstation_button_cross.png-0e7eea5d73cda9fb261dc89fd068c90d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/input/playstation3_button_start.png"
-dest_files=["res://.godot/imported/playstation3_button_start.png-c186ceed9eca27afcddc1617c7cffc5a.ctex"]
+source_file="res://assets/images/ui/input/playstation/playstation_button_cross.png"
+dest_files=["res://.godot/imported/playstation_button_cross.png-0e7eea5d73cda9fb261dc89fd068c90d.ctex"]
 
 [params]
 

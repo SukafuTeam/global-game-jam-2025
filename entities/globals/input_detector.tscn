@@ -1,0 +1,34 @@
+[gd_scene load_steps=16 format=3 uid="uid://b6jlcoodvprfq"]
+
+[ext_resource type="Script" path="res://scripts/globals/input_detector.gd" id="1_f0wow"]
+[ext_resource type="Texture2D" uid="uid://deslwefjsaqo7" path="res://assets/images/ui/input/xbox/xbox_button_a.png" id="2_5smtv"]
+[ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation/playstation_button_cross.png" id="3_s704f"]
+[ext_resource type="Texture2D" uid="uid://bxsh7jggat1qh" path="res://assets/images/ui/input/keyboard/keyboard_t.png" id="4_m8md3"]
+[ext_resource type="Texture2D" uid="uid://i35rpsioqwbb" path="res://assets/images/ui/input/keyboard/keyboard_o.png" id="5_4utxs"]
+[ext_resource type="Texture2D" uid="uid://ctrfu6ps41rch" path="res://assets/images/ui/input/keyboard/keyboard_enter.png" id="6_xfm77"]
+[ext_resource type="Texture2D" uid="uid://btkugk4dfjkl8" path="res://assets/images/ui/input/nintendo/switch_button_b.png" id="7_i18xg"]
+[ext_resource type="Texture2D" uid="uid://de4tyi8uy3auw" path="res://assets/images/ui/input/xbox/xbox_button_b.png" id="8_1ncls"]
+[ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation/playstation_button_circle.png" id="9_hwrm0"]
+[ext_resource type="Texture2D" uid="uid://cu33g5bqljaob" path="res://assets/images/ui/input/keyboard/keyboard_escape.png" id="10_wwppc"]
+[ext_resource type="Texture2D" uid="uid://w8c8b5vmfam8" path="res://assets/images/ui/input/nintendo/switch_button_a.png" id="11_a3fqb"]
+[ext_resource type="Texture2D" uid="uid://cx8doa183j8r5" path="res://assets/images/ui/input/xbox/xbox_button_y.png" id="12_b0m77"]
+[ext_resource type="Texture2D" uid="uid://c7ngelv3l88sp" path="res://assets/images/ui/input/playstation/playstation_button_triangle.png" id="13_6qdax"]
+[ext_resource type="Texture2D" uid="uid://dams72lnaia7h" path="res://assets/images/ui/input/keyboard/keyboard_space.png" id="14_gmv1r"]
+[ext_resource type="Texture2D" uid="uid://dhnylghypdnsf" path="res://assets/images/ui/input/nintendo/switch_button_x.png" id="15_g6nne"]
+
+[node name="InputDetector" type="Node"]
+script = ExtResource("1_f0wow")
+jump_texture_xbox = ExtResource("2_5smtv")
+jump_texture_playstation = ExtResource("3_s704f")
+jump_texture_keyboard_p1 = ExtResource("4_m8md3")
+jump_texture_keyboard_p2 = ExtResource("5_4utxs")
+next_texture_keyboard = ExtResource("6_xfm77")
+jump_texture_nintendo = ExtResource("7_i18xg")
+back_texture_xbox = ExtResource("8_1ncls")
+back_texture_playstation = ExtResource("9_hwrm0")
+back_texture_keyboard = ExtResource("10_wwppc")
+back_texture_nintendo = ExtResource("11_a3fqb")
+credits_texture_xbox = ExtResource("12_b0m77")
+credits_texture_playstation = ExtResource("13_6qdax")
+credits_texture_keyboard = ExtResource("14_gmv1r")
+credits_texture_nintendo = ExtResource("15_g6nne")

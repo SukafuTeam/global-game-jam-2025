@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7vojpk2b55uj"
-path="res://.godot/imported/playstation_dpad_right_outline.png-444e282f84e19827d4636e75c24e96ab.ctex"
+uid="uid://btkugk4dfjkl8"
+path="res://.godot/imported/switch_button_b.png-602afc8b21be8df92c06cc4844e8acff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/input/playstation_dpad_right_outline.png"
-dest_files=["res://.godot/imported/playstation_dpad_right_outline.png-444e282f84e19827d4636e75c24e96ab.ctex"]
+source_file="res://assets/images/ui/input/nintendo/switch_button_b.png"
+dest_files=["res://.godot/imported/switch_button_b.png-602afc8b21be8df92c06cc4844e8acff.ctex"]
 
 [params]
 

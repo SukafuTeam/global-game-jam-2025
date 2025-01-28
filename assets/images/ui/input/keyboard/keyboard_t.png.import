@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uq75x4c5bltb"
-path="res://.godot/imported/playstation_button_cross.png-c5601f1e35da0e9f13c5aa3d6701c980.ctex"
+uid="uid://bxsh7jggat1qh"
+path="res://.godot/imported/keyboard_t.png-9342076d323de814994040f5a3f44923.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/input/playstation_button_cross.png"
-dest_files=["res://.godot/imported/playstation_button_cross.png-c5601f1e35da0e9f13c5aa3d6701c980.ctex"]
+source_file="res://assets/images/ui/input/keyboard/keyboard_t.png"
+dest_files=["res://.godot/imported/keyboard_t.png-9342076d323de814994040f5a3f44923.ctex"]
 
 [params]
 

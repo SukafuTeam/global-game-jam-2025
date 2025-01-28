@@ -88,15 +88,10 @@ func _process(_delta: float):
 		if options[p1_focus].selected:
 			options[p1_focus].selected = false
 			SoundController.play_sfx(cancel_sfx)
-		else:
-			SceneTransition.change_scene(Constants.MENU_SCENE)
 	if Input.is_action_just_pressed("p2_dash"):
 		if options[p2_focus].selected:
 			options[p2_focus].selected = false
 			SoundController.play_sfx(cancel_sfx)
-		else:
-			SoundController.play_sfx(cancel_sfx)
-			SceneTransition.change_scene(Constants.MENU_SCENE)
 
 func move_left(current: int, enemy: int) -> int:
 	if options[current].selected:

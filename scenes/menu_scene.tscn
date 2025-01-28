@@ -1,22 +1,23 @@
-[gd_scene load_steps=30 format=3 uid="uid://der6oudgjuv4u"]
+[gd_scene load_steps=31 format=3 uid="uid://der6oudgjuv4u"]
 
 [ext_resource type="Script" path="res://scripts/scenes/menu_scene.gd" id="1_7l5rb"]
 [ext_resource type="Material" uid="uid://b5wn8x8fwyqnf" path="res://assets/materials/background/background_material.tres" id="1_cdm8k"]
 [ext_resource type="AudioStream" uid="uid://b8ude40avqug8" path="res://assets/sound/bgm/menu.ogg" id="2_t8bng"]
 [ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="2_th1x0"]
 [ext_resource type="AudioStream" uid="uid://bd3epd4xyxhm1" path="res://assets/sound/sfx/go.ogg" id="3_ohjlb"]
-[ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation_button_cross.png" id="3_oy4wb"]
+[ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation/playstation_button_cross.png" id="3_oy4wb"]
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="4_1uixs"]
-[ext_resource type="Texture2D" uid="uid://ctadc610lxltk" path="res://assets/images/ui/input/playstation_button_circle_outline.png" id="6_g6y2a"]
 [ext_resource type="Texture2D" uid="uid://upt3fjy24muw" path="res://assets/images/ui/menu/logo.png" id="8_g6ry4"]
+[ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation/playstation_button_circle.png" id="8_tmnch"]
 [ext_resource type="Texture2D" uid="uid://bpw68ng1dd1uq" path="res://assets/images/ui/menu/logo-serra.png" id="11_xg6ff"]
 [ext_resource type="Texture2D" uid="uid://cy0se1drocnp8" path="res://assets/images/characters/muscle/splash_laranja.png" id="12_5xi78"]
 [ext_resource type="Script" path="res://scripts/controllers/waveable.gd" id="13_5mqvi"]
 [ext_resource type="Texture2D" uid="uid://l56v8s1ey58k" path="res://assets/images/characters/office/splash.azul.png" id="13_n2mt4"]
 [ext_resource type="Texture2D" uid="uid://k5bulsug5gk3" path="res://assets/images/characters/farm/splash_verde.png" id="14_4o86x"]
 [ext_resource type="Texture2D" uid="uid://n8bxu7v3x4dd" path="res://assets/images/ui/menu/sukafu_logo.png" id="16_1df63"]
-[ext_resource type="Texture2D" uid="uid://c7ngelv3l88sp" path="res://assets/images/ui/input/playstation_button_triangle.png" id="17_eojlf"]
+[ext_resource type="Texture2D" uid="uid://c7ngelv3l88sp" path="res://assets/images/ui/input/playstation/playstation_button_triangle.png" id="17_eojlf"]
 [ext_resource type="Texture2D" uid="uid://c68nne7ct518k" path="res://assets/images/ui/in-game/ui-timer.png" id="17_xvgc2"]
+[ext_resource type="Script" path="res://scripts/ui/input_texture_controller.gd" id="18_stpeu"]
 
 [sub_resource type="Gradient" id="Gradient_2uin8"]
 offsets = PackedFloat32Array(0.012987, 1)
@@ -159,6 +160,7 @@ grow_vertical = 2
 texture = ExtResource("3_oy4wb")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("18_stpeu")
 
 [node name="Label" type="Label" parent="Select Button"]
 layout_mode = 1
@@ -208,9 +210,11 @@ offset_top = -33.0
 offset_right = 66.0
 offset_bottom = 18.0
 grow_vertical = 2
-texture = ExtResource("6_g6y2a")
+texture = ExtResource("8_tmnch")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("18_stpeu")
+type = 1
 
 [node name="Label" type="Label" parent="Cancel Button"]
 layout_mode = 1
@@ -366,6 +370,7 @@ grow_vertical = 2
 texture = ExtResource("3_oy4wb")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("18_stpeu")
 
 [node name="Label" type="Label" parent="ExitModal/Panel/Confirm"]
 layout_mode = 1
@@ -415,9 +420,11 @@ offset_top = -33.0
 offset_right = 66.0
 offset_bottom = 18.0
 grow_vertical = 2
-texture = ExtResource("6_g6y2a")
+texture = ExtResource("8_tmnch")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("18_stpeu")
+type = 1
 
 [node name="Label" type="Label" parent="ExitModal/Panel/Cancel"]
 layout_mode = 1
@@ -437,7 +444,6 @@ label_settings = SubResource("LabelSettings_dap7p")
 vertical_alignment = 1
 
 [node name="CreditsModal" type="ColorRect" parent="."]
-visible = false
 z_index = 5
 z_as_relative = false
 material = SubResource("ShaderMaterial_6o2ft")
@@ -530,9 +536,11 @@ offset_top = -33.0
 offset_right = 66.0
 offset_bottom = 18.0
 grow_vertical = 2
-texture = ExtResource("6_g6y2a")
+texture = ExtResource("8_tmnch")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("18_stpeu")
+type = 1
 
 [node name="Label" type="Label" parent="CreditsModal/Panel/Cancel"]
 layout_mode = 1
@@ -567,3 +575,5 @@ grow_vertical = 2
 texture = ExtResource("17_eojlf")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("18_stpeu")
+type = 2

@@ -23,24 +23,6 @@ func get_left(player: PLAYER) -> String:
 	
 	return ""
 
-func get_up(player: PLAYER) -> String:
-	match player:
-		PLAYER.P1:
-			return "p1_up"
-		PLAYER.P2:
-			return "p2_up"
-	
-	return ""
-
-func get_down(player: PLAYER) -> String:
-	match player:
-		PLAYER.P1:
-			return "p1_down"
-		PLAYER.P2:
-			return "p2_down"
-	
-	return ""
-
 func get_jump(player: PLAYER) -> String:
 	match player:
 		PLAYER.P1:

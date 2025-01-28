@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3ak0kwtukdto"
-path="res://.godot/imported/playstation_dpad_left_outline.png-7efa63258f7146b01848c5a403be36ac.ctex"
+uid="uid://cjm5nftcfu3pa"
+path="res://.godot/imported/playstation_button_circle.png-7ea49fff3ceb9f39109bd7a658e5a143.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/ui/input/playstation_dpad_left_outline.png"
-dest_files=["res://.godot/imported/playstation_dpad_left_outline.png-7efa63258f7146b01848c5a403be36ac.ctex"]
+source_file="res://assets/images/ui/input/playstation/playstation_button_circle.png"
+dest_files=["res://.godot/imported/playstation_button_circle.png-7ea49fff3ceb9f39109bd7a658e5a143.ctex"]
 
 [params]
 

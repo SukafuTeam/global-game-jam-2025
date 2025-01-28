@@ -191,9 +191,7 @@ func _physics_process(delta):
 	
 
 func process_ground(delta) -> State:
-	
-	if !Input.is_action_pressed(InputController.get_down(player)):
-		hor_move_player(delta, GROUND_HOR_ACCEL, GROUND_FRICTION)
+	hor_move_player(delta, GROUND_HOR_ACCEL, GROUND_FRICTION)
 	
 	angular_velocity = calculate_rotation()
 	
@@ -282,13 +280,14 @@ func process_air(delta: float) -> State:
 		
 		return State.GROUND
 	
-	if current_jump_buffer > 0.0 and current_coyote_time > 0.0:
-		SoundController.play_sfx(jump_sfx, 1.0, randf_range(0.8, 1.2))
-		velocity.y -= JUMP_VELOCITY
-		angular_velocity = calculate_rotation(20)
-		body_container.scale = Vector2(0.7, 1.4)
-		current_coyote_time = 0.0
-		current_jump_buffer = 0.0
+	if interactive:
+		if current_jump_buffer > 0.0 and current_coyote_time > 0.0:
+			SoundController.play_sfx(jump_sfx, 1.0, randf_range(0.8, 1.2))
+			velocity.y -= JUMP_VELOCITY
+			angular_velocity = calculate_rotation(20)
+			body_container.scale = Vector2(0.7, 1.4)
+			current_coyote_time = 0.0
+			current_jump_buffer = 0.0
 	
 	return State.AIR
 

@@ -14,7 +14,7 @@ func _process(delta: float):
 	if moving_forward:
 		return
 	
-	if Input.is_action_pressed("p1_jump") or Input.is_action_pressed("p2_jump"):
+	if Input.is_action_pressed("ui_next"):
 		current_holding_time += delta
 		button_icon.scale = lerp(button_icon.scale, Vector2.ONE * 1.3, 10 * delta)
 		if current_holding_time > time_to_hold:

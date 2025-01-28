@@ -8,15 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://bue34jra8oa40" path="res://entities/player/test_player.tscn" id="2_vyoy6"]
 [ext_resource type="Texture2D" uid="uid://xvdigcai3lqu" path="res://assets/images/ui/character-select/tile-pattern.png" id="3_64g5y"]
 [ext_resource type="Script" path="res://scripts/controllers/tuto_bounce_controller.gd" id="3_ov045"]
-[ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation_button_cross.png" id="6_6tv23"]
+[ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation/playstation_button_cross.png" id="6_6tv23"]
 [ext_resource type="Texture2D" uid="uid://dvbu0m74wqc57" path="res://assets/images/ui/input/playstation_dpad.png" id="6_ja3d3"]
 [ext_resource type="Texture2D" uid="uid://dlx0bs11w6bbk" path="res://assets/images/ui/input/playstation_dpad_right.png" id="7_1xyc3"]
-[ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation_button_circle.png" id="8_3qvu6"]
 [ext_resource type="Texture2D" uid="uid://bn76lylgo0ss4" path="res://assets/images/ui/input/playstation_dpad_left.png" id="8_6ebyf"]
 [ext_resource type="Script" path="res://scripts/controllers/tuto_dash_controller.gd" id="8_g0lgn"]
 [ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="14_qoo7l"]
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="15_ebrih"]
 [ext_resource type="Texture2D" uid="uid://byuxcpxo855rn" path="res://assets/images/ui/input/hold_circle.png" id="16_uaxlq"]
+[ext_resource type="Script" path="res://scripts/ui/input_texture_controller.gd" id="16_vhkpe"]
 
 [sub_resource type="Gradient" id="Gradient_2uin8"]
 offsets = PackedFloat32Array(0.012987, 1)
@@ -126,8 +126,25 @@ right_dpad = ExtResource("7_1xyc3")
 left_dpap = ExtResource("8_6ebyf")
 
 [node name="PlaystationButtonCross" type="Sprite2D" parent="."]
-position = Vector2(264, 343)
-texture = ExtResource("6_6tv23")
+position = Vector2(264, 390)
+
+[node name="Jump" type="Label" parent="PlaystationButtonCross"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -22.0
+offset_right = 49.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("15_ebrih")
+theme_override_font_sizes/font_size = 33
+text = "jump"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DashButtons" type="Node2D" parent="."]
 position = Vector2(1258, 351)
@@ -138,7 +155,25 @@ texture = ExtResource("6_ja3d3")
 
 [node name="PlaystationButtonCircle" type="Sprite2D" parent="DashButtons"]
 position = Vector2(100, 0)
-texture = ExtResource("8_3qvu6")
+
+[node name="Dash" type="Label" parent="DashButtons/PlaystationButtonCircle"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = -22.0
+offset_right = 49.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("15_ebrih")
+theme_override_font_sizes/font_size = 33
+text = "Dash
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Select Button" type="NinePatchRect" parent="."]
 anchors_preset = 8
@@ -173,6 +208,7 @@ pivot_offset = Vector2(28, 28)
 texture = ExtResource("6_6tv23")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("16_vhkpe")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Select Button/Icon"]
 layout_mode = 1
@@ -181,16 +217,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -129.0
-offset_top = -128.0
-offset_right = 127.0
-offset_bottom = 128.0
+offset_left = -140.0
+offset_top = -138.0
+offset_right = 204.0
+offset_bottom = 198.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(128, 128)
 value = 93.0
 fill_mode = 4
+nine_patch_stretch = true
 texture_progress = ExtResource("16_uaxlq")
 
 [node name="Label" type="Label" parent="Select Button"]
