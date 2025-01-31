@@ -3,8 +3,8 @@ class_name CharSelectScene
 
 const P1_BACK_POSITION: float = -800
 const P1_FRONT_POSITION: float = 0
-const P2_BACK_POSITION: float = 2000
-const P2_FRONT_POSITION: float = 1150
+const P2_BACK_POSITION: float = 1000
+const P2_FRONT_POSITION: float = -100
 
 @export var p1_focus: int:
 	set(value):
@@ -41,8 +41,10 @@ var moving_forward: bool
 @export var select_sfx: AudioStream
 @export var cancel_sfx: AudioStream
 
-@onready var p1_splash: TextureRect = $P1Splash
-@onready var p2_splash: TextureRect = $P2Splash
+@onready var p_1_splash_container = $P1SplashContainer
+@onready var p_2_splash_container = $P2SplashContainer
+@onready var p1_splash: TextureRect = $P1SplashContainer/P1Splash
+@onready var p2_splash: TextureRect = $P2SplashContainer/P2Splash
 @onready var p_1_char_name_label: RichTextLabel = $P1CharNameContainer/P1CharNameLabel
 @onready var p_2_char_name_label: RichTextLabel = $P2CharNameContainer/P2CharNameLabel
 
@@ -78,19 +80,23 @@ func _process(_delta: float):
 	if Input.is_action_just_pressed("p1_jump"):
 		if !options[p1_focus].selected:
 			options[p1_focus].selected = true
+			select_p1(options[p1_focus].get_data())
 			SoundController.play_sfx(select_sfx)
 	if Input.is_action_just_pressed("p2_jump"):
 		if !options[p2_focus].selected:
 			options[p2_focus].selected = true
+			select_p2(options[p2_focus].get_data())
 			SoundController.play_sfx(select_sfx)
 		
 	if Input.is_action_just_pressed("p1_dash"):
 		if options[p1_focus].selected:
 			options[p1_focus].selected = false
+			deselect_p1(options[p1_focus].get_data())
 			SoundController.play_sfx(cancel_sfx)
 	if Input.is_action_just_pressed("p2_dash"):
 		if options[p2_focus].selected:
 			options[p2_focus].selected = false
+			deselect_p2(options[p2_focus].get_data())
 			SoundController.play_sfx(cancel_sfx)
 
 func move_left(current: int, enemy: int) -> int:
@@ -142,14 +148,54 @@ func update_p1_splash(data: CharacterData):
 	p1_splash.texture = data.splash_idle
 	p1_splash.position.x = P1_BACK_POSITION
 	
+	p_1_splash_container.texture = data.splash_background
+	
 	p1_splash_tween = create_tween()
 	p1_splash_tween.tween_property(
 		p1_splash,
 		"position:x",
 		P1_FRONT_POSITION,
 		0.2
-	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	
+func select_p1(data: CharacterData):
+	if p1_splash_tween:
+		p1_splash_tween.kill()
+	
+	p1_splash_tween = create_tween()
+	p1_splash_tween.tween_property(
+		p1_splash,
+		"scale",
+		Vector2.ONE * 1.2,
+		0.1
+	)
+	p1_splash_tween.tween_callback(func(): p1_splash.texture = data.splash_selected)
+	p1_splash_tween.tween_property(
+		p1_splash,
+		"scale",
+		Vector2.ONE,
+		0.1
+	)
 
+func deselect_p1(data: CharacterData):
+	if p1_splash_tween:
+		p1_splash_tween.kill()
+		
+	p1_splash_tween = create_tween()
+	p1_splash_tween.tween_property(
+		p1_splash,
+		"scale",
+		Vector2.ONE * 1.2,
+		0.1
+	)
+	p1_splash_tween.tween_callback(func(): p1_splash.texture = data.splash_idle)
+	p1_splash_tween.tween_property(
+		p1_splash,
+		"scale",
+		Vector2.ONE,
+		0.1
+	)
+	
 func update_p2_splash(data: CharacterData):
 	if p2_splash_tween:
 		p2_splash_tween.kill()
@@ -162,10 +208,37 @@ func update_p2_splash(data: CharacterData):
 	p2_splash.texture = data.splash_idle
 	p2_splash.position.x = P2_BACK_POSITION
 	
+	p_2_splash_container.texture = data.splash_background
+	
 	p2_splash_tween = create_tween()
 	p2_splash_tween.tween_property(
 		p2_splash,
 		"position:x",
 		P2_FRONT_POSITION,
 		0.2
-	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
+func select_p2(data: CharacterData):
+	if p2_splash_tween:
+		p2_splash_tween.kill()
+	
+	p2_splash_tween = create_tween()
+	p2_splash_tween.tween_property(
+		p2_splash,
+		"scale",
+		Vector2.ONE * 1.2,
+		0.1
+	)
+	p2_splash_tween.tween_callback(func(): p2_splash.texture = data.splash_selected)
+	p2_splash_tween.tween_property(
+		p2_splash,
+		"scale",
+		Vector2.ONE,
+		0.1
+	)
+
+func deselect_p2(data: CharacterData):
+	if p2_splash_tween:
+		p2_splash_tween.kill()
+	p2_splash.scale = Vector2.ONE
+	p2_splash.texture = data.splash_idle

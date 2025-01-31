@@ -15,8 +15,8 @@ func _ready():
 
 func reset():
 	current_round = 1
-	p1_index = -1
-	p2_index = -1
+	p1_index = 0
+	p2_index = 3
 	p1_victories = 0
 	p2_victories = 0
 

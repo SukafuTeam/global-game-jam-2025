@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://der6oudgjuv4u"]
+[gd_scene load_steps=38 format=3 uid="uid://der6oudgjuv4u"]
 
 [ext_resource type="Script" path="res://scripts/scenes/menu_scene.gd" id="1_7l5rb"]
 [ext_resource type="Material" uid="uid://b5wn8x8fwyqnf" path="res://assets/materials/background/background_material.tres" id="1_cdm8k"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bd3epd4xyxhm1" path="res://assets/sound/sfx/go.ogg" id="3_ohjlb"]
 [ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation/playstation_button_cross.png" id="3_oy4wb"]
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="4_1uixs"]
+[ext_resource type="AudioStream" uid="uid://cwtxydy5jtpnj" path="res://assets/sound/sfx/bounce.ogg" id="4_pqj8b"]
 [ext_resource type="Texture2D" uid="uid://upt3fjy24muw" path="res://assets/images/ui/menu/logo.png" id="8_g6ry4"]
 [ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation/playstation_button_circle.png" id="8_tmnch"]
 [ext_resource type="Texture2D" uid="uid://bpw68ng1dd1uq" path="res://assets/images/ui/menu/logo-serra.png" id="11_xg6ff"]
@@ -18,15 +19,20 @@
 [ext_resource type="Texture2D" uid="uid://c7ngelv3l88sp" path="res://assets/images/ui/input/playstation/playstation_button_triangle.png" id="17_eojlf"]
 [ext_resource type="Texture2D" uid="uid://c68nne7ct518k" path="res://assets/images/ui/in-game/ui-timer.png" id="17_xvgc2"]
 [ext_resource type="Script" path="res://scripts/ui/input_texture_controller.gd" id="18_stpeu"]
+[ext_resource type="Script" path="res://scripts/ui/menu_characters.gd" id="21_4ytcc"]
+[ext_resource type="Texture2D" uid="uid://321e07xhfy0x" path="res://assets/images/ui/menu/fundo.png" id="21_fltcn"]
+[ext_resource type="Texture2D" uid="uid://c7jil8xvddc3w" path="res://assets/images/ui/menu/laranja.png" id="22_trr7t"]
+[ext_resource type="Texture2D" uid="uid://kon7obfgteup" path="res://assets/images/ui/menu/azul.png" id="23_ffw4s"]
+[ext_resource type="Texture2D" uid="uid://cynfnjrkhbhg1" path="res://assets/images/ui/menu/verde.png" id="24_6xefm"]
+[ext_resource type="Texture2D" uid="uid://coqod11mda0l7" path="res://assets/images/ui/menu/rosa.png" id="25_ov8qh"]
 
 [sub_resource type="Gradient" id="Gradient_2uin8"]
-offsets = PackedFloat32Array(0.012987, 1)
 colors = PackedColorArray(0.25098, 0.227451, 0.384314, 1, 0.0196078, 0.0392157, 0.0627451, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_87bja"]
 gradient = SubResource("Gradient_2uin8")
 fill = 1
-fill_from = Vector2(0.5, 0.5)
+fill_from = Vector2(0.619658, 0.465812)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ectw"]
 font = ExtResource("4_1uixs")
@@ -103,6 +109,7 @@ grow_vertical = 2
 script = ExtResource("1_7l5rb")
 menu_song = ExtResource("2_t8bng")
 select_sfx = ExtResource("3_ohjlb")
+back_sfx = ExtResource("4_pqj8b")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -100
@@ -115,6 +122,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_87bja")
 
 [node name="Background" type="ColorRect" parent="TextureRect"]
+visible = false
 material = ExtResource("1_cdm8k")
 layout_mode = 1
 anchors_preset = 15
@@ -134,9 +142,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -124.0
+offset_left = 201.0
 offset_top = 200.0
-offset_right = 125.0
+offset_right = 450.0
 offset_bottom = 302.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -186,9 +194,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -85.0
+offset_left = 240.0
 offset_top = 329.0
-offset_right = 85.0
+offset_right = 410.0
 offset_bottom = 409.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -234,7 +242,7 @@ label_settings = SubResource("LabelSettings_dap7p")
 vertical_alignment = 1
 
 [node name="LogoContainer" type="Node2D" parent="."]
-position = Vector2(953, 431)
+position = Vector2(1278, 431)
 
 [node name="Offset" type="Node2D" parent="LogoContainer"]
 
@@ -259,6 +267,7 @@ position = Vector2(207, -197)
 texture = ExtResource("11_xg6ff")
 
 [node name="SplashLaranja" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(200, 828)
 rotation = 0.139105
 scale = Vector2(0.683663, 0.683663)
@@ -267,6 +276,7 @@ flip_h = true
 script = ExtResource("13_5mqvi")
 
 [node name="Splash_azul" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(642, 950)
 rotation = -0.00687146
 scale = Vector2(0.660524, 0.660524)
@@ -274,6 +284,7 @@ texture = ExtResource("13_n2mt4")
 script = ExtResource("13_5mqvi")
 
 [node name="Splash_azul2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1682, 766)
 rotation = -0.138045
 scale = Vector2(0.824861, 0.824861)
@@ -281,6 +292,7 @@ texture = SubResource("CompressedTexture2D_mk6cn")
 script = ExtResource("13_5mqvi")
 
 [node name="Splash_azul3" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1394, 896)
 rotation = 0.135808
 scale = Vector2(0.720217, 0.720217)
@@ -444,6 +456,7 @@ label_settings = SubResource("LabelSettings_dap7p")
 vertical_alignment = 1
 
 [node name="CreditsModal" type="ColorRect" parent="."]
+visible = false
 z_index = 5
 z_as_relative = false
 material = SubResource("ShaderMaterial_6o2ft")
@@ -560,7 +573,8 @@ label_settings = SubResource("LabelSettings_dap7p")
 vertical_alignment = 1
 
 [node name="Sukafu" type="Sprite2D" parent="."]
-position = Vector2(140, 140)
+position = Vector2(1810, 116)
+scale = Vector2(0.797145, 0.797145)
 texture = ExtResource("16_1df63")
 
 [node name="Icon" type="TextureRect" parent="Sukafu"]
@@ -577,3 +591,49 @@ expand_mode = 1
 stretch_mode = 4
 script = ExtResource("18_stpeu")
 type = 2
+
+[node name="Characters" type="Node2D" parent="." node_paths=PackedStringArray("animatable_nodes")]
+script = ExtResource("21_4ytcc")
+animatable_nodes = [NodePath("Orange"), NodePath("Blue"), NodePath("Green"), NodePath("Pink"), NodePath("Outline")]
+
+[node name="Outline" type="Node2D" parent="Characters"]
+position = Vector2(410, 539)
+
+[node name="Fundo" type="Sprite2D" parent="Characters/Outline"]
+texture = ExtResource("21_fltcn")
+
+[node name="Pink" type="Node2D" parent="Characters"]
+position = Vector2(567, 725)
+
+[node name="Rosa" type="Sprite2D" parent="Characters/Pink"]
+texture = ExtResource("25_ov8qh")
+script = ExtResource("13_5mqvi")
+freq = 2.0
+vertical = false
+
+[node name="Green" type="Node2D" parent="Characters"]
+position = Vector2(456, 340)
+
+[node name="Verde" type="Sprite2D" parent="Characters/Green"]
+texture = ExtResource("24_6xefm")
+script = ExtResource("13_5mqvi")
+freq = 2.0
+vertical = false
+
+[node name="Blue" type="Node2D" parent="Characters"]
+position = Vector2(195, 245)
+
+[node name="Azul" type="Sprite2D" parent="Characters/Blue"]
+texture = ExtResource("23_ffw4s")
+script = ExtResource("13_5mqvi")
+freq = 2.0
+vertical = false
+
+[node name="Orange" type="Node2D" parent="Characters"]
+position = Vector2(222, 763)
+
+[node name="Laranja" type="Sprite2D" parent="Characters/Orange"]
+texture = ExtResource("22_trr7t")
+script = ExtResource("13_5mqvi")
+freq = 2.0
+vertical = false

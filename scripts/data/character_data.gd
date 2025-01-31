@@ -13,5 +13,6 @@ class_name CharacterData
 
 @export var splash_idle: Texture2D
 @export var splash_selected: Texture2D
+@export var splash_background: Texture2D
 
 @export var main_color: Color

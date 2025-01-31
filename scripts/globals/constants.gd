@@ -5,8 +5,6 @@ const CHAR_SELECT_SCENE: String = "res://scenes/char_select_scene.tscn"
 const TUTO_SCENE: String = "res://scenes/tuto_scene.tscn"
 const ARENA_SCENE: String = "res://scenes/arena_scene.tscn"
 
-@export var test_constant: String = "test"
-
 @export var p1_color: Color
 @export var p2_color: Color
 
@@ -23,4 +21,5 @@ func get_character(index: int) -> CharacterData:
 			return pop_char
 		2:
 			return office_char
+	
 	return farm_char

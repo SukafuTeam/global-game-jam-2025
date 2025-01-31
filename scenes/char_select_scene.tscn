@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ce4m6tjsvnuye"]
+[gd_scene load_steps=23 format=3 uid="uid://ce4m6tjsvnuye"]
 
 [ext_resource type="Shader" path="res://assets/materials/background/background_shader.gdshader" id="1_ab4p5"]
 [ext_resource type="Script" path="res://scripts/scenes/char_select_scene.gd" id="1_kvegn"]
@@ -10,8 +10,10 @@
 [ext_resource type="FontFile" uid="uid://bj6gh1hqvapu2" path="res://assets/fonts/Bungee-Regular.ttf" id="5_anukr"]
 [ext_resource type="PackedScene" uid="uid://857s0jiy2s0a" path="res://entities/ui/char_option.tscn" id="6_vhprm"]
 [ext_resource type="Texture2D" uid="uid://uq75x4c5bltb" path="res://assets/images/ui/input/playstation/playstation_button_cross.png" id="7_0hsvx"]
-[ext_resource type="Texture2D" uid="uid://l56v8s1ey58k" path="res://assets/images/characters/office/splash.azul.png" id="7_ne8pt"]
-[ext_resource type="Texture2D" uid="uid://dlw4013xxcdjl" path="res://assets/images/characters/pop/splash_rosa.png" id="8_gsb4r"]
+[ext_resource type="Texture2D" uid="uid://dyjo3ucndkq4c" path="res://assets/images/characters/office/azul_fundo.png" id="7_53eye"]
+[ext_resource type="Texture2D" uid="uid://rsji4xbx0ejn" path="res://assets/images/characters/pop/rosa_fundo.png" id="9_v4d8i"]
+[ext_resource type="Texture2D" uid="uid://bqymgi4reyg7k" path="res://assets/images/characters/pop/rosa_idle.png" id="10_0j34e"]
+[ext_resource type="Texture2D" uid="uid://bmimfwh3jrupk" path="res://assets/images/characters/pop/rosa_selecionado.png" id="10_80uiq"]
 [ext_resource type="Script" path="res://scripts/ui/input_texture_controller.gd" id="14_m072g"]
 
 [sub_resource type="Gradient" id="Gradient_rbi7p"]
@@ -53,6 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(-727, 702)
 script = ExtResource("1_kvegn")
 options = [NodePath("MuscleOption"), NodePath("PopOption"), NodePath("OfficeOption"), NodePath("FarmOption")]
 p1_cursor = NodePath("P1Cursor")
@@ -79,24 +82,53 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="P1Splash" type="TextureRect" parent="."]
-layout_mode = 0
-offset_top = 73.0
-offset_right = 768.0
-offset_bottom = 851.0
-texture = ExtResource("7_ne8pt")
+[node name="P1SplashContainer" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1017.0
+grow_vertical = 2
+texture = ExtResource("7_53eye")
 expand_mode = 1
-stretch_mode = 5
+stretch_mode = 4
 
-[node name="P2Splash" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 1150.0
-offset_top = 73.0
-offset_right = 1918.0
-offset_bottom = 851.0
-texture = ExtResource("8_gsb4r")
-expand_mode = 1
-stretch_mode = 5
+[node name="P1Splash" type="TextureRect" parent="P1SplashContainer"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1080.0
+grow_vertical = 2
+pivot_offset = Vector2(374, 578)
+texture = ExtResource("10_0j34e")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="P2SplashContainer" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -924.0
+offset_right = 156.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("9_v4d8i")
+expand_mode = 2
+stretch_mode = 4
+flip_h = true
+
+[node name="P2Splash" type="TextureRect" parent="P2SplashContainer"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 927.0
+offset_right = 2007.0
+grow_vertical = 2
+pivot_offset = Vector2(649, 540)
+texture = ExtResource("10_80uiq")
+expand_mode = 2
+stretch_mode = 4
 flip_h = true
 
 [node name="P1CharNameContainer" type="NinePatchRect" parent="."]

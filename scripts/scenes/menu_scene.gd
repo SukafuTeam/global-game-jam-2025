@@ -12,6 +12,7 @@ enum State {
 var elapsed_time: float = 0
 @onready var logo_serra: Sprite2D = $"LogoContainer/Offset/Logo-serra"
 @export var select_sfx: AudioStream
+@export var back_sfx: AudioStream
 
 @onready var exit_modal = $ExitModal
 @onready var exit_panel = $ExitModal/Panel
@@ -59,8 +60,10 @@ func _process(delta: float):
 				SceneTransition.change_scene(Constants.CHAR_SELECT_SCENE)
 			elif back:
 				open_exit()
+				SoundController.play_sfx(back_sfx)
 				state = State.EXIT
 			elif Input.is_action_just_pressed("ui_credits"):
+				SoundController.play_sfx(select_sfx)
 				open_credits()
 				state = State.CREDITS
 		State.EXIT:
@@ -68,9 +71,11 @@ func _process(delta: float):
 				get_tree().quit()
 			elif back:
 				close_exit()
+				SoundController.play_sfx(back_sfx)
 				state = State.MENU
 		State.CREDITS:
 			if back:
+				SoundController.play_sfx(back_sfx)
 				close_credits()
 				state = State.MENU
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://rjgpnc8t6evf"]
+[gd_scene load_steps=31 format=3 uid="uid://rjgpnc8t6evf"]
 
 [ext_resource type="Texture2D" uid="uid://33idf0yco4wj" path="res://assets/images/palceholder/particle_test.png" id="1_hagbv"]
 [ext_resource type="Script" path="res://scripts/ui/ui_controller.gd" id="1_sby32"]
@@ -15,9 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://c8btrcp00ojy5" path="res://assets/images/ui/in-game/star-highlight-circle.png" id="13_l6tp8"]
 [ext_resource type="Texture2D" uid="uid://bbuimbrqvfbha" path="res://assets/images/ui/in-game/star.png" id="14_v23rv"]
 [ext_resource type="AudioStream" uid="uid://c5vk0k86jwc2g" path="res://assets/sound/sfx/dash.ogg" id="15_5hmjn"]
+[ext_resource type="AudioStream" uid="uid://bd3epd4xyxhm1" path="res://assets/sound/sfx/go.ogg" id="16_60sbn"]
 [ext_resource type="Script" path="res://scripts/ui/winner_splash_controller.gd" id="16_gau7n"]
-[ext_resource type="Texture2D" uid="uid://dlw4013xxcdjl" path="res://assets/images/characters/pop/splash_rosa.png" id="17_6sblp"]
+[ext_resource type="Texture2D" uid="uid://rsji4xbx0ejn" path="res://assets/images/characters/pop/rosa_fundo.png" id="17_d8g4f"]
 [ext_resource type="Texture2D" uid="uid://ddvymakicaj2v" path="res://assets/images/ui/character-select/atlas-select-chars.png" id="18_4xtam"]
+[ext_resource type="Texture2D" uid="uid://7bhhh2tay2gs" path="res://assets/images/characters/muscle/laranja_selecionado.png" id="18_38s4j"]
 [ext_resource type="Texture2D" uid="uid://cjm5nftcfu3pa" path="res://assets/images/ui/input/playstation/playstation_button_circle.png" id="20_mnlkb"]
 [ext_resource type="Script" path="res://scripts/ui/input_texture_controller.gd" id="20_oeipr"]
 [ext_resource type="AudioStream" uid="uid://b8gjuch1f8ucx" path="res://assets/sound/sfx/cheer.ogg" id="20_y5w8v"]
@@ -252,6 +254,8 @@ p2_star_1_container = NodePath("../StarContainer/P2_star_1")
 p2_star_2_container = NodePath("../StarContainer/P2_star_2")
 star_sfx = ExtResource("12_edmbq")
 move_sfx = ExtResource("15_5hmjn")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Rays" type="Node2D" parent="StartContainer"]
 modulate = Color(1, 1, 1, 0)
@@ -397,8 +401,8 @@ offset_right = 306.0
 offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(318, 129)
-theme_override_colors/font_shadow_color = Color(0.0196078, 0.0392157, 0.0627451, 1)
+pivot_offset = Vector2(306, 132)
+theme_override_colors/font_shadow_color = Color(0.0196078, 0.0392157, 0.0627451, 0.784314)
 theme_override_constants/shadow_offset_x = 10
 theme_override_constants/shadow_offset_y = 10
 theme_override_fonts/font = ExtResource("8_8f4jj")
@@ -408,6 +412,7 @@ vertical_alignment = 1
 
 [node name="WinnerSplash" type="Node2D" parent="." node_paths=PackedStringArray("nodes_to_hide")]
 script = ExtResource("16_gau7n")
+select_sfx = ExtResource("16_60sbn")
 nodes_to_hide = [NodePath("../P1UI"), NodePath("../P2UI"), NodePath("../StarContainer"), NodePath("../TimerContainer"), NodePath("../StartContainer")]
 
 [node name="Confetti" type="CPUParticles2D" parent="WinnerSplash"]
@@ -431,33 +436,43 @@ scale_amount_curve = SubResource("Curve_1vmv0")
 color = Color(0.878431, 0.192157, 0.317647, 1)
 color_ramp = SubResource("Gradient_ntfhu")
 
-[node name="SplashArt" type="TextureRect" parent="WinnerSplash"]
-offset_left = -1200.0
-offset_top = 9.0
-offset_right = 50.0
-offset_bottom = 1194.0
-texture = ExtResource("17_6sblp")
+[node name="SplashBackground" type="TextureRect" parent="WinnerSplash"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -1100.0
+offset_top = -33.0
+offset_right = -83.0
+offset_bottom = 1152.0
+grow_vertical = 2
+texture = ExtResource("17_d8g4f")
+
+[node name="SplashArt" type="TextureRect" parent="WinnerSplash/SplashBackground"]
+offset_left = -40.0
+offset_top = 26.0
+offset_right = 1092.0
+offset_bottom = 1146.0
+texture = ExtResource("18_38s4j")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="P1CharNameContainer" type="NinePatchRect" parent="WinnerSplash/SplashArt"]
+[node name="P1CharNameContainer" type="NinePatchRect" parent="WinnerSplash/SplashBackground/SplashArt"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 13.0
+offset_left = -64.0
 offset_top = -297.0
-offset_right = 1093.0
+offset_right = 1016.0
 offset_bottom = -157.0
 grow_vertical = 0
 texture = ExtResource("18_4xtam")
 region_rect = Rect2(93.8609, 606.733, 541.489, 138.458)
 
-[node name="P1CharNameLabel" type="RichTextLabel" parent="WinnerSplash/SplashArt/P1CharNameContainer"]
+[node name="P1CharNameLabel" type="RichTextLabel" parent="WinnerSplash/SplashBackground/SplashArt/P1CharNameContainer"]
 layout_mode = 0
-offset_left = 229.0
+offset_left = 157.0
 offset_top = 44.0
-offset_right = 823.0
+offset_right = 751.0
 offset_bottom = 140.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("8_8f4jj")
@@ -480,14 +495,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 879.0
+offset_left = 990.0
 offset_top = 332.0
-offset_right = 1841.0
+offset_right = 1952.0
 offset_bottom = 596.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
-pivot_offset = Vector2(493, 137)
+pivot_offset = Vector2(494, 91)
 theme_override_colors/default_color = Color(0.0196078, 0.0392157, 0.0627451, 0.588235)
 theme_override_fonts/normal_font = ExtResource("8_8f4jj")
 theme_override_font_sizes/normal_font_size = 160
@@ -519,13 +533,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 1250.0
-offset_top = 655.0
-offset_right = 1499.0
-offset_bottom = 757.0
+offset_left = 1361.0
+offset_top = 590.0
+offset_right = 1610.0
+offset_bottom = 692.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
+pivot_offset = Vector2(129, 47)
 texture = SubResource("CompressedTexture2D_rlc7o")
 region_rect = Rect2(249.746, 395.748, 102.504, 102.504)
 patch_margin_left = 18
@@ -570,3 +584,35 @@ vertical_alignment = 1
 
 [node name="Cheer" type="AudioStreamPlayer" parent="WinnerSplash"]
 stream = ExtResource("20_y5w8v")
+
+[node name="LoserPortraitContainer" type="NinePatchRect" parent="WinnerSplash"]
+offset_left = 1562.0
+offset_top = 896.0
+offset_right = 1837.0
+offset_bottom = 1016.0
+scale = Vector2(-1.5, 1.5)
+pivot_offset = Vector2(131.97, 57.8983)
+texture = ExtResource("5_f3vn6")
+patch_margin_left = 35
+patch_margin_top = 31
+patch_margin_right = 55
+patch_margin_bottom = 39
+metadata/_edit_use_anchors_ = true
+
+[node name="PortraitMask" type="NinePatchRect" parent="WinnerSplash/LoserPortraitContainer"]
+clip_children = 1
+offset_left = 21.0
+offset_top = 8.0
+offset_right = 261.0
+offset_bottom = 100.0
+texture = ExtResource("7_twgn4")
+patch_margin_left = 19
+patch_margin_right = 44
+
+[node name="LoserPortrait" type="TextureRect" parent="WinnerSplash/LoserPortraitContainer/PortraitMask"]
+layout_mode = 0
+offset_right = 319.0
+offset_bottom = 106.0
+texture = ExtResource("8_objxb")
+expand_mode = 1
+stretch_mode = 4

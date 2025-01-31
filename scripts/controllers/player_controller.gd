@@ -125,7 +125,7 @@ func _ready():
 	)
 	
 	var tween = player_label.create_tween()
-	tween.tween_interval(3.0)
+	tween.tween_interval(5.0)
 	tween.tween_property(player_label, "modulate:a", 0.0, 2.0)
 
 func _process(delta: float):
@@ -361,9 +361,7 @@ func collide_with_ball(other_body: Node2D):
 	 # Collision normal (direction from one ball to the other
 	var normal = (other.global_position - global_position).normalized()
 	var other_normal = normal # By default, both use the same normal
-	
 	if last_velocity.length() > 400.0 or other.last_velocity.length() > 400.0:
-		
 		if (last_velocity.length() + other.last_velocity.length()) > 2200.0:
 			GameController.hit_stop(0.3)
 			SoundController.play_sfx(ricochet_sfx)

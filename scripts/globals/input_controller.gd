@@ -40,3 +40,11 @@ func get_dash(player: PLAYER) -> String:
 			return "p2_dash"
 	
 	return ""
+
+func start_joy_vibration(player: PLAYER, duration: float):
+	var index = 0 if player == PLAYER.P1 else 1
+	if Input.get_connected_joypads().size() - 1 < index:
+		return
+	
+	Input.start_joy_vibration(index, 2000, 1000, duration)
+	
