@@ -74,7 +74,7 @@ func end_game(winner: InputController.PLAYER):
 	
 	GameController.current_round += 1
 	
-	if GameController.p1_victories == 1 or GameController.p2_victories == 1:
+	if GameController.p1_victories == 2 or GameController.p2_victories == 2:
 		var winner_data = p1.player.data if winner == InputController.PLAYER.P1 else p2.player.data
 		var loser_data = p1.player.data if winner == InputController.PLAYER.P2 else p2.player.data
 		winner_splash.show_splash(winner_data, loser_data)
